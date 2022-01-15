@@ -91,6 +91,9 @@ img {
   display: inline-block;
   user-select: auto;
 }
+.button-link:hover{
+  cursor: pointer;
+}
 .v3-tagline-subtitle {
     font-size: 20px;
     line-height: 34px;
