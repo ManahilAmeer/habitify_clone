@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import "../styles/header.css";
 import sortIcon from "../assets/sort.svg"
 import arrowIcon from "../assets/arrow.svg";
@@ -6,13 +6,19 @@ import calenderIcon from "../assets/calenderIcon.svg";
 import searchIcon from "../assets/search.svg";
 import addIcon from "../assets/add.svg";
 import GoodHabit from "../assets/GoodHabit.svg";
-
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-// import { Menu } from "@mui/material";
-import { Menu, Transition } from "@headlessui/react";
+import { DropdownData,newHabitData,logMoodData } from "./HeaderData";
 function Header() {
+  const [sortText, setsortText] = useState("Alphabetical");
+  const [visibilty, setvisiblity] = useState("hidden");
+  const handleSortButton=(option)=>{
+    setsortText(option)
+  }
+  const handleDropdown=()=>{
+    // console.log(visibilty)
+    const visible=(visibilty === "hidden" ? "visible" : "hidden") 
+    setvisiblity(visible)
+    // console.log(visibilty)
+  }
   return (
     <div className="header">
       <div className="navb">
@@ -23,15 +29,13 @@ function Header() {
           </div>
           <div>
             <button type="button" className="button">
-              {/* <span> */}
-                <img
-                  width="14"
-                  height="14"
-                  className="icon"
-                  src={calenderIcon}
-                  alt="My Happy SVG"
-                />
-              {/* </span> */}
+              <img
+                width="14"
+                height="14"
+                className="icon"
+                src={calenderIcon}
+                alt="My Happy SVG"
+              />
               Today
               <span className="arrow">
                 <img
@@ -44,11 +48,15 @@ function Header() {
             </button>
           </div>
           <div>
-            <button type="button" className="button">
+            <button
+              type="button"
+              className="button sort"
+              onClick={() => handleDropdown()}
+            >
               <span className="icon">
                 <img width="16" height="16" src={sortIcon} alt="My Happy SVG" />
               </span>
-              My Habits Order
+              {sortText}
               <span className="arrow">
                 <img
                   width="16"
@@ -78,23 +86,68 @@ function Header() {
         </div>
       </div>
       <div>
-        <ul role="list" className="Sortdropdown">
-          <div className="SortList">Reminder Time</div>
-          <li className="SortList">My Habit Order</li>
-          <li className="SortList">Alphabetical</li>
+        <ul
+          role="list"
+          className="Sortdropdown"
+          style={{ visibility: visibilty }}
+        >
+          {DropdownData.map((val, key) => {
+            return (
+              <div class="list-item">
+                <div class="list-selected"></div>
+                <div class="list-title">
+                  <p
+                    class="list-text"
+                    onClick={() => handleSortButton(val.title)}
+                  >
+                    {val.title}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </ul>
       </div>
       <div>
-        <ul role="list" className="newDropdown">
-          <div className="newList">
-            <div className="newIcon">
-              <img width="16" height="16" src={GoodHabit} />
-            </div>
-            Reminder Time
+        <ul
+          role="list"
+          className="newDropdown Sortdropdown"
+          style={{ visibility: "visible" }}
+        >
+          <div className="habits">
+            {newHabitData.map((val, key) => {
+              return (
+                <div class="list-item">
+                  <div class="list-selected">{val.icon}</div>
+                  <div class="list-title">
+                    <p
+                      class="list-text"
+                      onClick={() => handleSortButton(val.title)}
+                    >
+                      {val.title}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-
-          <li className="newList">My Habit Order</li>
-          <li className="newList">Alphabetical</li>
+          <div className="mood">
+            {logMoodData.map((val, key) => {
+              return (
+                <div class="list-item">
+                  <div class="list-selected">{val.icon}</div>
+                  <div class="list-title">
+                    <p
+                      class="list-text"
+                      onClick={() => handleSortButton(val.title)}
+                    >
+                      {val.title}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </ul>
       </div>
     </div>
