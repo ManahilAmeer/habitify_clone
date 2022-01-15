@@ -1,0 +1,39 @@
+.space {
+  position: relative;
+  width: 740px;
+  display: block;
+}
+.links {
+  position: relative;
+  float: right;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-gap: 40px;
+}
+.navItem {
+  color: #707070;
+  font-weight: 500;
+  max-width: 1300px;
+  font-size: 16px;
+}
+.navItem:hover{
+    cursor: pointer;
+}
+.navbar {
+  left: 0;
+  display: flex;
+  right: 0;
+  width: 1300px;
+  height: 73px;
+  background-color: #fff;
+  position: relative;
+  align-items: center;
+  margin-left: 24.5px;
+  margin-right: 0;
+  margin-top: 0;
+  z-index: 1000;
+}
+.pri {
+  color: #2a67f4;
+}
