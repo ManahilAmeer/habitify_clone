@@ -3,7 +3,7 @@ import "../App.css";
 import { SidebarData } from "./SidebarData.js";
 import { SidebarAreas } from "./SidebarData.js";
 import "../styles/sidebar.css";
-import {Preferences} from './SidebarData'
+import { Preferences } from "./SidebarData";
 function Sidebar() {
   return (
     <>
