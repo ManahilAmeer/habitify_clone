@@ -5,20 +5,23 @@ import arrowIcon from "../assets/arrow.svg";
 import calenderIcon from "../assets/calenderIcon.svg";
 import searchIcon from "../assets/search.svg";
 import addIcon from "../assets/add.svg";
-import GoodHabit from "../assets/GoodHabit.svg";
-import { DropdownData,newHabitData,logMoodData } from "./HeaderData";
+import HeaderDropdown from "./HeaderDropdown";
 function Header() {
   const [sortText, setsortText] = useState("Alphabetical");
-  const [visibilty, setvisiblity] = useState("hidden");
-  const handleSortButton=(option)=>{
-    setsortText(option)
-  }
-  const handleDropdown=()=>{
-    // console.log(visibilty)
-    const visible=(visibilty === "hidden" ? "visible" : "hidden") 
-    setvisiblity(visible)
-    // console.log(visibilty)
-  }
+  const [Sortvisibility, setSortvisiblity] = useState("hidden");
+  const [Habitvisibility, setHabitvisibility] = useState("hidden");
+  const handleSortButton = (option) => {
+    setsortText(option);
+  };
+ const handleSortDropdown = () => {
+   const visible = Sortvisibility === "hidden" ? "visible" : "hidden";
+   setSortvisiblity(visible);
+ };
+ const handleHabitDropdown = () => {
+   const visible = Habitvisibility === "hidden" ? "visible" : "hidden";
+   console.log(visible)
+   setHabitvisibility(visible);
+ };
   return (
     <div className="header">
       <div className="navb">
@@ -51,7 +54,7 @@ function Header() {
             <button
               type="button"
               className="button sort"
-              onClick={() => handleDropdown()}
+              onClick={() => handleSortDropdown()}
             >
               <span className="icon">
                 <img width="16" height="16" src={sortIcon} alt="My Happy SVG" />
@@ -68,7 +71,7 @@ function Header() {
             </button>
           </div>
           <div>
-            <button type="button" className="button primary">
+            <button type="button" className="button primary" onClick={()=>handleHabitDropdown()}>
               <span className="icon">
                 <img width="12" height="12" src={addIcon} alt="My Happy SVG" />
               </span>
@@ -85,71 +88,11 @@ function Header() {
           </div>
         </div>
       </div>
-      <div>
-        <ul
-          role="list"
-          className="Sortdropdown"
-          style={{ visibility: visibilty }}
-        >
-          {DropdownData.map((val, key) => {
-            return (
-              <div class="list-item">
-                <div class="list-selected"></div>
-                <div class="list-title">
-                  <p
-                    class="list-text"
-                    onClick={() => handleSortButton(val.title)}
-                  >
-                    {val.title}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </ul>
-      </div>
-      <div>
-        <ul
-          role="list"
-          className="newDropdown Sortdropdown"
-          style={{ visibility: "visible" }}
-        >
-          <div className="habits">
-            {newHabitData.map((val, key) => {
-              return (
-                <div class="list-item">
-                  <div class="list-selected">{val.icon}</div>
-                  <div class="list-title">
-                    <p
-                      class="list-text"
-                      onClick={() => handleSortButton(val.title)}
-                    >
-                      {val.title}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="mood">
-            {logMoodData.map((val, key) => {
-              return (
-                <div class="list-item">
-                  <div class="list-selected">{val.icon}</div>
-                  <div class="list-title">
-                    <p
-                      class="list-text"
-                      onClick={() => handleSortButton(val.title)}
-                    >
-                      {val.title}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </ul>
-      </div>
+      <HeaderDropdown
+        Sortvisibility={Sortvisibility}
+        handleSortButton={handleSortButton}
+        Habitvisibility={Habitvisibility}
+      />
     </div>
   );
 }

@@ -10,8 +10,15 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 import '../styles/navbar.css'
-function MainNavbar() {
+function MainNavbar(props) {
+  // const navigate = useNavigate();
+  // const handleClick = () => {
+  //   navigate("/sign-in");
+  //   console.log(navigate);
+  // };
     return (
       <div>
         <Navbar sticky="top" className="navbar">
@@ -29,7 +36,7 @@ function MainNavbar() {
             <NavItem className="navItem" onClick={""}>Contact Us</NavItem>
             <NavItem className="navItem">Blog</NavItem>
             <NavItem className="navItem pri">Sign Up</NavItem>
-            <NavItem className="navItem pri">Sign In</NavItem>
+            <NavItem className="navItem pri" onClick={()=>props.handleClick()}>Sign In</NavItem>
           </div>
         </Navbar>
       </div>

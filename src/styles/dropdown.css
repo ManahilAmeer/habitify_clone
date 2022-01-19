@@ -1,0 +1,82 @@
+
+
+
+.Sortdropdown {
+ 
+  position: fixed;
+  inset: 0px 0px auto auto;
+  margin: 0px;
+  transform: translate(-575.281px, 48px);
+  background-color: rgb(51, 51, 51);
+  padding: 0;
+  border-radius: 0.5vw;
+  border: 1px solid #616161;
+  margin-right: 8px;
+}
+.list-item,
+.sort {
+  width: 172.719px;
+}
+.list-item:hover {
+  cursor: pointer;
+  background-color: #3662cc;
+  color: white;
+  border-radius: 0.2vw;
+}
+.list-selected {
+  width: 25.5px;
+ 
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.list-title {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.list-text {
+  font-family: Inter;
+  font-size: 12px;
+ 
+  line-height: 30px;
+ 
+ 
+}
+.list-item {
+    color: hsla(0, 0%, 100%, 0.7);
+    display: flex;
+   
+    height: 30px;
+   
+   
+    padding: 0px 6px 0px 10px;
+   
+   
+}
+.newDropdown {
+  transform: translate(-357.281px, 48px);
+  width: 210px;
+  height: auto;
+}
+.newDropdown .list-item {
+  width: auto;
+}
+.newDropdown .list-selected {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10.5px;
+ 
+  width: 16px;
+  color: #fffffff2;
+}
+.newDropdown .habits {
+  padding-bottom: 6px;
+  padding-top: 4px;
+  border-bottom: 1px solid rgb(74, 74, 74);
+}
+.mood {
+  padding: 4px 0px;
+}

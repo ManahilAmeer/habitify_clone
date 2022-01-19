@@ -1,80 +1,156 @@
 .Sidebar {
   height: 100%;
   color: #7b7c7c;
-  font-family: 'Roboto', sans-serif;
-  font-size:13px;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
   font-weight: 500;
-  line-height:15.6px;
-  background-color: rgba(23,23,23,255);
+  line-height: 15.6px;
+  background-color: rgba(23, 23, 23, 255);
 }
-.SideList{
+.SideList {
   height: 100%;
   width: 100%;
   margin-top: 0;
   padding: 1vw;
-      padding-left: 12px;
-    padding-right: 13px;
-    padding-top: 39px;
-    padding-bottom: 12px;
-    width: 214px;
-    height: 100%;
+  padding-left: 12px;
+  padding-right: 13px;
+  padding-top: 39px;
+  padding-bottom: 12px;
+  width: 214px;
+  height: 100%;
 }
-.SideList .SideListItem:hover{
+.item:hover {
   cursor: pointer;
   background-color: #323232;
   color: white;
 }
-.SideList #active{
+
+.SideList #active {
   background-color: #3662cc;
   color: white;
 }
-.SideList #active{
-  background-color: #3662cc;
+.SideListItem .icon:hover {
   color: white;
 }
-.SideListItem .icon:hover{
+.SideListItem .text:hover {
   color: white;
 }
-.SideListItem .text:hover{
-  color: white;
-}
-.MenuType{
+.MenuType {
   list-style-type: none;
-  font-size: smaller;
-  margin-top: 1vw;
-} 
-.SideListItem {
-  width: 190px;
-  /* height: 27.587px; */
-    display: flex;
+      margin-bottom: 6px;
+    text-transform: uppercase;
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 12px;
+    color: rgb(123, 124, 124);
+}
+/* .SideListItem {
+  width: 110%;
+  display: flex;
+  align-items: center;
+  padding: 4.3px 8px;
+  cursor: default;
+  border-radius: 5px;
+} */
+.SideListItem:hover {
+  color: white;
+}
+/* .text {
+  width: 151;
+  height: 15.594;
+  padding: 6px 7px;
+  text-transform: capitalize;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.6px;
+  color: rgb(123, 124, 124);
+} */
+/* .SideList .icon {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+} */
+/* .icon:hover {
+  fill: #ffffff;
+} */
+.user {
+  display: flex;
+  border: 1px solid rgb(74, 74, 74);
+  width: 214px;
+  height: 42px;
+  align-items: center;
+  padding: 7px;
+  grid-area: user-menu / user-menu / user-menu / user-menu;
+  border-radius: 5px;
+  background: rgb(50, 50, 50);
+}
+.user-img {
+
+  object-fit: cover;
+  width: 26px;
+  height: 26px;
+  border-radius: 100%;
+}
+.user-text {
+  margin-left: 10px;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.6px;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0px;
+}
+.item {
+      display: flex;
+      width: 110%;
+      width: 214px;
+      height: 36px;
     align-items: center;
     padding: 4.3px 8px;
     cursor: default;
     border-radius: 5px;
+    /* background: rgb(50, 50, 50); */
 }
-.SideListItem:hover{
-  color: white;
-}
-.text {
-    width: 151;
-    height: 15.594;
-    padding: 6px 7px;
-    text-transform: capitalize;
-    font-family: Inter;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 15.6px;
-    color: rgb(123, 124, 124);
-}
-.SideList .icon{
-    transform: scale(0.8);
-    display: flex;
+.item-icon {
+      display: flex;
     width: 20px;
     height: 20px;
-    /* fill: rgb(123, 124, 124);
-    color: rgb(123, 124, 124); */
     margin-right: 5px;
 }
-.icon:hover{
- fill:#ffffff 
+.item-title {
+  margin-left: 10px;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.6px;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0px;
 }
+/* .list {
+  grid-area: box-sections / box-sections / box-sections / box-sections;
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-template-columns: 1fr;
+  margin-top: 12px;
+} */
+.option{
+      grid-area: box-sections / box-sections / box-sections / box-sections;
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-template-columns: 1fr;
+    margin-top: 12px;
+}
+.one{
+      margin-bottom: 20px;
+}
+.sidebar-link{
+      position: relative;
+    display: block;
+}
+/* .sidebar-link #active{
+  background-color: #3662cc;
+  color: white;
+} */

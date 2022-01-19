@@ -6,15 +6,16 @@
 .navb {
   display: grid;
   grid-template-areas: "topbar-date-selector topbar-search";
-  padding: 10px 0px 8px 15px;
+  padding: 7px 0px 0px 15px;
   margin-right: 10px;
-  padding-bottom: 0px;
   height: 49px;
-  padding-top: 7px;
   justify-content: space-between;
   align-items: center;
   background: rgb(23, 23, 23);
   border-bottom: 1px solid rgb(59, 59, 59);
+}
+.sort {
+  width: 172.719px;
 }
 .title {
   margin: 1% 0% 0% 2%;
@@ -24,27 +25,23 @@
   line-height: 20.4px;
   color: rgba(255, 255, 255, 0.95);
   white-space: nowrap;
+  padding-bottom: 6px;
 }
 .options {
   display: flex;
 }
-.arrow {
-  display: inline-flex;
-  align-self: center;
-  margin-inline-start: 0.5rem;
-}
-.icon {
-  display: inline-flex;
-  align-self: center;
-  margin-inline-end: 0.5rem;
+.Buttondiv {
+  height: 30px;
+  margin-right: 8px;
+  border-radius: 3px;
+  padding: 0px 12px;
+  background: rgb(66, 66, 66);
 }
 .button {
   display: inline-flex;
   margin-right: 8px;
   align-items: center;
   justify-content: center;
-  position: relative;
-  line-height: 30px;
   font-weight: 500;
   height: 30px;
   font-size: 12px;
@@ -62,134 +59,11 @@
   border-color: rgb(54, 98, 204);
   margin-right: 0;
 }
-.Buttondiv {
-  display: flex;
-  position: relative;
-  height: 30px;
-  margin-right: 8px;
-  align-items: center;
-  border-radius: 3px;
-  padding: 0px 12px;
-  background: rgb(66, 66, 66);
+.arrow, .icon {
+  display: inline-flex;
+  margin-inline-start: 0.5rem;
 }
-.Sortdropdown {
-  visibility: visible;
-  position: fixed;
-  inset: 0px 0px auto auto;
-  margin: 0px;
-  transform: translate(-565.281px, 48px);
-  background-color: rgb(51, 51, 51);
-  padding: 0;
-  border-radius: 0.5vw;
-  border: 1px solid #616161;
-  /* width: 167.719px; */
-  margin-right: 8px;
+.icon {
+  display: inline-flex;
+  margin-inline-end: 0.5rem;
 }
-.list-item,
-.sort {
-  width: 163.719px;
-}
-.list-item:hover {
-  cursor: pointer;
-  background-color: #3662cc;
-  color: white;
-  border-radius: 0.2vw;
-}
-.list-selected {
-  width: 25.5px;
-  height: 30px;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-}
-.list-title {
-  margin-top: auto;
-  margin-bottom: auto;
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.list-text {
-  font-family: Inter;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 30px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.list-item {
-  color: hsla(0, 0%, 100%, 0.7);
-  display: flex;
-  cursor: default;
-  height: 30px;
-  line-height: 30px;
-  text-transform: capitalize;
-  padding: 0px 6px 0px 10px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.newDropdown {
-  transform: translate(-349.281px, 48px);
-  /* background-color: #424242; */
-  /* padding: 0; */
-  /* border-radius: 0.5vw; */
-  /* color: white; */
-  /* border: 1px solid #616161; */
-  width: 210px;
-  height: auto;
-  align-items: center;
-  margin-top: 0px;
-  margin-left: 0px;
-  margin-right: 8px;
-  /* border-bottom: 1px solid rgb(74, 74, 74); */
-}
-.newDropdown .list-item {
-  width: auto;
-}
-.newDropdown .list-selected{
-      margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 10.5px;
-    height: 16px;
-    width: 16px;
-    color: #FFFFFFF2;
-    /* transform: scale(0.8); */
-}
-.newDropdown .habits{
-  padding-bottom: 6px;
-  padding-top: 4px;
-  border-bottom: 1px solid rgb(74, 74, 74);
-}
-.mood{
-  padding: 4px 0px;
-}
-/* .newList {
-
-  display: flex;
-  cursor: default;
-  height: 30px;
-  line-height: 30px;
-  text-transform: capitalize;
-  padding: 0px 6px 0px 10px;
-}
-.newList:hover {
-  cursor: pointer;
-  background-color: #3662cc;
-  color: white;
-  border-radius: 0.2vw;
-}
-.newIcon {
-  width: 25.5px;
-  height: 30px;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-right: 10.5px;
-} */
