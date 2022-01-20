@@ -1,12 +1,9 @@
 import React from "react";
 // import * as React from "react";
-import ReactDOM from "react-dom";
-import Button from "@mui/material/Button";
 import allHabits from "../assets/all-habit.svg";
 import setting from "../assets/setting.svg";
 // import AllInboxIcon from "@mui/material/AllInbox";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
 // import FolderIcon from "@mui/icons-material/Folder";
 import ShareIcon from "@mui/icons-material/Share";
 import AddIcon from "@mui/icons-material/Add";
@@ -14,7 +11,7 @@ import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 export const SidebarData = [
   {
     title: "All Habits",
-    icon: (<img src={allHabits}></img>
+    icon: (<img src={allHabits} alt="All Habits"></img>
     ),
     // icon: <AllInboxIcon />,
     link: "/all-habits",
@@ -42,7 +39,7 @@ export const Preferences = [
   },
   {
     title: "App Settings",
-    icon: <img src={setting} />,
+    icon: <img src={setting} alt="App Settings" />,
     // icon: <WbSunnyIcon />,
     link: "/app-settings",
   },

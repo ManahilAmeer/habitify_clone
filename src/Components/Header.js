@@ -19,7 +19,6 @@ function Header() {
  };
  const handleHabitDropdown = () => {
    const visible = Habitvisibility === "hidden" ? "visible" : "hidden";
-   console.log(visible)
    setHabitvisibility(visible);
  };
   return (
@@ -71,7 +70,11 @@ function Header() {
             </button>
           </div>
           <div>
-            <button type="button" className="button primary" onClick={()=>handleHabitDropdown()}>
+            <button
+              type="button"
+              className="button primary"
+              onClick={() => handleHabitDropdown()}
+            >
               <span className="icon">
                 <img width="12" height="12" src={addIcon} alt="My Happy SVG" />
               </span>
@@ -89,6 +92,7 @@ function Header() {
         </div>
       </div>
       <HeaderDropdown
+        handleHabitDropdown={handleHabitDropdown}
         Sortvisibility={Sortvisibility}
         handleSortButton={handleSortButton}
         Habitvisibility={Habitvisibility}

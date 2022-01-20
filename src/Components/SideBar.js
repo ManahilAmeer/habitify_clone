@@ -1,21 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
 import { SidebarData } from "./SidebarData.js";
 import { SidebarAreas } from "./SidebarData.js";
 import "../styles/sidebar.css";
-import { Preferences } from "./SidebarData";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./firebase";
+import { auth, logout } from "./firebase";
+import { useNavigate } from "react-router-dom";
 function Sidebar() {
-  const [user, loading, error] = useAuthState(auth);
+  const [visibility, setvisibility] = useState("hidden");
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+  const handleSignOut=()=>{
+    navigate("/");
+    logout();
+  }
+  const handleDropdown = () => {
+    const visible = visibility === "hidden" ? "visible" : "hidden";
+    console.log(visible);
+    setvisibility(visible);
+  }; 
   return (
     <>
       {/* <div className="header">sdfdf</div> */}
       <div className="Sidebar">
         <div className="SideList">
-          <div className="user">
-            <img src={user.photoURL} className="user-img"></img>
+          <div className="user" onClick={()=>handleDropdown()}>
+            <img src={user.photoURL} className="user-img" alt="user"></img>
             <p className="user-text">{user.displayName}</p>
+          </div>
+          <div className="popUp">
+            <div
+              className="sign-out"
+              style={{ visibility: visibility }}
+            >
+              <div className="label">
+                <p className="label-text">Profile</p>
+              </div>
+              <div className="label bottom" onClick={() => handleSignOut()}>
+                <p className="label-text">Sign Out</p>
+              </div>
+            </div>
           </div>
           <div className="option">
             <div className="one">
@@ -33,14 +57,15 @@ function Sidebar() {
           </div>
           <li className="MenuType">AREAS</li>
           {SidebarAreas.map((val, key) => {
-              return (
-                <a key={key} className="sidebar-link">
-                  <div className="item">
-                    <div className="item-icon">{val.icon}</div>
-                    <p className="item-title">{val.title}</p>
-                  </div>
-                </a>
-              );})}
+            return (
+              <a key={key} className="sidebar-link">
+                <div className="item">
+                  <div className="item-icon">{val.icon}</div>
+                  <p className="item-title">{val.title}</p>
+                </div>
+              </a>
+            );
+          })}
           {/* <div className="list"> */}
 
           {/* 
