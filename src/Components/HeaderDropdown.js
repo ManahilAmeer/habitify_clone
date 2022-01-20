@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { DropdownData, newHabitData, logMoodData } from "./HeaderData";
-import "../styles/dropdown.css"
+import "../styles/dropdown.css";
+import NewHabit from "./NewHabit";
 function HeaderDropdown(props) {
+  const [flag, setFlag] = useState(false);
+  const handleHabitButton = (title) => {
+    if (title === "Create Good Habit") {
+      props.handleHabitDropdown();
+      // console.log(flag);
+      setFlag(!flag);
+    }
+  };
   return (
     <div>
       <div>
         <ul
-          role="list"
           className="Sortdropdown"
           style={{ visibility: props.Sortvisibility }}
         >
@@ -29,26 +37,26 @@ function HeaderDropdown(props) {
       </div>
       <div>
         <ul
-          role="list"
           className="newDropdown Sortdropdown"
           style={{ visibility: props.Habitvisibility }}
         >
           <div className="habits">
             {newHabitData.map((val, key) => {
               return (
-                <div key={key} className="list-item">
+                <div
+                  key={key}
+                  className="list-item"
+                  onClick={() => handleHabitButton(val.title)}
+                >
                   <div className="list-selected">{val.icon}</div>
                   <div className="list-title">
-                    <p
-                      className="list-text"
-                    >
-                      {val.title}
-                    </p>
+                    <p className="list-text">{val.title}</p>
                   </div>
                 </div>
               );
             })}
           </div>
+
           <div className="mood">
             {logMoodData.map((val, key) => {
               return (
@@ -57,7 +65,7 @@ function HeaderDropdown(props) {
                   <div className="list-title">
                     <p
                       className="list-text"
-                      onClick={() => props.handleSortButton(val.title)}
+                      // onClick={() => props.handleSortButton(val.title)}
                     >
                       {val.title}
                     </p>
@@ -68,7 +76,8 @@ function HeaderDropdown(props) {
           </div>
         </ul>
       </div>
+      {flag && <NewHabit handleHabitButton ={handleHabitButton}/>}
     </div>
   );
 }
-export default  HeaderDropdown;
+export default HeaderDropdown;

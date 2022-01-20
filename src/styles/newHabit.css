@@ -1,0 +1,119 @@
+*, ::before, ::after {
+    border-width: 0px;
+    border-style: solid;
+    box-sizing: border-box;
+}
+.tab{
+        display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 1400;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: hidden;
+}
+.tab-content{
+        display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+    background: rgb(51, 51, 51);
+    color: inherit;
+    margin-top: 3.75rem;
+    margin-bottom: 3.75rem;
+    z-index: 1400;
+    height: -webkit-calc(100vh - 7.5rem);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px;
+    max-width: 28rem;
+}
+.content-header{
+        flex: 0 1 0%;
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    font-family: Inter;
+    line-height: 20.4px;
+    padding: 14px 16px 4px;
+}
+.create-form{
+        margin-top: 10px;
+    padding: 0px 16px;
+}
+.name{
+        width: 100%;
+    position: relative;
+}
+.name-text{
+        display: block;
+    text-align: start;
+    font-size: 10px;
+    margin-inline-end: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+    transition-duration:200ms;
+    opacity: 1;
+    font-family: Inter;
+    line-height: 12px;
+    color: rgb(123, 124, 124);
+    padding-left: 6px;
+}
+.name-input{
+    display: flex;
+}
+.input-grp{
+    width: 100%;
+    margin-right: 8px;
+}
+.input{
+        width: 100%;
+    min-width: 0px;
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    position: relative;
+    appearance: none;
+    font-size: 12px;
+    padding-inline-start: 1rem;
+    padding-inline-end: 1rem;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid rgb(74, 74, 74);
+    background: rgb(66, 66, 66);
+    color: #fff;
+    font-family: Inter;
+    font-weight: 500;
+    line-height: 14.4px;
+    cursor: default;
+    padding: 0px 10px;
+    margin-top: unset !important;
+}
+input:focus{
+    border: 1px solid #3662cc;
+}
+.name-btn{
+        display: inline-flex;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: .375rem;
+    font-weight: 600;
+    height: 30px;
+    min-width: 2rem;
+    background: transparent;
+    padding: 0px;
+    border: 1px solid rgb(74, 74, 74);
+    color: rgb(42, 168, 208);
+    cursor: default;
+}
+.grid{
+        display: grid;
+    grid-template-columns: 1.9fr 1fr;
+    grid-gap: 10.5px;
+}
