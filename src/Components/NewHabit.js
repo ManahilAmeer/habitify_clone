@@ -1,4 +1,5 @@
 import React from "react";
+import Goal from "./Goal";
 import QMark from "../assets/QMark.svg"
 import "../styles/newHabit.css";
 function NewHabit(props) {
@@ -6,7 +7,7 @@ function NewHabit(props) {
     <>
       <div
         className="tab"
-        // onClick={() => props.handleHabitButton("Create Good Habit")}
+        onClick={() => props.handleHabitButton("Create Good Habit")}
       >
         <div className="tab-content">
           <header className="content-header">New Habit</header>
@@ -24,7 +25,13 @@ function NewHabit(props) {
                 </div>
               </div>
             </div>
-            <div className="grid"></div>
+            <Goal></Goal>
+          </div>
+          <div className="buttons-area">
+            <div className="margin">
+              <button className="cancel">Cancel</button>
+              <button className="cancel save">Save</button>
+            </div>
           </div>
         </div>
       </div>
