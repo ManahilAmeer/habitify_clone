@@ -8,11 +8,6 @@ function Main() {
   return (
     // import Split from 'react-split'
     <>
-      <Split className="split">
-        <div></div>
-        <div></div>
-        <div></div>
-      </Split>
       <Split
         className="split"
         gutterSize={1}
