@@ -18,25 +18,17 @@
   overflow: hidden;
 }
 .tab-content {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  outline: transparent solid 2px;
-  outline-offset: 2px;
-  border-radius: 0.375rem;
-  background: rgb(51, 51, 51);
-  color: inherit;
-  margin-top: 3.75rem;
-  margin-bottom: 3.75rem;
-  z-index: 1400;
-  max-height: -webkit-calc(100vh - 7.5rem);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+    border-radius: 0.375rem;
+    background: rgb(51, 51, 51);
+    margin-top: 3.75rem;
+    margin-bottom: 3.75rem;
+    z-index: 1400;
+    max-height: -webkit-calc(100vh - 7.5rem);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
     rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px;
-  max-width: 28rem;
+    max-width: 28rem;
 }
 .content-header {
-  flex: 0 1 0%;
   font-size: 17px;
   font-weight: 600;
   color: #fff;
@@ -60,9 +52,6 @@
   margin-inline-end: 0.75rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform;
-  transition-duration: 200ms;
   opacity: 1;
   font-family: Inter;
   line-height: 12px;
@@ -77,33 +66,26 @@
   margin-right: 8px;
 }
 .input {
-  width: 100%;
-  min-width: 0px;
-  outline: transparent solid 2px;
-  outline-offset: 2px;
-  position: relative;
-  appearance: none;
-  font-size: 12px;
-  padding-inline-start: 1rem;
-  padding-inline-end: 1rem;
-  height: 30px;
-  border-radius: 3px;
-  border: 1px solid rgb(74, 74, 74);
-  background: rgb(66, 66, 66);
-  color: #fff;
-  font-family: Inter;
-  font-weight: 500;
-  line-height: 14.4px;
-  cursor: default;
-  padding: 0px 10px;
-  margin-top: unset !important;
+    width: 100%;
+    position: relative;
+    font-size: 12px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid rgb(74, 74, 74);
+    background: rgb(66, 66, 66);
+    color: #fff;
+    font-family: Inter;
+    font-weight: 500;
+    line-height: 14.4px;
+    cursor: default;
+    padding: 0px 10px;
+    margin-top: unset !important;
 }
 input:focus {
   border: 1px solid #3662cc;
 }
 .name-btn {
   display: inline-flex;
-  appearance: none;
   align-items: center;
   justify-content: center;
   border-radius: 0.375rem;
@@ -117,10 +99,6 @@ input:focus {
   cursor: default;
 }
 .cancel{
-       display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     font-weight: 500;
     height: 30px;
     min-width: 2.5rem;

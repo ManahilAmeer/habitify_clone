@@ -5,7 +5,6 @@ import QMark from "../assets/QMark.svg";
 import tick from "../assets/tick.svg"
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import "../styles/habits.css";
-
 import { db } from "./firebase";
 function Habits() {
   const [habits, setHabits] = useState([]);
@@ -17,25 +16,24 @@ function Habits() {
     // console.log(Y);
   }
   useEffect(() => {
+    console.log("useEffect called");
     fetchBlogs();
   }, []);
   const fetchBlogs = async () => {
     const response = db.collection("habit");
     const data = await response.get();
-    // if(habits.length==0){
     data.docs.forEach((item) => {
       habits.push(item.data());
     });
-// }
-    // console.log(habits);
+    console.log(habits);
   };
   return (
     <>
       <Header></Header>
       <div className="main">
         <div className="habits">
-          {habits &&
-            habits.map((habit,key) => {
+          {habits.map((habit,key) => {
+            // {console.log(habit)}
               return (
                 <div key={key} className="habit">
                   <div className="habit-icon">
@@ -90,5 +88,4 @@ function Habits() {
     </>
   );
 }
-
 export default Habits;
