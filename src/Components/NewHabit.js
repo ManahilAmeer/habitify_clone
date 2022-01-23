@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { db } from "./firebase";
 import Goal from "./Goal";
 import QMark from "../assets/QMark.svg";

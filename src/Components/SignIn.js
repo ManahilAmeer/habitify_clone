@@ -5,7 +5,7 @@ import GoogleIcon from "../assets/google.svg";
 import "../styles/signIn.css";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   auth,
   signInWithGoogle,

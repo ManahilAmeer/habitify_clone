@@ -5,7 +5,6 @@ import edit from "../assets/edit.svg";
 import viewProgress from "../assets/view_progress.svg";
 import fail from "../assets/fail.svg";
 import skip from "../assets/skip.svg";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 export const HabitDropdownData = [
   {
     title: "Check-In",

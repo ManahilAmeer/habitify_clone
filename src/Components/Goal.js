@@ -16,7 +16,7 @@ function Goal() {
               <input
                 inputMode="decimal"
                 pattern="[0-9]*(.[0-9]+)?"
-                required="false"
+                required:false
                 value="1"
                 role="spinbutton"
                 className="input number"
