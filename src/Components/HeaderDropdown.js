@@ -6,7 +6,6 @@ function HeaderDropdown(props) {
   const [flag, setFlag] = useState(false);
   const handleHabitButton = (title) => {
     if (title === "Create Good Habit") {
-      props.handleHabitDropdown();
       setFlag(!flag);
     }
   };
@@ -45,7 +44,7 @@ function HeaderDropdown(props) {
                 <div
                   key={key}
                   className="list-item"
-                  onClick={() => handleHabitButton(val.title)}
+                  onClick={() =>{ handleHabitButton(val.title);props.handleHabitDropdown();}}
                 >
                   <div className="list-selected">{val.icon}</div>
                   <div className="list-title">
@@ -55,7 +54,6 @@ function HeaderDropdown(props) {
               );
             })}
           </div>
-
           <div className="mood">
             {logMoodData.map((val, key) => {
               return (
@@ -64,7 +62,6 @@ function HeaderDropdown(props) {
                   <div className="list-title">
                     <p
                       className="list-text"
-                      
                     >
                       {val.title}
                     </p>

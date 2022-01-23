@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import '../styles/habitDropdown.css'
 import {HabitDropdownData} from "../Components/HabitDropdownData"
 
-function HabitsDropdown(props) {
+function HabitsDropdown({props}) {
   const y=props.Y
   const style = {
     transform: "translate( 893px, "+y +"px)"
@@ -32,5 +33,7 @@ function HabitsDropdown(props) {
     </div>
   );
 }
-
+HabitsDropdown.propTypes = {
+  props: PropTypes.string,
+};
 export default HabitsDropdown;

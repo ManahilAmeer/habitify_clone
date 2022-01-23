@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { db } from "./firebase";
+import { auth,db } from "./firebase";
 import Goal from "./Goal";
 import QMark from "../assets/QMark.svg";
 import "../styles/newHabit.css";
+import { MostPopularData, StayFitData } from "./SuggestionData";
+import { useAuthState } from "react-firebase-hooks/auth";
 function NewHabit(props) {
   const [name,setName]=useState("");
+const [Visibility, setvisiblity] = useState("hidden");
+  const handleMenu = () => {
+   const visible = Visibility === "hidden" ? "visible" : "hidden";
+   setvisiblity(visible);
+  };
+  
+  const [user] = useAuthState(auth);
   return (
     <>
-      <div
-        className="tab"
-        // onClick={() => props.handleHabitButton("Create Good Habit")}
-      >
+      <div className="tab">
         <Formik
           initialValues={{ name: "", password: "" }}
           validate={(values) => {
@@ -25,16 +31,16 @@ function NewHabit(props) {
             values.name = name;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            // values.name=name;
             console.log(name);
             const habit = db.collection("habit").add({
               Name: values.name,
+              uid:user.uid
             });
             setSubmitting(false);
             values.name = "";
           }}
         >
-          {({ setFieldValue,resetForm, isSubmitting }) => (
+          {({ setFieldValue, resetForm, isSubmitting }) => (
             <Form>
               <div className="tab-content">
                 <header className="content-header">New Habit</header>
@@ -46,12 +52,69 @@ function NewHabit(props) {
                         <Field
                           type="name"
                           name="name"
-                          // value={name}
-                          // onChange={(e) => {setName(e.target.value);
-                          // // values.name=name;
-                          // console.log(name)}}
+                          autocomplete="off"
+                          onClick={() => {
+                            handleMenu();
+                          }}
                           className="input"
                         ></Field>
+                        <div
+                          style={{ visibility: Visibility }}
+                          className="menu"
+                        >
+                          <div className="popular">
+                            <p className="popular-heading">
+                              Most Popular Habits
+                            </p>
+
+                            {MostPopularData.map((val, key) => {
+                              return (
+                                <div key={key} className="habit-sug">
+                                  <div className="sug-icon">
+                                    <div className="icon-container">
+                                      {val.icon}
+                                    </div>
+                                  </div>
+                                  <div
+                                    onClick={() => {
+                                      setFieldValue("name", val.title);
+                                      handleMenu();
+                                    }}
+                                    className="item-text"
+                                  >
+                                    <p className="text-style">{val.title}</p>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <div className="popular">
+                            <p className="popular-heading">
+                              Stay Fit with exercise
+                            </p>
+
+                            {StayFitData.map((val, key) => {
+                              return (
+                                <div key={key} className="habit-sug">
+                                  <div className="sug-icon">
+                                    <div className="icon-container">
+                                      {val.icon}
+                                    </div>
+                                  </div>
+                                  <div
+                                    onClick={() => {
+                                      setFieldValue("name", val.title);
+                                      handleMenu();
+                                    }}
+                                    className="item-text"
+                                  >
+                                    <p className="text-style">{val.title}</p>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
                         {/* <ErrorMessage name="name" component="div" /> */}
                       </div>
                       <div>
@@ -65,13 +128,9 @@ function NewHabit(props) {
                 </div>
                 <div className="buttons-area">
                   <div className="margin">
-                    <button
-                      className="cancel"
-                      onClick={() => resetForm()}
-                    >
+                    <button className="cancel" onClick={() => resetForm()}>
                       Cancel
                     </button>
-
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -89,5 +148,4 @@ function NewHabit(props) {
     </>
   );
 }
-
 export default NewHabit;

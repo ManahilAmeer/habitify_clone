@@ -25,9 +25,7 @@
 .list-selected {
   width: 25.5px;
   display: flex;
-  -webkit-box-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
   align-items: center;
 }
 .list-title {
