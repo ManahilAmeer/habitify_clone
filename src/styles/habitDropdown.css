@@ -1,0 +1,83 @@
+.habitDropdown {
+  visibility: visible;
+  min-width: max-content;
+  user-select: auto;
+  --popper-transform-origin: top left;
+  position: absolute;
+  inset: 0px auto auto 0px;
+  margin: 0px;
+  transform: translateX(893px);
+  z-index: 10;
+  background-color: rgb(51, 51, 51);
+  border-radius: 0.5vw;
+  border: 1px solid #616161;
+}
+.habit-content {
+  width: 210px;
+  transform-origin: var(--popper-transform-origin);
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  user-select: auto;
+}
+.dropdown-container {
+  padding: 4px 0px;
+  border-bottom: 1px solid rgb(74, 74, 74);
+}
+.dropdown-options {
+  padding-top: 2px;
+}
+.habit-item {
+  color: hsla(0, 0%, 100%, 0.7);
+  display: flex;
+  cursor: default;
+  height: 30px;
+  line-height: 30px;
+  text-transform: capitalize;
+  padding: 0px 6px 0px 10px;
+}
+.item-icon {
+  margin-right: 0px;
+  width: 25.5px;
+  height: 30px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.icon-container {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10.5px;
+}
+.icon-container svg {
+  width: 20px;
+  padding-bottom: 6px;
+}
+.icon-container img {
+  width: 16px;
+  border-radius: 0;
+  padding-bottom: 6px;
+}
+.habit-item:hover {
+  cursor: pointer;
+  background-color: #3662cc;
+  color: white;
+}
+.item-text {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.text-style {
+  
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
