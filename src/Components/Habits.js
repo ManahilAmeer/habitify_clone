@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
+import PropTypes from "prop-types";
 import HabitsDropdown from "./HabitsDropdown";
 import QMark from "../assets/QMark.svg";
 import tick from "../assets/tick.svg"
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import "../styles/habits.css";
-import { db } from "./firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { collection, query, where,getDocs } from "firebase/firestore";
+import { auth,db } from "./firebase";
 function Habits() {
   const [habits, setHabits] = useState([]);
   const [Y,setY]=useState(0);
@@ -15,15 +18,16 @@ function Habits() {
     setY(105+(key*65));
     // console.log(Y);
   }
+  const [user] = useAuthState(auth);
   useEffect(() => {
     console.log("useEffect called");
     fetchBlogs();
   }, []);
   const fetchBlogs = async () => {
-    const response = db.collection("habit");
-    const data = await response.get();
-    data.docs.forEach((item) => {
-      habits.push(item.data());
+    const q = query(collection(db, "habit"), where("uid", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      habits.push(doc.data());
     });
     console.log(habits);
   };
@@ -33,7 +37,6 @@ function Habits() {
       <div className="main">
         <div className="habits">
           {habits.map((habit,key) => {
-            // {console.log(habit)}
               return (
                 <div key={key} className="habit">
                   <div className="habit-icon">
