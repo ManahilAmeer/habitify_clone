@@ -8,6 +8,7 @@ import { auth, logout } from "./firebase";
 import { useNavigate } from "react-router-dom";
 function Sidebar() {
   const [visibility, setvisibility] = useState("hidden");
+  const [zIndex,setZIndex]=useState(0)
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const handleSignOut=()=>{
@@ -16,23 +17,21 @@ function Sidebar() {
   }
   const handleDropdown = () => {
     const visible = visibility === "hidden" ? "visible" : "hidden";
-    console.log(visible);
+    const Z = visibility === "hidden" ? 10 : 0;
     setvisibility(visible);
+    setZIndex(Z);
   }; 
   return (
     <>
       {/* <div className="header">sdfdf</div> */}
       <div className="Sidebar">
         <div className="SideList">
-          <div className="user" onClick={()=>handleDropdown()}>
+          <div className="user" onClick={() => handleDropdown()}>
             <img src={user.photoURL} className="user-img" alt="user"></img>
             <p className="user-text">{user.displayName}</p>
           </div>
-          <div className="popUp">
-            <div
-              className="sign-out"
-              style={{ visibility: visibility }}
-            >
+          <div className="popUp" style={{ zIndex: zIndex }}>
+            <div className="sign-out" style={{ visibility: visibility }}>
               <div className="label">
                 <p className="label-text">Profile</p>
               </div>

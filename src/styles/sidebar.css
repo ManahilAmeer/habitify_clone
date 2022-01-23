@@ -163,7 +163,7 @@ a:link{
   color: white;
 } */
 .popUp {
-  visibility: visible;
+
   min-width: max-content;
   /* --popper-transform-origin: top center; */
   position: absolute;
@@ -171,7 +171,6 @@ a:link{
   margin: 0px;
   transform: translate(12px, 89px);
   width: 214px;
-  z-index: 10;
 }
 .sign-out {
   width: auto;

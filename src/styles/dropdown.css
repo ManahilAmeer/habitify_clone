@@ -8,6 +8,7 @@
   border-radius: 0.5vw;
   border: 1px solid #616161;
   margin-right: 8px;
+  z-index: 5;
 }
 .list-item,
 .sort {
@@ -61,6 +62,7 @@
   color: #fffffff2;
 }
 .newDropdown .habits {
+  margin-bottom: 0;
   padding-bottom: 6px;
   padding-top: 4px;
   border-bottom: 1px solid rgb(74, 74, 74);

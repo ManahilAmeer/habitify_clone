@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Button } from "react-bootstrap";
 import "../styles/start.css";
 import MainNavbar from "./Navbar";
@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 
 function Start() {
+  useEffect(()=>{
+    document.title="All Habits, Today - Habitify"
+  })
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/sign-in");

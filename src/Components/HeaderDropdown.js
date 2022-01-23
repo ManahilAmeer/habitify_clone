@@ -7,7 +7,6 @@ function HeaderDropdown(props) {
   const handleHabitButton = (title) => {
     if (title === "Create Good Habit") {
       props.handleHabitDropdown();
-      // console.log(flag);
       setFlag(!flag);
     }
   };
@@ -65,7 +64,7 @@ function HeaderDropdown(props) {
                   <div className="list-title">
                     <p
                       className="list-text"
-                      // onClick={() => props.handleSortButton(val.title)}
+                      
                     >
                       {val.title}
                     </p>
