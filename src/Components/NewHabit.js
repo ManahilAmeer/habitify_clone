@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import { useNavigate } from "react-router-dom";
 import Goal from "./Goal";
-import { MostPopularData, StayFitData } from "./SuggestionData";
+import Suggestion from "./Suggestion";
 import { auth, db } from "./firebase";
 
 import QMark from "@assets/QMark.svg";
@@ -11,7 +11,10 @@ import QMark from "@assets/QMark.svg";
 import "@styles/newHabit.css";
 
 function NewHabit(props) {
-  const [name,setName]=useState("");
+  const navigate = useNavigate();
+  const reload = () => {
+    navigate("/sign-in");
+  };
 const [Visibility, setvisiblity] = useState("hidden");
   const handleMenu = () => {
    const visible = Visibility === "hidden" ? "visible" : "hidden";
@@ -31,17 +34,13 @@ const [Visibility, setvisiblity] = useState("hidden");
             }
             return errors;
           }}
-          onChange={(values) => {
-            values.name = name;
-          }}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(name);
             const habit = db.collection("habit").add({
               Name: values.name,
               uid:user.uid
             });
             setSubmitting(false);
-            values.name = "";
+            reload();
           }}
         >
           {({ setFieldValue, resetForm, isSubmitting }) => (
@@ -62,64 +61,7 @@ const [Visibility, setvisiblity] = useState("hidden");
                           }}
                           className="input"
                         ></Field>
-                        <div
-                          style={{ visibility: Visibility }}
-                          className="menu"
-                        >
-                          <div className="popular">
-                            <p className="popular-heading">
-                              Most Popular Habits
-                            </p>
-
-                            {MostPopularData.map((val, key) => {
-                              return (
-                                <div key={key} className="habit-sug">
-                                  <div className="sug-icon">
-                                    <div className="icon-container">
-                                      {val.icon}
-                                    </div>
-                                  </div>
-                                  <div
-                                    onClick={() => {
-                                      setFieldValue("name", val.title);
-                                      handleMenu();
-                                    }}
-                                    className="item-text"
-                                  >
-                                    <p className="text-style">{val.title}</p>
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                          <div className="popular">
-                            <p className="popular-heading">
-                              Stay Fit with exercise
-                            </p>
-
-                            {StayFitData.map((val, key) => {
-                              return (
-                                <div key={key} className="habit-sug">
-                                  <div className="sug-icon">
-                                    <div className="icon-container">
-                                      {val.icon}
-                                    </div>
-                                  </div>
-                                  <div
-                                    onClick={() => {
-                                      setFieldValue("name", val.title);
-                                      handleMenu();
-                                    }}
-                                    className="item-text"
-                                  >
-                                    <p className="text-style">{val.title}</p>
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                        {/* <ErrorMessage name="name" component="div" /> */}
+                        <Suggestion Visibility={Visibility} handleMenu={handleMenu} setFieldValue={setFieldValue}></Suggestion>
                       </div>
                       <div>
                         <button className="name-btn">
