@@ -4,19 +4,24 @@ import habitifyIcon from "@assets/habitify.png";
 import GoogleIcon from "@assets/google.svg";
 import "@styles/signIn.css";
 import React, { useEffect } from "react";
+import { Dispatch, useDispatch } from "react-redux";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import {addID,addPhoto,addDisplayName} from "../Components/reducer"
 import {
   auth,
   signInWithGoogle,
 } from "@components/firebase";
 function Sidebar() {
-
+  const dispatch=useDispatch();
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
     if (loading) return;
     if (user) {
+      dispatch(addID(user.uid));
+      dispatch(addDisplayName(user.displayName));
+      dispatch(addPhoto(user.photoURL));
       navigate("/app");};
   }, [user, loading,navigate]);
   return (

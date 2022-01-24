@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-// import "@App.css";
+import { useSelector } from "react-redux";
 
 import { SidebarData } from "./SidebarData.js";
 import { SidebarAreas } from "./SidebarData.js";
 import "@styles/sidebar.css";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logout } from "../firebase";
+import { logout } from "../firebase";
 import { useNavigate } from "react-router-dom";
 function Sidebar() {
   const [visibility, setvisibility] = useState("hidden");
   const [zIndex,setZIndex]=useState(0)
-  const [user] = useAuthState(auth);
-  const navigate = useNavigate();
+  // const [user] = useAuthState(auth);
+  const navigate=useNavigate()
+  const photoURL=useSelector((state)=>state.photoURL)
+  const displayName = useSelector((state) => state.displayName);
   const handleSignOut=()=>{
     navigate("/");
     logout();
@@ -28,8 +29,8 @@ function Sidebar() {
       <div className="Sidebar">
         <div className="SideList">
           <div className="user" onClick={() => handleDropdown()}>
-            <img src={user.photoURL} className="user-img" alt="user"></img>
-            <p className="user-text">{user.displayName}</p>
+            <img src={photoURL} className="user-img" alt="user"></img>
+            <p className="user-text">{displayName}</p>
           </div>
           <div className="popUp" style={{ zIndex: zIndex }}>
             <div className="sign-out" style={{ visibility: visibility }}>

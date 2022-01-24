@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { db } from "../firebase";
+import { useSelector } from "react-redux";
 import Header from "./Header";
 import HabitsDropdown from "./HabitsDropdown";
 import QMark from "@assets/QMark.svg";
@@ -16,12 +17,12 @@ function Habits() {
     setShowMore(!showMore);
     setY(105+(key*65));
   }
-  const [user] = useAuthState(auth);
+  const uid = useSelector((state) => state.ID);
   useEffect(() => {
     fetchBlogs();
   }, []);
   const fetchBlogs = async () => {
-    const q = query(collection(db, "habit"), where("uid", "==", user.uid));
+    const q = query(collection(db, "habit"), where("uid", "==", uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       setHabits(habits=>[...habits, doc.data()]);
