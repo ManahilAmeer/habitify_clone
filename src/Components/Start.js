@@ -11,7 +11,6 @@ function Start() {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/sign-in");
-    console.log(navigate);
   };
   return (
     <>

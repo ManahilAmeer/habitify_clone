@@ -87,6 +87,7 @@
   cursor: default;
   padding: 0px 10px;
   margin-top: unset !important;
+  text-transform: capitalize;
 }
 input:focus {
   border: 1px solid #3662cc;

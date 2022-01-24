@@ -73,6 +73,7 @@
   border-bottom: 1px solid rgb(74, 74, 74);
 }
 .habit-name {
+  text-transform: capitalize;
   margin: 0;
   overflow: hidden;
   word-break: break-word;

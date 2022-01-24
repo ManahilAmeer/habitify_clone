@@ -3,7 +3,7 @@
 import habitifyIcon from "@assets/habitify.png";
 import GoogleIcon from "@assets/google.svg";
 import "@styles/signIn.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import {
@@ -18,19 +18,19 @@ function Sidebar() {
     if (loading) return;
     if (user) {
       navigate("/app");};
-  }, [user, loading]);
+  }, [user, loading,navigate]);
   return (
     <>
       <div className="content">
         <div className="signIn-container">
-          <img src={habitifyIcon} className="img"></img>
+          <img src={habitifyIcon} alt="habitify" className="img"></img>
           <p className="heading">Welcome to Habitify</p>
           <p className="subheading">
             Sign in to your account and start building good habits with Habitify
           </p>
           <div className="buttons">
             <div className="google" onClick={signInWithGoogle}>
-              <img src={GoogleIcon} className="google-img"></img>
+              <img src={GoogleIcon} alt="google" className="google-img"></img>
               <p className="google-text">Sign In with Google</p>
             </div>
             <div className="space"></div>

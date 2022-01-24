@@ -66,43 +66,7 @@ function Sidebar() {
               </a>
             );
           })}
-          {/* <div className="list"> */}
-
-          {/* 
-            
-            {SidebarAreas.map((val, key) => {
-              return (
-                <li
-                  key={key}
-                  id={window.location.pathname === val.link ? "active" : ""}
-                  onClick={() => {
-                    window.location.pathname = val.link;
-                  }}
-                  className="SideListItem"
-                >
-                  <div className="icon">{val.icon}</div>
-                  <div className="text">{val.title}</div>
-                </li>
-              );
-            
-            <li className="MenuType">PRERFERENCES</li>
-            {Preferences.map((val, key) => {
-              return (
-                <li
-                  key={key}
-                  id={window.location.pathname === val.link ? "active" : ""}
-                  onClick={() => {
-                    window.location.pathname = val.link;
-                  }}
-                  className="SideListItem"
-                >
-                  <div className="icon">{val.icon}</div>
-                  <div className="text">{val.title}</div>
-                </li>
-              );
-            })} */}
         </div>
-        {/* </ul> */}
       </div>
     </>
   );
