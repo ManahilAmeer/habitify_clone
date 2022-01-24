@@ -1,10 +1,12 @@
 import React from "react";
-import arrowUp from "../assets/arrow-up.svg";
-import arrowDown from "../assets/arrow.svg";
-import upDown from "../assets/upDown.svg";
-import cross from "../assets/cross.svg";
-import calender from "../assets/calenderGrey.svg"
-import "../styles/goal.css"
+
+import arrowUp from "@assets/arrow-up.svg";
+import arrowDown from "@assets/arrow.svg";
+import upDown from "@assets/upDown.svg";
+import cross from "@assets/cross.svg";
+import calender from "@assets/calenderGrey.svg"
+
+import "@styles/goal.css"
 function Goal() {
   return (
     <>

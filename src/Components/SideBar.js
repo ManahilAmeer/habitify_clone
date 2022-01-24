@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "../App.css";
+// import "@App.css";
+
 import { SidebarData } from "./SidebarData.js";
 import { SidebarAreas } from "./SidebarData.js";
-import "../styles/sidebar.css";
+import "@styles/sidebar.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logout } from "./firebase";
 import { useNavigate } from "react-router-dom";

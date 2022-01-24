@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/progress.css";
+import "@styles/progress.css";
 function Progress() {
   return <div className="progress_bar"></div>;
 }

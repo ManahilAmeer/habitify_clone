@@ -1,5 +1,5 @@
 import React,{useEffect} from "react";
-import "../styles/start.css";
+import "@styles/start.css";
 import MainNavbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 

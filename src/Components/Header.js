@@ -1,10 +1,10 @@
 import React,{useState} from "react";
-import "../styles/header.css";
-import sortIcon from "../assets/sort.svg"
-import arrowIcon from "../assets/arrow.svg";
-import calenderIcon from "../assets/calenderIcon.svg";
-import searchIcon from "../assets/search.svg";
-import addIcon from "../assets/add.svg";
+import "@styles/header.css";
+import sortIcon from "@assets/sort.svg"
+import arrowIcon from "@assets/arrow.svg";
+import calenderIcon from "@assets/calenderIcon.svg";
+import searchIcon from "@assets/search.svg";
+import addIcon from "@assets/add.svg";
 import HeaderDropdown from "./HeaderDropdown";
 function Header() {
   const [sortText, setsortText] = useState("Alphabetical");

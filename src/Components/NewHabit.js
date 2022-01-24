@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { auth,db } from "./firebase";
-import Goal from "./Goal";
-import QMark from "../assets/QMark.svg";
-import "../styles/newHabit.css";
-import { MostPopularData, StayFitData } from "./SuggestionData";
 import { useAuthState } from "react-firebase-hooks/auth";
+
+import Goal from "./Goal";
+import { MostPopularData, StayFitData } from "./SuggestionData";
+import { auth, db } from "./firebase";
+
+import QMark from "@assets/QMark.svg";
+
+import "@styles/newHabit.css";
+
 function NewHabit(props) {
   const [name,setName]=useState("");
 const [Visibility, setvisiblity] = useState("hidden");

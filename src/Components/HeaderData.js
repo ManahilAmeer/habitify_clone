@@ -1,5 +1,5 @@
 import React from "react";
-import goodHabit from "../assets/GoodHabit.svg";
+import goodHabit from "@assets/GoodHabit.svg";
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import AddIcon from "@mui/icons-material/Add";
 export const DropdownData = [

@@ -1,15 +1,15 @@
 // import React from "react";
-import "../App.css";
-import habitifyIcon from "../assets/habitify.png";
-import GoogleIcon from "../assets/google.svg";
-import "../styles/signIn.css";
+// import "@App.css";
+import habitifyIcon from "@assets/habitify.png";
+import GoogleIcon from "@assets/google.svg";
+import "@styles/signIn.css";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import {
   auth,
   signInWithGoogle,
-} from "../Components/firebase";
+} from "@components/firebase";
 function Sidebar() {
 
   const [user, loading] = useAuthState(auth);

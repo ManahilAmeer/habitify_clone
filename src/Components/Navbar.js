@@ -4,7 +4,7 @@ import {
   NavItem,
 } from "react-bootstrap";
 
-import '../styles/navbar.css'
+import '@styles/navbar.css'
 function MainNavbar(props) {
   // const navigate = useNavigate();
   // const handleClick = () => {
