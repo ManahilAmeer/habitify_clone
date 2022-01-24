@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-
 import { auth, db } from "./firebase";
 import Header from "./Header";
 import HabitsDropdown from "./HabitsDropdown";
-
 import QMark from "@assets/QMark.svg";
 import tick from "@assets/tick.svg"
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-
 import "@styles/habits.css";
-
-
 function Habits() {
   const [habits, setHabits] = useState([]);
   const [Y,setY]=useState(0);
@@ -20,22 +15,17 @@ function Habits() {
   const handleMore=(key)=>{
     setShowMore(!showMore);
     setY(105+(key*65));
-    // console.log(Y);
   }
   const [user] = useAuthState(auth);
   useEffect(() => {
-    console.log("useEffect called");
     fetchBlogs();
   }, []);
   const fetchBlogs = async () => {
     const q = query(collection(db, "habit"), where("uid", "==", user.uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      // habits.push(doc.data());
-      setHabits([...habits, doc.data()]);
-      console.log(habits.length);
+      setHabits(habits=>[...habits, doc.data()]);
     });
-    // console.log(habits.length);
   };
   return (
     <>
@@ -76,7 +66,7 @@ function Habits() {
                     <div className="habit-done">
                       <div className="done-icon">
                         <div className="icon-img">
-                          <img src={tick}></img>
+                          <img src={tick} alt="tick"></img>
                         </div>
                         <p className="done-text">Done</p>
                       </div>
@@ -92,7 +82,6 @@ function Habits() {
             })}
         </div>
         {showMore && <HabitsDropdown Y={Y}/>}
-        {/* <HabitsDropdown></HabitsDropdown> */}
       </div>
     </>
   );
