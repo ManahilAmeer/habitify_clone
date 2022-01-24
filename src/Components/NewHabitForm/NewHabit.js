@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import Goal from "./Goal";
 import Suggestion from "./Suggestion";
-import { auth, db } from "./firebase";
+import { auth, db } from "../firebase";
 
 import QMark from "@assets/QMark.svg";
 

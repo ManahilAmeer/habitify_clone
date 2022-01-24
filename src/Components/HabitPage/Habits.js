@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { auth, db } from "./firebase";
+import { auth, db } from "../firebase";
 import Header from "./Header";
 import HabitsDropdown from "./HabitsDropdown";
 import QMark from "@assets/QMark.svg";
