@@ -6,11 +6,7 @@ import {
 
 import '@styles/navbar.css'
 function MainNavbar(props) {
-  // const navigate = useNavigate();
-  // const handleClick = () => {
-  //   navigate("/sign-in");
-  //   console.log(navigate);
-  // };
+  
     return (
       <div>
         <Navbar sticky="top" className="navbar">
