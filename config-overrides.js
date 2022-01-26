@@ -5,8 +5,9 @@ module.exports = function override(config) {
     "@": "src",
     "@components": "src/Components",
     "@assets": "src/assets",
+    "@views": "src/views",
     "@styles": "src/styles",
-    "@shared": "src/shared",
+    "@store": "src/store",
   })(config);
 
   return config;
