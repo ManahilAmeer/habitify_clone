@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
 import { useSelector } from "react-redux";
-import Header from "./Header";
-import HabitsDropdown from "./HabitsDropdown";
+
+import Header from "@components/Header";
+import { fetchHabits } from "@views/firebase";
+import HabitsDropdown from "@components/HabitsDropdown";
+
 import QMark from "@assets/QMark.svg";
 import tick from "@assets/tick.svg"
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+
 import "@styles/habits.css";
 function Habits() {
   const [habits, setHabits] = useState([]);
@@ -19,20 +20,18 @@ function Habits() {
   }
   const uid = useSelector((state) => state.ID);
   useEffect(() => {
-    fetchBlogs();
+    fetch();
   }, []);
-  const fetchBlogs = async () => {
-    const q = query(collection(db, "habit"), where("uid", "==", uid));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      setHabits(habits=>[...habits, doc.data()]);
-    });
+  const fetch = async () => {
+   const arr = await fetchHabits(uid);
+   setHabits(arr);
   };
   return (
     <>
       <Header></Header>
       <div className="main">
         <div className="habits">
+          
           {habits.map((habit,key) => {
               return (
                 <div key={key} className="habit">

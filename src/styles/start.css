@@ -2,14 +2,12 @@ body {
   margin: 0;
   min-height: 100%;
   background-color: #fff;
-  /* font-family: Arial, sans-serif; */
   font-size: 14px;
   line-height: 20px;
   top: 9px;
   color: #333;
   font-family: Inter, sans-serif;
 }
-
 img {
   vertical-align: middle;
   display: inline-block;
@@ -32,7 +30,6 @@ img {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 .container {
   max-width: 1200px;
   display: -ms-flexbox;
@@ -50,8 +47,6 @@ img {
   padding-top: 100px;
   margin-left: 74.5px;
 }
-.tagline {
-}
 .container .text {
   margin-bottom: 6px;
   line-height: 50px;
@@ -66,20 +61,16 @@ img {
   text-align: center;
 }
 .subtitle {
-  /* width: 689px; */
   font-size: 20px;
   line-height: 34px;
   max-width: 658px;
   margin-bottom: 16px;
   color: #707070;
-  /* font-size: 20px; */
-  /* line-height: 33px; */
   font-weight: 400;
   text-align: center;
 }
 .subtitle text {
   width: 630px;
-  /* color:red */
 }
 .button-link {
   padding: 14.5px 36px 18px 36px;
@@ -91,8 +82,7 @@ img {
   margin-top: 4px;
   display: inline-block;
   height: 56px;
-    font-family: Inter, sans-serif;
-  /* width: 99.9px; */
+  font-family: Inter, sans-serif;
   align-items: center;
 }
 .button-link:hover {

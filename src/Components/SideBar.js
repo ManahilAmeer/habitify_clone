@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
-import { SidebarData } from "./SidebarData.js";
-import { SidebarAreas } from "./SidebarData.js";
-import "@styles/sidebar.css";
-import { logout } from "../firebase";
 import { useNavigate } from "react-router-dom";
+
+import { SidebarData,SidebarAreas } from "@components/config/SidebarData.js";
+import { logout } from "@views/firebase";
+
+import "@styles/sidebar.css";
+
 function Sidebar() {
   const [visibility, setvisibility] = useState("hidden");
   const [zIndex,setZIndex]=useState(0)
-  // const [user] = useAuthState(auth);
   const navigate=useNavigate()
   const photoURL=useSelector((state)=>state.photoURL)
   const displayName = useSelector((state) => state.displayName);
@@ -25,7 +25,6 @@ function Sidebar() {
   }; 
   return (
     <>
-      {/* <div className="header">sdfdf</div> */}
       <div className="Sidebar">
         <div className="SideList">
           <div className="user" onClick={() => handleDropdown()}>

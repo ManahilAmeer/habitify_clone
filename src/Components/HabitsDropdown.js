@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import '@styles/habitDropdown.css'
-import {HabitDropdownData} from "./HabitDropdownData"
+import {HabitDropdownData} from "@components/config/HabitDropdownData"
 
 function HabitsDropdown({props}) {
   const y=props.Y

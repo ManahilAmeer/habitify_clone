@@ -1,32 +1,35 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import Goal from "./Goal";
-import Suggestion from "./Suggestion";
-import { auth, db } from "../firebase";
-
+import Goal from "../Components/Goal";
+import Suggestion from "@components/Suggestion";
+import { addHabits } from "@views/firebase";
+import { useSelector } from "react-redux";
 import QMark from "@assets/QMark.svg";
 
 import "@styles/newHabit.css";
 
 function NewHabit(props) {
   const navigate = useNavigate();
+  const uid = useSelector((state) => state.ID);
   const reload = () => {
     navigate("/sign-in");
   };
-const [Visibility, setvisiblity] = useState("hidden");
+  const [Visibility, setvisiblity] = useState("hidden");
+  const [goal,setGoal]=useState(1)
   const handleMenu = () => {
-   const visible = Visibility === "hidden" ? "visible" : "hidden";
-   setvisiblity(visible);
+    const visible = Visibility === "hidden" ? "visible" : "hidden";
+    setvisiblity(visible);
   };
-  
-  const [user] = useAuthState(auth);
+  const getInput = (goal) => {
+    setGoal(goal);
+    // setFieldValue("goal",goal)
+  };
   return (
     <>
       <div className="tab">
         <Formik
-          initialValues={{ name: "", password: "" }}
+          initialValues={{ name: "", goal: 0 }}
           validate={(values) => {
             const errors = {};
             if (!values.name) {
@@ -35,10 +38,8 @@ const [Visibility, setvisiblity] = useState("hidden");
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            const habit = db.collection("habit").add({
-              Name: values.name,
-              uid:user.uid
-            });
+            addHabits(values.name, values.goal,uid);
+            console.log(values.goal);
             setSubmitting(false);
             reload();
           }}
@@ -61,7 +62,11 @@ const [Visibility, setvisiblity] = useState("hidden");
                           }}
                           className="input"
                         ></Field>
-                        <Suggestion Visibility={Visibility} handleMenu={handleMenu} setFieldValue={setFieldValue}></Suggestion>
+                        <Suggestion
+                          Visibility={Visibility}
+                          handleMenu={handleMenu}
+                          setFieldValue={setFieldValue}
+                        ></Suggestion>
                       </div>
                       <div>
                         <button className="name-btn">
@@ -70,7 +75,10 @@ const [Visibility, setvisiblity] = useState("hidden");
                       </div>
                     </div>
                   </div>
-                  <Goal></Goal>
+                  <Field name="goal" value={goal}
+                  style={{ display: "none" }}
+                  ></Field>
+                  <Goal getInput={getInput} setFieldValue={setFieldValue}></Goal>
                 </div>
                 <div className="buttons-area">
                   <div className="margin">

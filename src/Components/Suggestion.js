@@ -1,10 +1,9 @@
 import React from 'react';
-import { MostPopularData, StayFitData } from "./SuggestionData";
+import { MostPopularData, StayFitData } from "@components/config/SuggestionData";
 
 function Suggestion(props) {
   return (
     <>
-    {console.log(props.Visibility)}
       <div style={{ visibility: props.Visibility }} className="menu">
         <div className="popular">
           <p className="popular-heading">Most Popular Habits</p>

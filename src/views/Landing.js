@@ -1,10 +1,10 @@
 import React,{useEffect} from "react";
 import "@styles/start.css";
-import MainNavbar from "./Navbar";
+import MainNavbar from "@components/Navbar";
 import { useNavigate } from "react-router-dom";
 
 
-function Start() {
+function Landing() {
   useEffect(()=>{
     document.title="All Habits, Today - Habitify"
   })
@@ -17,9 +17,7 @@ function Start() {
       <MainNavbar handleClick={handleClick}></MainNavbar>
       <main className="hero">
         <div className="container">
-          {/* <div className="tagline"> */}
           <h1 className="text">Build Golden Habits, Unlock your Potential</h1>
-          {/* </div> */}
           <div className="subtitle">
               Focus on what truly matters with Habitify. Build the best version
               of yourself by mastering your habits.
@@ -32,4 +30,4 @@ function Start() {
     </>
   );
 }
-export default Start;
+export default Landing;

@@ -21,10 +21,22 @@ function MainNavbar(props) {
           </div>
           <div className="space"></div>
           <div className="links">
-            <NavItem className="navItem" onClick={""}>Contact Us</NavItem>
+            <NavItem className="navItem" onClick={""}>
+              Contact Us
+            </NavItem>
             <NavItem className="navItem">Blog</NavItem>
-            <NavItem className="navItem pri">Sign Up</NavItem>
-            <NavItem className="navItem pri" onClick={()=>props.handleClick()}>Sign In</NavItem>
+            <NavItem
+              className="navItem pri"
+              onClick={() => props.handleClick()}
+            >
+              Sign Up
+            </NavItem>
+            <NavItem
+              className="navItem pri"
+              onClick={() => props.handleClick()}
+            >
+              Sign In
+            </NavItem>
           </div>
         </Navbar>
       </div>

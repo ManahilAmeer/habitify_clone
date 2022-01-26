@@ -1,12 +1,11 @@
 import Split from "react-split";
 import React from "react";
-import Sidebar from "./SideBarPage/SideBar.js";
-import Habits from "./HabitPage/Habits"
+import Sidebar from "@components/SideBar";
+import Habits from "@views/Habits"
 import Progress from "./Progress.js";
 import "@styles/split.css";
 function Main() {
   return (
-    // import Split from 'react-split'
     <>
       <Split
         className="split"

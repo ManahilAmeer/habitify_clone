@@ -1,13 +1,23 @@
-import React from "react";
-
+// import React from "react";
+import React, { useState } from "react";
 import arrowUp from "@assets/arrow-up.svg";
 import arrowDown from "@assets/arrow.svg";
 import upDown from "@assets/upDown.svg";
 import cross from "@assets/cross.svg";
 import calender from "@assets/calenderGrey.svg"
-
 import "@styles/goal.css"
-function Goal() {
+function Goal(props) {
+  const [input,setInput]=useState(0)
+  const increment=()=>{
+    handleChange(input+1)
+  }
+  const decrement = () => {
+    handleChange(input - 1);
+  };
+  const handleChange=(num)=>{
+    setInput(num);
+    props.setFieldValue("goal",num);
+  }
   return (
     <>
       <div className="grid">
@@ -18,17 +28,19 @@ function Goal() {
               <input
                 inputMode="decimal"
                 pattern="[0-9]*(.[0-9]+)?"
-                // required="false"
-                value="1"
+                value={input}
                 role="spinbutton"
                 className="input number"
+                onChange={(e) => {
+                  handleChange(Number(e.target.value));
+                }}
               ></input>
               <div className="arrows">
-                <div className="up">
+                <div className="up" onClick={() => increment()}>
                   <img src={arrowUp} alt="Arrow up"></img>
                 </div>
-                <div className="up">
-                  <img src={arrowDown} alt="Arrow up"></img>
+                <div className="up" onClick={() => decrement()}>
+                  <img src={arrowDown} alt="Arrow down"></img>
                 </div>
               </div>
             </div>
@@ -40,9 +52,7 @@ function Goal() {
                 className="input times"
               ></input>
               <div className="arrowIcon">
-                {/* <div> */}
                 <img src={upDown} alt="Arrow"></img>
-                {/* </div> */}
               </div>
             </div>
             <div className="goal-times">
@@ -53,9 +63,7 @@ function Goal() {
                 className="input times"
               ></input>
               <div className="arrowIcon">
-                {/* <div> */}
                 <img src={upDown} alt="Arrow"></img>
-                {/* </div> */}
               </div>
             </div>
           </div>
@@ -70,9 +78,7 @@ function Goal() {
               className="input times"
             ></input>
             <div className="arrowIcon">
-              {/* <div> */}
               <img src={upDown} alt="Arrow"></img>
-              {/* </div> */}
             </div>
           </div>
         </div>
@@ -86,9 +92,7 @@ function Goal() {
               className="input times"
             ></input>
             <div className="arrowIcon">
-              {/* <div> */}
               <img src={upDown} alt="Arrow"></img>
-              {/* </div> */}
             </div>
           </div>
         </div>
@@ -102,9 +106,7 @@ function Goal() {
               className="input times"
             ></input>
             <div className="arrowIcon">
-              {/* <div> */}
               <img src={calender} alt="Arrow"></img>
-              {/* </div> */}
             </div>
           </div>
         </div>
@@ -125,7 +127,6 @@ function Goal() {
           </div>
         </div>
       </div>
-      
     </>
   );
 }

@@ -1,10 +1,9 @@
-import './App.css';
-import Start from './Components/LandingPage/Start';
-// import signIn from './Components/signIn';
+
+import Landing from '@views/Landing';
 function App() {
   
   return (
-    <Start />
+    <Landing />
   );
 }
 

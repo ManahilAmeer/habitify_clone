@@ -1,7 +1,6 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-
 const firebaseConfig = {
   apiKey: "AIzaSyDZsGUnrUdoj9O6Yg6DpnXXsz0b8SYCoAI",
   authDomain: "habitify-d9ebc.firebaseapp.com",
@@ -11,7 +10,6 @@ const firebaseConfig = {
   appId: "1:213736257615:web:f8e18b82fdd88cb033923a",
   measurementId: "G-NEQ76JYFNJ",
 };
-
 const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
 const db = app.firestore();
@@ -20,39 +18,38 @@ const signInWithGoogle = async () => {
   try {
     const res = await auth.signInWithPopup(googleProvider);
     const user = res.user;
-    const query = await db
+    await db
       .collection("users")
       .where("uid", "==", user.uid)
       .get();
-    if (query.docs.length === 0) {
-      await db.collection("users").add({
-        uid: user.uid,
-        name: user.displayName,
-        authProvider: "google",
-        email: user.email,
-      });
-    }
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 };
-const sendPasswordResetEmail = async (email) => {
+const fetchHabits = async (uid) => {
   try {
-    await auth.sendPasswordResetEmail(email);
-    alert("Password reset link sent!");
+    const arr=[];
+    const query = await (db.collection("habit").where("uid", "==", uid).get());
+    query.forEach((doc)=>{
+      arr.push(doc.data());
+    })
+    return arr;
   } catch (err) {
     console.error(err);
     alert(err.message);
+  }
+  
+};
+const addHabits = (name, goal,uid) => {
+  
+  try {
+    db.collection("habit").add({ Name: name,goal:goal, uid: uid });
+  } catch (err) {
+    alert(err);
   }
 };
 const logout = () => {
   auth.signOut();
 };
-export {
-  auth,
-  db,
-  signInWithGoogle,
-  sendPasswordResetEmail,
-  logout,
-};
+export { auth, db, signInWithGoogle, logout, addHabits, fetchHabits };
