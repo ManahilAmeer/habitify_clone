@@ -4,7 +4,7 @@ import habitifyIcon from "@assets/habitify.png";
 import GoogleIcon from "@assets/google.svg";
 import "@styles/signIn.css";
 import { useDispatch } from "react-redux";
-import { addID, addPhoto, addDisplayName } from "@store/reducer";
+import { addID, addPhoto, addDisplayName } from "@store/usersReducer";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,7 @@ function Sidebar() {
   useEffect(() => {
     if (loading) return;
     if (user) {
+      console.log(user.uid)
       dispatch(addID(user.uid));
       dispatch(addDisplayName(user.displayName));
       dispatch(addPhoto(user.photoURL));

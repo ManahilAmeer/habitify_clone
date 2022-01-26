@@ -18,7 +18,7 @@ function Habits() {
     setShowMore(!showMore);
     setY(105+(key*65));
   }
-  const uid = useSelector((state) => state.ID);
+  const uid = useSelector((state) => state.users.ID);
   useEffect(() => {
     fetch();
   }, []);

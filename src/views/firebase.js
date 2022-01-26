@@ -30,13 +30,14 @@ const signInWithGoogle = async () => {
 const fetchHabits = async (uid) => {
   try {
     const arr=[];
+    console.log(uid);
     const query = await (db.collection("habit").where("uid", "==", uid).get());
     query.forEach((doc)=>{
       arr.push(doc.data());
     })
     return arr;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     alert(err.message);
   }
   

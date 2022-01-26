@@ -11,8 +11,8 @@ function Sidebar() {
   const [visibility, setvisibility] = useState("hidden");
   const [zIndex,setZIndex]=useState(0)
   const navigate=useNavigate()
-  const photoURL=useSelector((state)=>state.photoURL)
-  const displayName = useSelector((state) => state.displayName);
+  const photoURL=useSelector((state)=>state.users.photoURL)
+  const displayName = useSelector((state) => state.users.displayName);
   const handleSignOut=()=>{
     navigate("/");
     logout();

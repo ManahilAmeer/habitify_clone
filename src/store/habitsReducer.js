@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 export const initialState = {
-  ID:"",
-  photoURL: "",
-  displayName: "",
+  Name:"",
+  uid: "",
+  goal: "",
 };
-const habitSlice = createSlice({
-  name: "user",
+const habitReducer = createSlice({
+  name: "habit",
   initialState,
   reducers: {
-    addID: (state, action) => {
+    addHabit: (state, action) => {
       state.ID = action.payload;
     },
     addPhoto: (state, action) => {
@@ -19,5 +19,5 @@ const habitSlice = createSlice({
     },
   },
 });
-export const {addID,addPhoto,addDisplayName} = habitSlice.actions;
-export default habitSlice.reducer;
+export const { addID, addPhoto, addDisplayName } = habitReducer.actions;
+export default habitReducer.reducer;
