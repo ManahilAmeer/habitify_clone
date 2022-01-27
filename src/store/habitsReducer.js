@@ -9,7 +9,7 @@ const habitReducer = createSlice({
   initialState,
   reducers: {
     addHabit: (state, action) => {
-      state.ID = action.payload;
+      state = action.payload;
     },
     addPhoto: (state, action) => {
       state.photoURL = action.payload;
@@ -19,5 +19,5 @@ const habitReducer = createSlice({
     },
   },
 });
-export const { addID, addPhoto, addDisplayName } = habitReducer.actions;
+export const { addHabit, addPhoto, addDisplayName } = habitReducer.actions;
 export default habitReducer.reducer;

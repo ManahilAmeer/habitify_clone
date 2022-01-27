@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Header from "@components/Header";
 import { fetchHabits } from "@views/firebase";
 import HabitsDropdown from "@components/HabitsDropdown";
-
+import { addHabit } from "@store/habitsReducer";
 import QMark from "@assets/QMark.svg";
 import tick from "@assets/tick.svg"
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import "@styles/habits.css";
 function Habits() {
+  const dispatch=useDispatch();
   const [habits, setHabits] = useState([]);
   const [Y,setY]=useState(0);
   const [showMore,setShowMore]=useState(false);
@@ -24,6 +25,7 @@ function Habits() {
   }, []);
   const fetch = async () => {
    const arr = await fetchHabits(uid);
+   dispatch(addHabit(arr));
    setHabits(arr);
   };
   return (

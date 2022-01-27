@@ -1,5 +1,5 @@
 import React from 'react';
-import { MostPopularData, StayFitData } from "@components/config/SuggestionData";
+import { MostPopularData, StayFitData } from "@config/SuggestionData";
 
 function Suggestion(props) {
   return (

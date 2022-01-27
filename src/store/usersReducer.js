@@ -9,7 +9,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addID: (state, action) => {
-      console.log(action.payload)
       state.ID = action.payload;
     },
     addPhoto: (state, action) => {

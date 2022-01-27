@@ -21,10 +21,6 @@ function NewHabit(props) {
     const visible = Visibility === "hidden" ? "visible" : "hidden";
     setvisiblity(visible);
   };
-  const getInput = (goal) => {
-    setGoal(goal);
-    // setFieldValue("goal",goal)
-  };
   return (
     <>
       <div className="tab">
@@ -39,7 +35,6 @@ function NewHabit(props) {
           }}
           onSubmit={(values, { setSubmitting }) => {
             addHabits(values.name, values.goal,uid);
-            console.log(values.goal);
             setSubmitting(false);
             reload();
           }}
@@ -78,7 +73,7 @@ function NewHabit(props) {
                   <Field name="goal" value={goal}
                   style={{ display: "none" }}
                   ></Field>
-                  <Goal getInput={getInput} setFieldValue={setFieldValue}></Goal>
+                  <Goal setFieldValue={setFieldValue}></Goal>
                 </div>
                 <div className="buttons-area">
                   <div className="margin">

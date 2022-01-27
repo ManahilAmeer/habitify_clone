@@ -20,7 +20,6 @@ function Sidebar() {
   useEffect(() => {
     if (loading) return;
     if (user) {
-      console.log(user.uid)
       dispatch(addID(user.uid));
       dispatch(addDisplayName(user.displayName));
       dispatch(addPhoto(user.photoURL));

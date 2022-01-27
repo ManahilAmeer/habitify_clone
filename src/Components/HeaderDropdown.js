@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DropdownData, newHabitData, logMoodData } from "@components/config/HeaderData";
+import { DropdownData, newHabitData, logMoodData } from "@config/HeaderData";
 import "@styles/dropdown.css";
 import NewHabit from "@views/NewHabit";
 function HeaderDropdown(props) {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { SidebarData,SidebarAreas } from "@components/config/SidebarData.js";
+import { SidebarData,SidebarAreas } from "@config/SidebarData.js";
 import { logout } from "@views/firebase";
 
 import "@styles/sidebar.css";
