@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Header from "@components/Header";
 import { fetchHabits } from "@views/firebase";
-import HabitsDropdown from "../Components/HabitsDropdown";
+import HabitsDropdown from "@components/HabitsDropdown";
 import { addHabit } from "@store/habitsReducer";
 import QMark from "@assets/QMark.svg";
 import tick from "@assets/tick.svg";
@@ -19,8 +19,7 @@ function Habits() {
   const handleMore = (key) => {
     setShowMore(!showMore);
 
-    setY(105 + key * 65);
-    console.log((105 + key * 65));
+    setY((16.5 + key * 10.7));
   };
   const uid = useSelector((state) => state.users.ID);
   useEffect(() => {

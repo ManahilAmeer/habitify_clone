@@ -6,7 +6,7 @@
 .navb {
   display: grid;
   grid-template-areas: "topbar-date-selector topbar-search";
-  padding: 7px 0px 0px 15px;
+  padding: 7px 0vw 0vw 15px;
   margin-right: 10px;
   height: 49px;
   justify-content: space-between;
@@ -32,14 +32,14 @@
 }
 .Buttondiv {
   height: 30px;
-  margin-right: 8px;
+  margin-right: 0.585vw;
   border-radius: 3px;
-  padding: 0px 12px;
+  padding: 0vw 12px;
   background: rgb(66, 66, 66);
 }
 .button {
   display: inline-flex;
-  margin-right: 8px;
+  margin-right: 0.585vw;
   align-items: center;
   justify-content: center;
   font-weight: 500;
@@ -47,11 +47,11 @@
   font-size: 12px;
   color: rgba(255, 255, 255, 0.95);
   background-color: rgb(66, 66, 66);
-  padding-left: 0px;
+  padding-left: 0vw;
   padding-right: 3px;
   font-family: Inter;
   border: 1px solid rgb(74, 74, 74);
-  border-radius: 5px;
+  border-radius: 0.366vw;
 }
 .primary {
   background-color: rgb(54, 98, 204);
@@ -59,7 +59,8 @@
   border-color: rgb(54, 98, 204);
   margin-right: 0;
 }
-.arrow, .icon {
+.arrow,
+.icon {
   display: inline-flex;
   margin-inline-start: 0.5rem;
 }

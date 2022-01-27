@@ -26,7 +26,7 @@
   column-gap: 10px;
 }
 .number {
-  padding-left: 8px;
+  padding-left: 0.585vw;
   padding-right: 32px;
 }
 .goal-number {
@@ -36,12 +36,12 @@
 }
 .arrows {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0vw;
+  right: 0vw;
   margin: 1px;
   z-index: 1;
   width: 24px;
-  padding: 4px;
+  padding: 0.292vw;
 }
 .up {
   display: flex;
@@ -66,106 +66,106 @@
   padding-left: 10px;
   padding-right: 15px;
 }
-.arrowIcon{
-        right: 0px;
-    width: 12px;
-    height: 30px;
-    font-size: var(--chakra-fontSizes-md);
-    display: flex;
-    /* -webkit-box-align: center; */
-    align-items: center;
-    /* -webkit-box-pack: center; */
-    justify-content: center;
-    position: absolute;
-    top: 0px;
-    z-index: 2;
-    margin-right: 10px;
-    pointer-events: none;
+.arrowIcon {
+  right: 0vw;
+  width: 12px;
+  height: 30px;
+  font-size: var(--chakra-fontSizes-md);
+  display: flex;
+  /* -webkit-box-align: center; */
+  align-items: center;
+  /* -webkit-box-pack: center; */
+  justify-content: center;
+  position: absolute;
+  top: 0vw;
+  z-index: 2;
+  margin-right: 10px;
+  pointer-events: none;
 }
-.arrowIcon img{
-    width: 20px;
+.arrowIcon img {
+  width: 20px;
 }
-.reminder{
-    margin-top: 16px;
+.reminder {
+  margin-top: 1.171vw;
 }
-.reminder-box{
-    background-color: rgb(66, 66, 66);
-    display: flex;
-    padding: 3px 6px 2px;
-    flex-wrap: wrap;
-    width: 100%;
-    border-radius: 3px;
-    border: 1px solid rgb(74, 74, 74);
+.reminder-box {
+  background-color: rgb(66, 66, 66);
+  display: flex;
+  padding: 3px 6px 2px;
+  flex-wrap: wrap;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid rgb(74, 74, 74);
 }
-.reminder-input{
-        display: inline-flex;
-    vertical-align: top;
-    /* -webkit-box-align: center; */
-    align-items: center;
-    max-width: 100%;
-    font-weight: 500;
-    line-height: 1.2;
-    outline: transparent solid 2px;
-    outline-offset: 2px;
-    min-height: 22px;
-    min-width: 1.5rem;
-    font-size: 0.875rem;
-    border-radius: 3px;
-    padding-inline-start: .5rem;
-    padding-inline-end: .5rem;
-    background: rgb(99, 99, 99);
-    color: rgb(255, 255, 255);
-    margin: auto 4px 2px 0px;
+.reminder-input {
+  display: inline-flex;
+  vertical-align: top;
+  /* -webkit-box-align: center; */
+  align-items: center;
+  max-width: 100%;
+  font-weight: 500;
+  line-height: 1.2;
+  outline: transparent solid 2px;
+  outline-offset: 2px;
+  min-height: 22px;
+  min-width: 1.5rem;
+  font-size: 0.875rem;
+  border-radius: 3px;
+  padding-inline-start: 0.5rem;
+  padding-inline-end: 0.5rem;
+  background: rgb(99, 99, 99);
+  color: rgb(255, 255, 255);
+  margin: auto 0.292vw 2px 0vw;
 }
-.reminder-text{
-        line-height: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-family: Inter;
-    font-size: 10px;
-    font-weight: 500;
-    color: rgb(255, 255, 255);
+.reminder-text {
+  line-height: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
 }
-.reminder-inputBox{
-        width: 100%;
-    min-width: 64px;
-    outline-offset: 2px;
-    position: relative;
-    appearance: none;
-    transition-property: var(--chakra-transition-property-common);
-    transition-duration: var(--chakra-transition-duration-normal);
-    font-size: 10px;
-    padding-inline-start: 0px;
-    padding-inline-end: 0px;
-    height: auto;
-    color:#fff;
-    font-family: Inter;
-    font-weight: 500;
-    line-height: 12px;
-    background-color: rgb(66, 66, 66);
-    display: inline-block;
-    margin-top: unset !important;
-    outline: transparent solid 2px;
-    border-radius: var(--chakra-radii-md);
-    flex: 1 1 0%;
+.reminder-inputBox {
+  width: 100%;
+  min-width: 64px;
+  outline-offset: 2px;
+  position: relative;
+  appearance: none;
+  transition-property: var(--chakra-transition-property-common);
+  transition-duration: var(--chakra-transition-duration-normal);
+  font-size: 10px;
+  padding-inline-start: 0vw;
+  padding-inline-end: 0vw;
+  height: auto;
+  color: #fff;
+  font-family: Inter;
+  font-weight: 500;
+  line-height: 12px;
+  background-color: rgb(66, 66, 66);
+  display: inline-block;
+  margin-top: unset !important;
+  outline: transparent solid 2px;
+  border-radius: var(--chakra-radii-md);
+  flex: 1 1 0%;
 }
-.reminder-icon img{
-    margin-left: 2.56px;
-    width: 12px;
-    height: 6.88px;
-    padding-bottom: 0px;
-    margin-bottom: 2px;
+.reminder-icon img {
+  margin-left: 2.56px;
+  width: 12px;
+  height: 6.88px;
+  padding-bottom: 0vw;
+  margin-bottom: 2px;
 }
-.buttons-area{
-        background-color: rgb(50, 50, 50);
-    padding: 10px 12px;
-    margin-top: 20px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    display: flex;
-    justify-content: space-between;
+.buttons-area {
+  background-color: rgb(50, 50, 50);
+  padding: 10px 12px;
+  margin-top: 20px;
+  border-bottom-left-radius: 0.585vw;
+  border-bottom-right-radius: 0.585vw;
+  display: flex;
+  justify-content: space-between;
 }
-.margin{
-    margin-left: auto;
+.margin {
+  margin-left: auto;
 }

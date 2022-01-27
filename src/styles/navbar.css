@@ -15,10 +15,10 @@
   color: #707070;
   font-weight: 500;
   max-width: 1300px;
-  font-size: 16px;
+  font-size: 1.171vw;
 }
-.navItem:hover{
-    cursor: pointer;
+.navItem:hover {
+  cursor: pointer;
 }
 .navbar {
   left: 0;

@@ -5,9 +5,9 @@ import {HabitDropdownData} from "@config/HabitDropdownData"
 
 function HabitsDropdown(props) {
   const y=props.Y;
-  console.log(props)
+  console.log(y)
   const style = {
-    transform: "translate( 893px, "+y +"px)"
+    transform: "translate( 65.37vw, "+y +"vh)"
   };
   return (
     <div 
