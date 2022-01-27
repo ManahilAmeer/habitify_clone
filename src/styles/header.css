@@ -1,40 +1,39 @@
 .header {
-  /* height: 100%; */
   background-color: rgba(23, 23, 23, 255);
   font-size: small;
 }
 .navb {
   display: grid;
   grid-template-areas: "topbar-date-selector topbar-search";
-  padding: 7px 0vw 0vw 15px;
-  margin-right: 10px;
-  height: 49px;
+  padding: 0.512vw 0vw 0vw 1.098vw;
+  margin-right: 0.732vw;
+  height: 3.587vw;
   justify-content: space-between;
   align-items: center;
   background: rgb(23, 23, 23);
-  border-bottom: 1px solid rgb(59, 59, 59);
+  border-bottom: 0.0732vw solid rgb(59, 59, 59);
 }
 .sort {
-  width: 172.719px;
+  width: 12.644vw;
 }
 .title {
   margin: 1% 0% 0% 2%;
   font-family: Inter;
-  font-size: 17px;
+  font-size: 1.244vw;
   font-weight: 600;
-  line-height: 20.4px;
+  line-height: 1.493vw;
   color: rgba(255, 255, 255, 0.95);
   white-space: nowrap;
-  padding-bottom: 6px;
+  padding-bottom: 0.439vw;
 }
 .options {
   display: flex;
 }
 .Buttondiv {
-  height: 30px;
+  height: 2.196vw;
   margin-right: 0.585vw;
-  border-radius: 3px;
-  padding: 0vw 12px;
+  border-radius: 0.2196vw;
+  padding: 0vw 0.878vw;
   background: rgb(66, 66, 66);
 }
 .button {
@@ -43,14 +42,14 @@
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  height: 30px;
-  font-size: 12px;
+  height: 2.196vw;
+  font-size: 0.878vw;
   color: rgba(255, 255, 255, 0.95);
   background-color: rgb(66, 66, 66);
   padding-left: 0vw;
-  padding-right: 3px;
+  padding-right: 0.2196vw;
   font-family: Inter;
-  border: 1px solid rgb(74, 74, 74);
+  border: 0.0732vw solid rgb(74, 74, 74);
   border-radius: 0.366vw;
 }
 .primary {

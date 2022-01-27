@@ -1,7 +1,7 @@
 .grid {
   display: grid;
   grid-template-columns: 1.9fr 1fr;
-  grid-gap: 10.5px;
+  grid-gap: 0.768vw;
 }
 .goal {
   width: 100%;
@@ -10,24 +10,24 @@
 .goal-text {
   display: block;
   text-align: start;
-  font-size: 10px;
+  font-size: 0.732vw;
   margin-inline-end: 0.75rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
   opacity: 1;
   font-family: Inter;
-  line-height: 12px;
+  line-height: 0.878vw;
   color: rgb(123, 124, 124);
-  padding-left: 6px;
+  padding-left: 0.439vw;
 }
 .goal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 10px;
+  column-gap: 0.732vw;
 }
 .number {
   padding-left: 0.585vw;
-  padding-right: 32px;
+  padding-right: 2.342vw;
 }
 .goal-number {
   position: relative;
@@ -38,9 +38,9 @@
   position: absolute;
   top: 0vw;
   right: 0vw;
-  margin: 1px;
+  margin: 0.0732vw;
   z-index: 1;
-  width: 24px;
+  width: 1.756vw;
   padding: 0.292vw;
 }
 .up {
@@ -51,8 +51,8 @@
   /*  */
 }
 .up img {
-  width: 11px;
-  height: 11px;
+  width: 0.805vw;
+  height: 0.805vw;
 }
 .up:hover {
   background: rgb(38, 38, 38);
@@ -63,27 +63,25 @@
   position: relative;
 }
 .times {
-  padding-left: 10px;
-  padding-right: 15px;
+  padding-left: 0.732vw;
+  padding-right: 1.098vw;
 }
 .arrowIcon {
   right: 0vw;
-  width: 12px;
-  height: 30px;
+  width: 0.878vw;
+  height: 2.196vw;
   font-size: var(--chakra-fontSizes-md);
   display: flex;
-  /* -webkit-box-align: center; */
   align-items: center;
-  /* -webkit-box-pack: center; */
   justify-content: center;
   position: absolute;
   top: 0vw;
   z-index: 2;
-  margin-right: 10px;
+  margin-right: 0.732vw;
   pointer-events: none;
 }
 .arrowIcon img {
-  width: 20px;
+  width: 1.464vw;
 }
 .reminder {
   margin-top: 1.171vw;
@@ -91,76 +89,75 @@
 .reminder-box {
   background-color: rgb(66, 66, 66);
   display: flex;
-  padding: 3px 6px 2px;
+  padding: 0.2196vw 0.439vw 0.146vw;
   flex-wrap: wrap;
   width: 100%;
-  border-radius: 3px;
-  border: 1px solid rgb(74, 74, 74);
+  border-radius: 0.2196vw;
+  border: 0.0732vw solid rgb(74, 74, 74);
 }
 .reminder-input {
   display: inline-flex;
   vertical-align: top;
-  /* -webkit-box-align: center; */
   align-items: center;
   max-width: 100%;
   font-weight: 500;
   line-height: 1.2;
-  outline: transparent solid 2px;
-  outline-offset: 2px;
-  min-height: 22px;
+  outline: transparent solid 0.146vw;
+  outline-offset: 0.146vw;
+  min-height: 1.61vw;
   min-width: 1.5rem;
   font-size: 0.875rem;
-  border-radius: 3px;
+  border-radius: 0.2196vw;
   padding-inline-start: 0.5rem;
   padding-inline-end: 0.5rem;
   background: rgb(99, 99, 99);
   color: rgb(255, 255, 255);
-  margin: auto 0.292vw 2px 0vw;
+  margin: auto 0.292vw 0.146vw 0vw;
 }
 .reminder-text {
-  line-height: 12px;
+  line-height: 0.878vw;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-family: Inter;
-  font-size: 10px;
+  font-size: 0.732vw;
   font-weight: 500;
   color: rgb(255, 255, 255);
 }
 .reminder-inputBox {
   width: 100%;
-  min-width: 64px;
-  outline-offset: 2px;
+  min-width: 4.685vw;
+  outline-offset: 0.146vw;
   position: relative;
   appearance: none;
   transition-property: var(--chakra-transition-property-common);
   transition-duration: var(--chakra-transition-duration-normal);
-  font-size: 10px;
+  font-size: 0.732vw;
   padding-inline-start: 0vw;
   padding-inline-end: 0vw;
   height: auto;
   color: #fff;
   font-family: Inter;
   font-weight: 500;
-  line-height: 12px;
+  line-height: 0.878vw;
   background-color: rgb(66, 66, 66);
   display: inline-block;
   margin-top: unset !important;
-  outline: transparent solid 2px;
+  outline: transparent solid 0.146vw;
   border-radius: var(--chakra-radii-md);
   flex: 1 1 0%;
 }
 .reminder-icon img {
-  margin-left: 2.56px;
-  width: 12px;
-  height: 6.88px;
+  margin-left: 0.187vw;
+  width: 0.878vw;
+  height: 0.503vw;
   padding-bottom: 0vw;
-  margin-bottom: 2px;
+  margin-bottom: 0.146vw;
 }
 .buttons-area {
   background-color: rgb(50, 50, 50);
-  padding: 10px 12px;
-  margin-top: 20px;
+  padding: 0.732vw 0.878vw;
+  margin-top: 1.464vw;
   border-bottom-left-radius: 0.585vw;
   border-bottom-right-radius: 0.585vw;
   display: flex;

@@ -31,39 +31,40 @@
   margin-bottom: 3.75rem;
   z-index: 1400;
   max-height: -webkit-calc(100vh - 7.5rem);
-  box-shadow: rgba(0, 0, 0, 0.1) 0vw 0vw 0vw 1px,
-    rgba(0, 0, 0, 0.2) 0vw 0.366vw 10px, rgba(0, 0, 0, 0.4) 0vw 15px 40px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0vw 0vw 0vw 0.0732vw,
+    rgba(0, 0, 0, 0.2) 0vw 0.366vw 0.732vw,
+    rgba(0, 0, 0, 0.4) 0vw 1.098vw 2.928vw;
   max-width: 28rem;
 }
 .content-header {
-  font-size: 17px;
+  font-size: 1.244vw;
   font-weight: 600;
   color: #fff;
   font-family: Inter;
-  line-height: 20.4px;
+  line-height: 1.493vw;
   padding: 1.024vw 1.171vw 0.292vw;
 }
 .create-form {
-  margin-top: 10px;
+  margin-top: 0.732vw;
   padding: 0vw 1.171vw;
 }
 .name {
-  margin-bottom: 12px;
+  margin-bottom: 0.878vw;
   width: 100%;
   position: relative;
 }
 .name-text {
   display: block;
   text-align: start;
-  font-size: 10px;
+  font-size: 0.732vw;
   margin-inline-end: 0.75rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
   opacity: 1;
   font-family: Inter;
-  line-height: 12px;
+  line-height: 0.878vw;
   color: rgb(123, 124, 124);
-  padding-left: 6px;
+  padding-left: 0.439vw;
 }
 .name-input {
   display: flex;
@@ -75,22 +76,22 @@
 .input {
   width: 100%;
   position: relative;
-  font-size: 12px;
-  height: 30px;
-  border-radius: 3px;
-  border: 1px solid rgb(74, 74, 74);
+  font-size: 0.878vw;
+  height: 2.196vw;
+  border-radius: 0.2196vw;
+  border: 0.0732vw solid rgb(74, 74, 74);
   background: rgb(66, 66, 66);
   color: #fff;
   font-family: Inter;
   font-weight: 500;
-  line-height: 14.4px;
+  line-height: 1.054vw;
   cursor: default;
-  padding: 0vw 10px;
+  padding: 0vw 0.732vw;
   margin-top: unset !important;
   text-transform: capitalize;
 }
 input:focus {
-  border: 1px solid #3662cc;
+  border: 0.0732vw solid #3662cc;
 }
 .name-btn {
   display: inline-flex;
@@ -98,19 +99,19 @@ input:focus {
   justify-content: center;
   border-radius: 0.375rem;
   font-weight: 600;
-  height: 30px;
+  height: 2.196vw;
   min-width: 2rem;
   background: transparent;
   padding: 0vw;
-  border: 1px solid rgb(74, 74, 74);
+  border: 0.0732vw solid rgb(74, 74, 74);
   color: rgb(42, 168, 208);
   cursor: default;
 }
 .cancel {
   font-weight: 500;
-  height: 30px;
+  height: 2.196vw;
   min-width: 2.5rem;
-  font-size: 12px;
+  font-size: 0.878vw;
   padding-inline-start: 1rem;
   padding-inline-end: 1rem;
   font-family: Inter;
@@ -118,8 +119,8 @@ input:focus {
   background-color: rgb(66, 66, 66);
   margin-right: 0.585vw;
   cursor: default;
-  border-radius: 3px;
-  border-width: 1px;
+  border-radius: 0.2196vw;
+  border-width: 0.0732vw;
   border-style: solid;
   border-color: rgb(74, 74, 74);
 }
@@ -132,7 +133,7 @@ input:focus {
 }
 .menu {
   border-radius: 0.5vw;
-  border: 1px solid #616161;
+  border: 0.0732vw solid #616161;
   z-index: 10;
   background-color: rgb(51, 51, 51);
   overflow: auto;
@@ -142,21 +143,21 @@ input:focus {
   inset: 0vw auto auto 0vw;
   /* user-select: auto; */
   margin: 0vw;
-  transform: translate(0vw, 58px);
-  width: 376px;
+  transform: translate(0vw, 4.245vw);
+  width: 27.525vw;
   --popper-transform-origin: top left;
 }
 .popular {
   padding: 0.292vw 0vw;
-  border-bottom: 1px solid rgb(74, 74, 74);
+  border-bottom: 0.0732vw solid rgb(74, 74, 74);
 }
 .popular-heading {
   font-family: Inter;
-  font-size: 12px;
+  font-size: 0.878vw;
   font-weight: 500;
-  line-height: 14.4px;
+  line-height: 1.054vw;
   color: rgba(255, 255, 255, 0.95);
-  padding: 0.292vw 10px;
+  padding: 0.292vw 0.732vw;
   text-transform: capitalize;
   margin: 0;
 }
@@ -168,8 +169,8 @@ input:focus {
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 0.366vw;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 1.464vw;
+  margin-bottom: 1.464vw;
   background: rgb(66, 66, 66);
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -180,17 +181,17 @@ input:focus {
 } */
 .sug-icon {
   margin-right: 0vw;
-  width: 22.5px;
-  height: 30px;
+  width: 1.647vw;
+  height: 2.196vw;
   display: flex;
 }
 .habit-sug {
   color: hsla(0, 0%, 100%, 0.7);
   display: flex;
   cursor: default;
-  height: 30px;
-  line-height: 30px;
-  padding: 0vw 6px 0vw 1.024vw;
+  height: 2.196vw;
+  line-height: 2.196vw;
+  padding: 0vw 0.439vw 0vw 1.024vw;
   text-transform: capitalize;
 }
 .habit-sug:hover {

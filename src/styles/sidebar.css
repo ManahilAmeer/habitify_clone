@@ -2,9 +2,9 @@
   height: 100%;
   color: #7b7c7c;
   font-family: "Roboto", sans-serif;
-  font-size: 13px;
+  font-size: 0.951vw;
   font-weight: 500;
-  line-height: 15.6px;
+  line-height: 1.142vw;
   background-color: rgba(23, 23, 23, 255);
 }
 .SideList {
@@ -12,11 +12,11 @@
   width: 100%;
   margin-top: 0;
   padding: 1vw;
-  padding-left: 12px;
-  padding-right: 13px;
-  padding-top: 39px;
-  padding-bottom: 12px;
-  width: 214px;
+  padding-left: 0.878vw;
+  padding-right: 0.951vw;
+  padding-top: 2.855vw;
+  padding-bottom: 0.878vw;
+  width: 15.666vw;
   height: 100%;
 }
 .item:hover {
@@ -37,52 +37,24 @@
 }
 .MenuType {
   list-style-type: none;
-  margin-bottom: 6px;
+  margin-bottom: 0.439vw;
   text-transform: uppercase;
   font-family: Inter;
-  font-size: 10px;
+  font-size: 0.732vw;
   font-weight: 600;
-  line-height: 12px;
+  line-height: 0.878vw;
   color: rgb(123, 124, 124);
 }
-/* .SideListItem {
-  width: 110%;
-  display: flex;
-  align-items: center;
-  padding: 4.3px 0.585vw;
-  cursor: default;
-  border-radius: 5px;
-} */
 .SideListItem:hover {
   color: white;
 }
-/* .text {
-  width: 151;
-  height: 15.594;
-  padding: 6px 7px;
-  text-transform: capitalize;
-  font-family: Inter;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 15.6px;
-  color: rgb(123, 124, 124);
-} */
-/* .SideList .icon {
-  display: flex;
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-} */
-/* .icon:hover {
-  fill: #ffffff;
-} */
 .user {
   display: flex;
-  border: 1px solid rgb(74, 74, 74);
-  width: 214px;
-  height: 42px;
+  border: 0.0732vw solid rgb(74, 74, 74);
+  width: 15.666vw;
+  height: 3.074vw;
   align-items: center;
-  padding: 7px;
+  padding: 0.512vw;
   grid-area: user-menu / user-menu / user-menu / user-menu;
   border-radius: 0.366vw;
   background: rgb(50, 50, 50);
@@ -92,52 +64,44 @@
 }
 .user-img {
   object-fit: cover;
-  width: 26px;
-  height: 26px;
+  width: 1.903vw;
+  height: 1.903vw;
   border-radius: 100%;
 }
 .user-text {
-  margin-left: 10px;
+  margin-left: 0.732vw;
   font-family: Inter;
-  font-size: 13px;
+  font-size: 0.951vw;
   font-weight: 500;
-  line-height: 15.6px;
+  line-height: 1.142vw;
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 0vw;
 }
 .item {
   display: flex;
   width: 110%;
-  width: 214px;
-  height: 36px;
+  width: 15.666vw;
+  height: 2.635vw;
   align-items: center;
-  padding: 4.3px 0.585vw;
+  padding: 0.314vw 0.585vw;
   cursor: default;
   border-radius: 0.366vw;
-  /* background: rgb(50, 50, 50); */
 }
 .item-icon {
   display: flex;
-  width: 20px;
-  height: 20px;
+  width: 1.464vw;
+  height: 1.464vw;
   margin-right: 0.366vw;
 }
 .item-title {
-  margin-left: 10px;
+  margin-left: 0.732vw;
   font-family: Inter;
-  font-size: 13px;
+  font-size: 0.951vw;
   font-weight: 500;
-  line-height: 15.6px;
+  line-height: 1.142vw;
   color: #7b7c7c;
   margin-bottom: 0vw;
 }
-/* .list {
-  grid-area: box-sections / box-sections / box-sections / box-sections;
-  display: grid;
-  grid-auto-rows: min-content;
-  grid-template-columns: 1fr;
-  margin-top: 12px;
-} */
 a:link {
   color: #7b7c7c;
   text-decoration: none;
@@ -147,10 +111,10 @@ a:link {
   display: grid;
   grid-auto-rows: min-content;
   grid-template-columns: 1fr;
-  margin-top: 12px;
+  margin-top: 0.878vw;
 }
 .one {
-  margin-bottom: 20px;
+  margin-bottom: 1.464vw;
 }
 .sidebar-link {
   position: relative;
@@ -158,18 +122,13 @@ a:link {
   text-decoration: none;
   color: #7b7c7c;
 }
-/* .sidebar-link #active{
-  background-color: #3662cc;
-  color: white;
-} */
 .popUp {
   min-width: max-content;
-  /* --popper-transform-origin: top center; */
   position: absolute;
   inset: 0vw auto auto 0vw;
   margin: 0vw;
-  transform: translate(12px, 89px);
-  width: 214px;
+  transform: translate(0.878vw, 6.515vw);
+  width: 15.666vw;
 }
 .sign-out {
   width: auto;
@@ -182,24 +141,24 @@ a:link {
   flex-direction: column;
   background-color: rgb(50, 50, 50);
   border-radius: 0.366vw;
-  border: 1px solid rgb(74, 74, 74);
+  border: 0.0732vw solid rgb(74, 74, 74);
 }
 .label {
   display: flex;
   cursor: default;
-  height: 30px;
-  line-height: 30px;
+  height: 2.196vw;
+  line-height: 2.196vw;
   text-transform: capitalize;
-  padding: 0vw 6px 0vw 10px;
+  padding: 0vw 0.439vw 0vw 0.732vw;
   /* border-radius: 0.3660vw; */
   border-top-left-radius: 0.366vw;
   border-top-right-radius: 0.366vw;
 }
 .label-text {
   font-family: Inter;
-  font-size: 12px;
+  font-size: 0.878vw;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 2.196vw;
   color: hsla(0, 0%, 100%, 0.7);
   /* overflow: hidden; */
   text-overflow: ellipsis;

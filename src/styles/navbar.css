@@ -1,6 +1,6 @@
 .space {
   position: relative;
-  width: 740px;
+  width: 54.172vw;
   display: block;
 }
 .links {
@@ -9,12 +9,12 @@
   align-items: center;
   display: grid;
   grid-template-columns: repeat(5, auto);
-  grid-gap: 40px;
+  grid-gap: 2.928vw;
 }
 .navItem {
   color: #707070;
   font-weight: 500;
-  max-width: 1300px;
+  max-width: 95.168vw;
   font-size: 1.171vw;
 }
 .navItem:hover {
@@ -24,12 +24,12 @@
   left: 0;
   display: flex;
   right: 0;
-  width: 1300px;
-  height: 73px;
+  width: 95.168vw;
+  height: 5.344vw;
   background-color: #fff;
   position: relative;
   align-items: center;
-  margin-left: 24.5px;
+  margin-left: 1.793vw;
   margin-right: 0;
   margin-top: 0;
   z-index: 1000;

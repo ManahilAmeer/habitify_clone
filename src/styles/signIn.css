@@ -11,38 +11,38 @@
 .signIn-container {
   position: relative;
   margin: 0;
-  border: 1px solid rgb(41, 40, 41);
+  border: 0.0732vw solid rgb(41, 40, 41);
   background: rgb(50, 50, 50);
   text-align: center;
-  padding: 45px 54px 43px 55px;
-  width: 401px;
-  min-height: 274px;
+  padding: 3.294vw 3.953vw 3.147vw 4.026vw;
+  width: 29.355vw;
+  min-height: 20.058vw;
   border-radius: 0.366vw;
 }
 .img {
   margin: 0vw auto;
   max-width: 100%;
   height: auto;
-  width: 49px;
+  width: 3.587vw;
 }
 .heading {
   font-family: Inter;
-  font-size: 22px;
+  font-size: 1.61vw;
   font-weight: 700;
-  line-height: 26.63px;
+  line-height: 1.949vw;
   color: rgb(255, 255, 255);
-  margin-top: 12px;
+  margin-top: 0.878vw;
   margin-bottom: 0.366vw;
 }
 .subheading {
   font-family: Inter;
-  font-size: 13px;
+  font-size: 0.951vw;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 1.317vw;
   color: rgb(123, 124, 124);
 }
 .buttons {
-  margin-top: 28px;
+  margin-top: 2.049vw;
 }
 .buttons .google {
   display: flex;
@@ -50,30 +50,30 @@
   justify-content: center;
   background: #ffffff;
   color: #000000;
-  width: 292px;
-  height: 40px;
+  width: 21.376vw;
+  height: 2.928vw;
   border-radius: 0.366vw;
-  box-shadow: #2e2e2e 2px 2px 0.292vw;
+  box-shadow: #2e2e2e 0.146vw 0.146vw 0.292vw;
   position: relative;
 }
 .google-img {
-  width: 29px;
-  height: 29px;
+  width: 2.122vw;
+  height: 2.122vw;
   position: absolute;
-  left: 12px;
+  left: 0.878vw;
 }
 .google-text {
   font-family: Inter;
-  font-size: 15px;
+  font-size: 1.098vw;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1.317vw;
   color: rgb(0 0 0);
   position: absolute;
-  left: 78px;
+  left: 5.71vw;
   margin: 0;
 }
 .space {
-  height: 10px;
+  height: 0.732vw;
 }
 .Apple {
   display: flex;
@@ -82,20 +82,20 @@
   background-color: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   border-radius: 0.366vw;
-  width: 292px;
-  height: 40px;
+  width: 21.376vw;
+  height: 2.928vw;
 }
 .apple-img {
-  width: 13.94px;
-  height: 17.63px;
-  transform: translate(-0.022px);
+  width: 1.02vw;
+  height: 1.29vw;
+  transform: translate(-0.001vw);
 }
 .apple-text {
   font-family: Inter;
-  font-size: 15px;
+  font-size: 1.098vw;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1.317vw;
   color: #ffffff;
-  margin-left: 9px;
+  margin-left: 0.658vw;
   margin-bottom: 0;
 }
