@@ -1,51 +1,51 @@
 .habitDropdown {
-    position: absolute;
-    inset: 0px auto auto 0px;
-    margin: 0px;
-    z-index: 10;
-    background-color: rgb(51, 51, 51);
-    border-radius: 0.5vw;
-    border: 1px solid #616161;
+  position: absolute;
+  inset: 0vw auto auto 0vw;
+  margin: 0vw;
+  z-index: 10;
+  background-color: rgb(51, 51, 51);
+  border-radius: 0.5vw;
+  border: 0.0732vw solid #616161;
 }
 .habit-content {
-    width: 210px;
-    opacity: 1;
-    transform: none;
+  width: 15.37vw;
+  opacity: 1;
+  transform: none;
 }
 .dropdown-container {
-  padding: 4px 0px;
-  border-bottom: 1px solid rgb(74, 74, 74);
+  padding: 0.292vw 0vw;
+  border-bottom: 0.0732vw solid rgb(74, 74, 74);
 }
 .dropdown-options {
-  padding-top: 2px;
+  padding-top: .146vw;
 }
 .habit-item {
   color: hsla(0, 0%, 100%, 0.7);
   display: flex;
   cursor: default;
-  height: 30px;
-  line-height: 30px;
-  padding: 0px 6px 0px 10px;
+  height: 2.196vw;
+  line-height: 2.196vw;
+  padding: 0vw .43vw 0vw .73vw;
 }
 .item-icon {
-  margin-right: 0px;
-  width: 25.5px;
-  height: 30px;
+  margin-right: 0vw;
+  width: 1.866vw;
+  height: 2.196vw;
   display: flex;
 }
 .icon-container {
   margin-top: auto;
   margin-bottom: auto;
-  margin-right: 10.5px;
+  margin-right: 0.768vw;
 }
 .icon-container svg {
-  width: 20px;
-  padding-bottom: 6px;
+  width: 1.46vw;
+  padding-bottom: .43vw;
 }
 .icon-container img {
-  width: 16px;
+  width: 1.171vw;
   border-radius: 0;
-  padding-bottom: 6px;
+  padding-bottom: .43vw;
 }
 .habit-item:hover {
   cursor: pointer;
@@ -59,8 +59,8 @@
 }
 .text-style {
   font-family: Inter;
-  font-size: 12px;
+  font-size: 0.878vw;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 2.196vw;
   overflow: hidden;
 }
