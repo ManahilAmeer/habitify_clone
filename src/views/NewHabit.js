@@ -11,7 +11,8 @@ import "@styles/newHabit.css";
 
 function NewHabit(props) {
   const navigate = useNavigate();
-  const uid = useSelector((state) => state.ID);
+  const uid = useSelector((state) => state.users.ID);
+
   const reload = () => {
     navigate("/sign-in");
   };
@@ -34,7 +35,7 @@ function NewHabit(props) {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            addHabits(values.name, values.goal,uid);
+            addHabits(values.name, values.goal,uid,"",0);
             setSubmitting(false);
             reload();
           }}
@@ -51,7 +52,7 @@ function NewHabit(props) {
                         <Field
                           type="name"
                           name="name"
-                          autocomplete="off"
+                          autoComplete="off"
                           onClick={() => {
                             handleMenu();
                           }}
