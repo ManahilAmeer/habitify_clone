@@ -1,93 +1,117 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import Header from "@components/Header";
-import { fetchHabits } from "@views/firebase";
+import { fetchHabits, updateCompleted, updateCategory } from "@views/firebase";
 import HabitsDropdown from "@components/HabitsDropdown";
+import HabitCategory from "@components/HabitCategory";
+import HabitItem from "@components/HabitItem";
 import { addHabit } from "@store/habitsReducer";
-import QMark from "@assets/QMark.svg";
-import tick from "@assets/tick.svg";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-
 import "@styles/habits.css";
 function Habits() {
   const dispatch = useDispatch();
   const mountedRef = useRef(true);
+
+  const [success, setSucces] = useState([]);
+  const [skip, setSkip] = useState([]);
   const [habits, setHabits] = useState([]);
   const [Y, setY] = useState(0);
+  const [goal, setGoal] = useState(0);
   const [showMore, setShowMore] = useState(false);
+  const [selectedKey, setSelectedKey] = useState(-1);
+
+  const uid = useSelector((state) => state.users.ID);
+  // var SuccessArr = [];
+  const fetchSucess = async () => {
+    const arr = await fetchHabits(uid, "Complete");
+    setSucces(arr);
+    // console.log(success)
+  };
+  const fetchSkip = async () => {
+    const arr = await fetchHabits(uid, "Skip");
+    setSkip(arr);
+  };
   const handleMore = (key) => {
     setShowMore(!showMore);
-
-    setY((16.5 + key * 10.7));
+    setY(16.5 + key * 10.7);
+    setSelectedKey(key);
   };
-  const uid = useSelector((state) => state.users.ID);
-  useEffect(() => {
-    fetch();
-  }, []);
   const fetch = useCallback(async () => {
     try {
-      const arr = await fetchHabits(uid);
+      const arr = await fetchHabits(uid, "");
+
       dispatch(addHabit(arr));
       if (!mountedRef.current) return null;
       else {
         setHabits(arr);
       }
     } catch (err) {}
-  }, []);
+  }, [dispatch, uid]);
+  useEffect(() => {
+    fetch();
+    fetchSucess();
+    fetchSkip();
+  }, [fetch]);
+  const changeCompleted = (times, key) => {
+    const selectedDoc = habits[key];
+    updateCompleted(selectedDoc["id"], selectedDoc["completed"] + 1);
+    // window.location.reload(false);
+    // let stroke = 264 / times;
+    setGoal(selectedDoc["completed"] + 1);
+    selectedDoc["completed"]++;
+    if (selectedDoc["completed"] === selectedDoc["goal"]) {
+      updateCat(selectedDoc["id"], "Complete");
+    }
+    //
+
+    // console.log(habits[key]["completed"]);
+    // changeStroke(key,stroke)
+  };
+  const updateCat = (id, title) => {
+    if (title === "Skip" || title === "Fail" || title === "Complete") {
+      updateCategory(id, title);
+    }
+  };
+  // const changeStroke = (key,strokePoint) => {
+  //   const style = {
+  //     strokeDasharray: { strokePoint } + "0 264",
+  //   };
+  //   stroke[key]=style;
+  // };
   return (
     <>
       <Header></Header>
       <div className="main">
         <div className="habits">
-          {habits.map((habit, key) => {
-            return (
-              <div key={key} className="habit">
-                <div className="habit-icon">
-                  <div className="habit-progress">
-                    <svg viewBox="0 0 100 100" className="circle">
-                      <circle cx="50" cy="50" r="42" className="track"></circle>
-                      <circle
-                        cx="50"
-                        cy="50"
-                        r="42"
-                        className="indicator"
-                      ></circle>
-                    </svg>
-                    <div className="habit-symbol">
-                      <img src={QMark} alt="Question Mark"></img>
-                    </div>
-                  </div>
-                </div>
-                <div className="habit-info">
-                  <div>
-                    <p className="habit-name">{habit.Name}</p>
-                    <div className="habit-times">
-                      <p className="times-text">0 / 1 times</p>
-                    </div>
-                  </div>
-                  <div className="habit-done">
-                    <div className="done-icon">
-                      <div className="icon-img">
-                        <img src={tick} alt="tick"></img>
-                      </div>
-                      <p className="done-text">Done</p>
-                    </div>
-                  </div>
-                  <button
-                    className="more"
-                    onClick={() => {
-                      handleMore(key);
-                    }}
-                  >
-                    <MoreVertIcon></MoreVertIcon>
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+          <HabitItem
+            habits={habits}
+            changeCompleted={changeCompleted}
+            handleMore={handleMore}
+          />
+          {success && (
+            <HabitCategory
+              arr={success}
+              changeCompleted={changeCompleted}
+              handleMore={handleMore}
+              title="Success"
+            />
+          )}
+          {skip && (
+            <HabitCategory
+              arr={skip}
+              changeCompleted={changeCompleted}
+              handleMore={handleMore}
+              title="Skip"
+            />
+          )}
         </div>
-        {showMore && <HabitsDropdown Y={Y} />}
+
+        {showMore && (
+          <HabitsDropdown
+            Y={Y}
+            id={habits[selectedKey]["id"]}
+            updateCat={updateCat}
+          />
+        )}
       </div>
     </>
   );
