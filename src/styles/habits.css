@@ -46,7 +46,6 @@
   transition-property: stroke-dasharray, stroke;
   transition-duration: 0.6s;
   transition-timing-function: ease;
-  opacity: 0;
 }
 .habit-symbol {
   width: 2.342vw;
@@ -113,7 +112,14 @@
 .icon-img {
   width: 1.171vw;
   margin: auto;
-  margin-right: 0.292vw;
+  height: 14px;
+  margin-right: 0vw;
+  padding-bottom: 29px;
+  width: 15px;
+}
+.icon-img img{
+  width:15px;
+  height: 15px;
 }
 .done-text {
   font-family: Inter;
