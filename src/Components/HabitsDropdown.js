@@ -2,13 +2,18 @@ import React from "react";
 import PropTypes from 'prop-types';
 import '@styles/habitDropdown.css'
 import {HabitDropdownData} from "@config/HabitDropdownData"
-
+import { updateCategory } from "@views/firebase";
 function HabitsDropdown(props) {
   const y=props.Y;
-  console.log(y)
+  const id=props.id;
   const style = {
     transform: "translate( 65.37vw, "+y +"vh)"
   };
+  const handleClick=(title)=>{
+    if(title==="Skip"||title==="Fail"){
+      updateCategory(id,title)
+    }
+  }
   return (
     <div 
     style={style}
@@ -18,7 +23,7 @@ function HabitsDropdown(props) {
           <div className="dropdown-options">
             {HabitDropdownData.map((val, key) => {
               return (
-                <div key={key} className="habit-item">
+                <div key={key} className="habit-item" onClick={()=>props.updateCat(id,val.title)}>
                   <div className="item-icon">
                     <div className="icon-container">{val.icon}</div>
                   </div>
