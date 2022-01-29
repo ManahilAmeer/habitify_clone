@@ -1,4 +1,6 @@
+// import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 import firebase from "firebase/compat/app";
+import { collectionGroup, query, where, getDocs } from "firebase/firestore"; 
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 const firebaseConfig = {
@@ -26,23 +28,61 @@ const signInWithGoogle = async () => {
     alert(err.message);
   }
 };
-const fetchHabits = async (uid) => {
+const fetchHabits = async (uid,category) => {
   try {
     const arr=[];
-    const query = await (db.collection("habit").where("uid", "==", uid).get());
-    query.forEach((doc)=>{
-      arr.push(doc.data());
+    var allHabits = query(
+      collectionGroup(db, "habit"),
+      where("category", "==", category),
+      where("uid", "==", uid)
+    );
+    const querySnapshot=await getDocs(allHabits)
+    querySnapshot.forEach((doc)=>{
+      arr.push({
+        id: doc.id,
+        ...doc.data(),
+      });
     })
     return arr;
   } catch (err) {
     alert(err.message);
   }
-  
 };
-const addHabits = (name, goal,uid) => {
+const addHabits = (name, goal,uid,category,completed) => {
   
   try {
-    db.collection("habit").add({ Name: name,goal:goal, uid: uid });
+    db.collection("habit").add({
+      Name: name,
+      goal: goal,
+      uid: uid,
+      category: category,
+      completed: completed,
+      // date: firebase.firestore.Timestamp.now().toDate().toString(),
+    });
+  } catch (err) {
+    alert(err);
+    console.log(err)
+  }
+};
+const updateCategory=(ID,category)=>{
+  try{
+    const data=db.collection("habit").doc(ID);
+    // data.data
+    data.update({
+      category:category
+    })
+    // console.log(data)
+  }
+  catch(err){
+    alert(err)
+  }
+}
+const updateCompleted = (ID, completed) => {
+  try {
+    const data = db.collection("habit").doc(ID);
+    data.update({
+      completed: completed,
+    });
   } catch (err) {
     alert(err);
   }
@@ -50,4 +90,4 @@ const addHabits = (name, goal,uid) => {
 const logout = () => {
   auth.signOut();
 };
-export { auth, db, signInWithGoogle, logout, addHabits, fetchHabits };
+export { auth, db, signInWithGoogle, logout, addHabits, fetchHabits,updateCategory,updateCompleted };

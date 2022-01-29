@@ -4,20 +4,20 @@ import arrowUp from "@assets/arrow-up.svg";
 import arrowDown from "@assets/arrow.svg";
 import upDown from "@assets/upDown.svg";
 import cross from "@assets/cross.svg";
-import calender from "@assets/calenderGrey.svg"
-import "@styles/goal.css"
+import calender from "@assets/calenderGrey.svg";
+import "@styles/goal.css";
 function Goal(props) {
-  const [input,setInput]=useState(0)
-  const increment=()=>{
-    handleChange(input+1)
-  }
-  const decrement = () => {
-    handleChange(input - 1);
+  const [input, setInput] = useState(0);
+  const increment = () => {
+    input <= 100 ? handleChange(input + 1) : handleChange(input);
   };
-  const handleChange=(num)=>{
+  const decrement = () => {
+    input >= 1 ? handleChange(input - 1) : handleChange(input);
+  };
+  const handleChange = (num) => {
     setInput(num);
-    props.setFieldValue("goal",num);
-  }
+    props.setFieldValue("goal", num);
+  };
   return (
     <>
       <div className="grid">
