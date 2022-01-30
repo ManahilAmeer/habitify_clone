@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import "@styles/header.css";
+import "@components/header.css";
 import sortIcon from "@assets/sort.svg"
 import arrowIcon from "@assets/arrow.svg";
 import calenderIcon from "@assets/calenderIcon.svg";

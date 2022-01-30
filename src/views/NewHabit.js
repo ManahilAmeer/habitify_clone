@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { useNavigate } from "react-router-dom";
-import Goal from "../Components/Goal";
+import Goal from "@components/Goal";
 import Suggestion from "@components/Suggestion";
 import { addHabits } from "@views/firebase";
 import { useSelector } from "react-redux";
 import QMark from "@assets/QMark.svg";
-
-import "@styles/newHabit.css";
-
+import "@views/newHabit.css";
 function NewHabit(props) {
-  const navigate = useNavigate();
   const uid = useSelector((state) => state.users.ID);
-
-  const reload = () => {
-    navigate("/sign-in");
-  };
+  useEffect(()=>{
+  },[addHabits])
   const [Visibility, setvisiblity] = useState("hidden");
   const [goal,setGoal]=useState(1)
   const handleMenu = () => {
@@ -35,9 +29,9 @@ function NewHabit(props) {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            addHabits(values.name, values.goal,uid,"",0);
+            addHabits(values.name, values.goal, uid, "", 0);
             setSubmitting(false);
-            reload();
+            props.handleHabitButton("Create Good Habit");
           }}
         >
           {({ setFieldValue, resetForm, isSubmitting }) => (
@@ -71,14 +65,21 @@ function NewHabit(props) {
                       </div>
                     </div>
                   </div>
-                  <Field name="goal" value={goal}
-                  style={{ display: "none" }}
+                  <Field
+                    name="goal"
+                    value={goal}
+                    style={{ display: "none" }}
                   ></Field>
                   <Goal setFieldValue={setFieldValue}></Goal>
                 </div>
                 <div className="buttons-area">
                   <div className="margin">
-                    <button className="cancel" onClick={() => resetForm()}>
+                    <button
+                      className="cancel"
+                      onClick={() =>
+                        props.handleHabitButton("Create Good Habit")
+                      }
+                    >
                       Cancel
                     </button>
                     <button

@@ -1,4 +1,3 @@
-// import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 import firebase from "firebase/compat/app";
 import { collectionGroup, query, where, getDocs } from "firebase/firestore"; 
 import "firebase/compat/auth";
@@ -49,7 +48,6 @@ const fetchHabits = async (uid,category) => {
   }
 };
 const addHabits = (name, goal,uid,category,completed) => {
-  
   try {
     db.collection("habit").add({
       Name: name,
@@ -57,7 +55,6 @@ const addHabits = (name, goal,uid,category,completed) => {
       uid: uid,
       category: category,
       completed: completed,
-      // date: firebase.firestore.Timestamp.now().toDate().toString(),
     });
   } catch (err) {
     alert(err);
@@ -67,11 +64,9 @@ const addHabits = (name, goal,uid,category,completed) => {
 const updateCategory=(ID,category)=>{
   try{
     const data=db.collection("habit").doc(ID);
-    // data.data
     data.update({
       category:category
     })
-    // console.log(data)
   }
   catch(err){
     alert(err)

@@ -5,9 +5,9 @@ import arrowDown from "@assets/arrow.svg";
 import upDown from "@assets/upDown.svg";
 import cross from "@assets/cross.svg";
 import calender from "@assets/calenderGrey.svg";
-import "@styles/goal.css";
+import "@components/goal.css";
 function Goal(props) {
-  const [input, setInput] = useState(0);
+  const [input, setInput] = useState(1);
   const increment = () => {
     input <= 100 ? handleChange(input + 1) : handleChange(input);
   };

@@ -5,31 +5,21 @@ import { fetchHabits, updateCompleted, updateCategory } from "@views/firebase";
 import HabitsDropdown from "@components/HabitsDropdown";
 import HabitCategory from "@components/HabitCategory";
 import HabitItem from "@components/HabitItem";
-import { addHabit } from "@store/habitsReducer";
-import "@styles/habits.css";
+import { addHabit, addFail, addskips, addSuccess } from "@store/habitsReducer";
+import "@views/habits.css";
 function Habits() {
   const dispatch = useDispatch();
   const mountedRef = useRef(true);
-
+  const [stroke, setStroke] = useState(0);
   const [success, setSucces] = useState([]);
   const [skip, setSkip] = useState([]);
+  const [fail, setFail] = useState([]);
   const [habits, setHabits] = useState([]);
   const [Y, setY] = useState(0);
   const [goal, setGoal] = useState(0);
   const [showMore, setShowMore] = useState(false);
   const [selectedKey, setSelectedKey] = useState(-1);
-
   const uid = useSelector((state) => state.users.ID);
-  // var SuccessArr = [];
-  const fetchSucess = async () => {
-    const arr = await fetchHabits(uid, "Complete");
-    setSucces(arr);
-    // console.log(success)
-  };
-  const fetchSkip = async () => {
-    const arr = await fetchHabits(uid, "Skip");
-    setSkip(arr);
-  };
   const handleMore = (key) => {
     setShowMore(!showMore);
     setY(16.5 + key * 10.7);
@@ -37,46 +27,47 @@ function Habits() {
   };
   const fetch = useCallback(async () => {
     try {
-      const arr = await fetchHabits(uid, "");
-
-      dispatch(addHabit(arr));
+      const habits = await fetchHabits(uid, "");
+      const skip = await fetchHabits(uid, "Skip");
+      const success = await fetchHabits(uid, "Complete");
+      const fail = await fetchHabits(uid, "Fail");
+      dispatch(addHabit(habits));
+      dispatch(addFail(fail));
+      dispatch(addskips(skip));
+      dispatch(addSuccess(success));
       if (!mountedRef.current) return null;
       else {
-        setHabits(arr);
+        setHabits(habits);
+        setSkip(skip);
+        setSucces(success);
+        setFail(fail);
       }
     } catch (err) {}
   }, [dispatch, uid]);
   useEffect(() => {
     fetch();
-    fetchSucess();
-    fetchSkip();
-  }, [fetch]);
+  }, [fetch,habits]);
   const changeCompleted = (times, key) => {
     const selectedDoc = habits[key];
     updateCompleted(selectedDoc["id"], selectedDoc["completed"] + 1);
-    // window.location.reload(false);
-    // let stroke = 264 / times;
+    let stroke = 264 / times;
     setGoal(selectedDoc["completed"] + 1);
-    selectedDoc["completed"]++;
-    if (selectedDoc["completed"] === selectedDoc["goal"]) {
+    if (selectedDoc["completed"]+1 === selectedDoc["goal"]) {
       updateCat(selectedDoc["id"], "Complete");
     }
-    //
-
-    // console.log(habits[key]["completed"]);
-    // changeStroke(key,stroke)
+    changeStroke(stroke)
   };
   const updateCat = (id, title) => {
     if (title === "Skip" || title === "Fail" || title === "Complete") {
       updateCategory(id, title);
     }
   };
-  // const changeStroke = (key,strokePoint) => {
-  //   const style = {
-  //     strokeDasharray: { strokePoint } + "0 264",
-  //   };
-  //   stroke[key]=style;
-  // };
+  const style = {
+    strokeDasharray: (stroke + 0 )+ " " + (264 - stroke),
+  };
+  const changeStroke = (strokePoint) => {
+    setStroke((stroke + strokePoint));
+  };
   return (
     <>
       <Header></Header>
@@ -86,8 +77,10 @@ function Habits() {
             habits={habits}
             changeCompleted={changeCompleted}
             handleMore={handleMore}
+            style={style}
+            visible={true}
           />
-          {success && (
+          {success.length >= 1 && (
             <HabitCategory
               arr={success}
               changeCompleted={changeCompleted}
@@ -95,7 +88,7 @@ function Habits() {
               title="Success"
             />
           )}
-          {skip && (
+          {skip.length >= 1 && (
             <HabitCategory
               arr={skip}
               changeCompleted={changeCompleted}
@@ -103,8 +96,15 @@ function Habits() {
               title="Skip"
             />
           )}
+          {fail.length >= 1 && (
+            <HabitCategory
+              arr={fail}
+              changeCompleted={changeCompleted}
+              handleMore={handleMore}
+              title="Fail"
+            />
+          )}
         </div>
-
         {showMore && (
           <HabitsDropdown
             Y={Y}

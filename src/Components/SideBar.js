@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { SidebarData,SidebarAreas } from "@config/SidebarData.js";
 import { logout } from "@views/firebase";
 
-import "@styles/sidebar.css";
+import "@components/sidebar.css";
 
 function Sidebar() {
   const [visibility, setvisibility] = useState("hidden");

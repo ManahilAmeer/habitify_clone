@@ -3,8 +3,8 @@ import React from "react";
 import Sidebar from "@components/SideBar";
 import Habits from "@views/Habits"
 import Progress from "./Progress.js";
-import "@styles/split.css";
-function Main() {
+import "@components/split.css";
+function SplitPane() {
   return (
     <>
       <Split
@@ -27,4 +27,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default SplitPane;

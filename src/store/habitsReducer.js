@@ -1,23 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 export const initialState = {
-  Name:"",
-  uid: "",
-  goal: "",
+  id:"",
+  habits: [],
+  skips: [],
+  fails:[],
+  success:[]
 };
 const habitReducer = createSlice({
   name: "habit",
   initialState,
   reducers: {
     addHabit: (state, action) => {
-      state = action.payload;
+      state.habits = action.payload;
     },
-    addPhoto: (state, action) => {
-      state.photoURL = action.payload;
+    addFail: (state, action) => {
+      state.fails = action.payload;
     },
-    addDisplayName: (state, action) => {
-      state.displayName= action.payload;
+    addskips: (state, action) => {
+      state.skips = action.payload;
+    },
+    addSuccess: (state, action) => {
+      state.success = action.payload;
     },
   },
 });
-export const { addHabit, addPhoto, addDisplayName } = habitReducer.actions;
+export const { addHabit, addFail,addskips,addSuccess } = habitReducer.actions;
 export default habitReducer.reducer;

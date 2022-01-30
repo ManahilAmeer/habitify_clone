@@ -1,12 +1,12 @@
 .category {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 0.585vw;
+  margin-bottom: 0.585vw;
 }
 .category-heading {
   display: grid;
   grid-template-areas: "label icon";
-  grid-template-columns: minmax(44.89px, 71.89px) 8.8fr;
-  height: 44px;
+  grid-template-columns: minmax( 3.286vw,  5.262vw) 8.8fr;
+  height:  3.221vw;
   position: relative;
   -webkit-box-align: center;
   align-items: center;
@@ -18,20 +18,20 @@
   flex-direction: row;
   grid-area: label / label / label / label;
   width: 500%;
-  margin-left: 16px;
+  margin-left:  1.171vw;
 }
 .heading-div img {
-  width: 20px;
-  height: 20px;
+  width:  1.464vw;
+  height:  1.464vw;
 }
 .heading-text {
-  margin-top: 0px;
-  margin-inline: 0.5rem 0px;
-  margin-bottom: 0px;
+  margin-top:  0vw;
+  margin-inline: 0.5rem  0vw;
+  margin-bottom:  0vw;
   font-family: Inter;
-  font-size: 15px;
+  font-size:   1.098vw;
   font-weight: 600;
-  line-height: 18px;
+  line-height:   1.317vw;
   color: rgba(255, 255, 255, 0.95);
-  margin-left: 13px;
+  margin-left:   0.951vw;
 }

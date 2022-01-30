@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import '@styles/habitDropdown.css'
+import '@components/habitDropdown.css'
 import {HabitDropdownData} from "@config/HabitDropdownData"
 import { updateCategory } from "@views/firebase";
 function HabitsDropdown(props) {
@@ -9,11 +9,6 @@ function HabitsDropdown(props) {
   const style = {
     transform: "translate( 65.37vw, "+y +"vh)"
   };
-  const handleClick=(title)=>{
-    if(title==="Skip"||title==="Fail"){
-      updateCategory(id,title)
-    }
-  }
   return (
     <div 
     style={style}

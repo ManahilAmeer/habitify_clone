@@ -3,7 +3,6 @@ import arrowIcon from "@assets/arrowGrey.svg";
 import "@components/habitCategory.css";
 import HabitItem from "@components/HabitItem";
 function HabitCategory(props) {
-    console.log(props.arr);
   return (
     <>
       <div className="category">
@@ -17,10 +16,10 @@ function HabitCategory(props) {
           habits={props.arr}
           changeCompleted={props.changeCompleted}
           handleMore={props.handleMore}
+          visible={false}
         />
       </div>
     </>
   );
 }
-
 export default HabitCategory;

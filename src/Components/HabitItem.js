@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 import QMark from "@assets/QMark.svg";
 import tick from "@assets/tick.svg";
 import addIcon from "@assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function HabitItem(props) {
+  
   return (
     <>
       {props.habits.map((habit, key) => {
@@ -14,7 +15,13 @@ function HabitItem(props) {
               <div className="habit-progress">
                 <svg viewBox="0 0 100 100" className="circle">
                   <circle cx="50" cy="50" r="42" className="track"></circle>
-                  <circle cx="50" cy="50" r="42" className="indicator"></circle>
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    className="indicator"
+                    style={props.style}
+                  ></circle>
                 </svg>
                 <div className="habit-symbol">
                   <img src={QMark} alt="Question Mark"></img>
@@ -30,9 +37,12 @@ function HabitItem(props) {
                   </p>
                 </div>
               </div>
-              {habit.goal === 1 && (
+              {habit.goal === 1 && props.visible && (
                 <>
-                  <div className="habit-done">
+                  <div
+                    className="habit-done"
+                    onClick={() => props.changeCompleted(habit.goal, key)}
+                  >
                     <div className="done-icon">
                       <div className="icon-img">
                         <img src={tick} alt="tick"></img>
@@ -42,7 +52,7 @@ function HabitItem(props) {
                   </div>
                 </>
               )}
-              {habit.goal !== 1 && (
+              {habit.goal !== 1 && props.visible && (
                 <>
                   <div
                     className="habit-done"
