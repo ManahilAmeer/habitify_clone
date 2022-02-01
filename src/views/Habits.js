@@ -1,7 +1,11 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "@components/Header";
-import { fetchHabits, updateCompleted, updateCategory } from "@views/firebase";
+import {
+  fetchHabits,
+  updateCompleted,
+  updateCategory,
+} from "@database/firebase";
 import HabitsDropdown from "@components/HabitsDropdown";
 import HabitCategory from "@components/HabitCategory";
 import HabitItem from "@components/HabitItem";

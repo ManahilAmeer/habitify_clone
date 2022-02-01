@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { SidebarData,SidebarAreas } from "@config/SidebarData.js";
-import { logout } from "@views/firebase";
+import { logout } from "@database/firebase";
 
 import "@components/sidebar.css";
 

@@ -8,10 +8,7 @@ import { addID, addPhoto, addDisplayName } from "@store/usersReducer";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import {
-  auth,
-  signInWithGoogle,
-} from "@views/firebase";
+import { auth, signInWithGoogle } from "@database/firebase";
 function Sidebar() {
   const dispatch = useDispatch();
 

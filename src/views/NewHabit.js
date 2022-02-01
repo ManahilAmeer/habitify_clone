@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import Goal from "@components/Goal";
 import Suggestion from "@components/Suggestion";
-import { addHabits } from "@views/firebase";
+import { addHabits } from "@database/firebase";
 import { useSelector } from "react-redux";
 import QMark from "@assets/QMark.svg";
 import "@views/newHabit.css";

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import '@components/habitDropdown.css'
 import {HabitDropdownData} from "@config/HabitDropdownData"
-import { updateCategory } from "@views/firebase";
+// import { updateCategory } from "@views/firebase";
 function HabitsDropdown(props) {
   const y=props.Y;
   const id=props.id;
