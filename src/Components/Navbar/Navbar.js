@@ -4,7 +4,7 @@ import {
   NavItem,
 } from "react-bootstrap";
 
-import '@components/navbar.css'
+import '@components/Navbar/navbar.css'
 function MainNavbar(props) {
   
     return (

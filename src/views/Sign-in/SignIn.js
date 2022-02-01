@@ -2,7 +2,7 @@
 // import "@App.css";
 import habitifyIcon from "@assets/habitify.png";
 import GoogleIcon from "@assets/google.svg";
-import "@views/signIn.css";
+import "@views/Sign-in/signIn.css";
 import { useDispatch } from "react-redux";
 import { addID, addPhoto, addDisplayName } from "@store/usersReducer";
 import React, { useEffect } from "react";

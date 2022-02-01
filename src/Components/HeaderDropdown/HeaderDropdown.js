@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DropdownData, newHabitData, logMoodData } from "@config/HeaderData";
-import "@components/Headerdropdown.css";
-import NewHabit from "@views/NewHabit";
+import "@components/HeaderDropdown/Headerdropdown.css";
+import NewHabit from "@views/NewHabitForm/NewHabit";
 function HeaderDropdown(props) {
   const [flag, setFlag] = useState(false);
   const handleHabitButton = (title) => {

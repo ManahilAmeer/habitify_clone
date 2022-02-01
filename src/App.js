@@ -1,7 +1,7 @@
-import Landing from '@views/Landing';
-import SignIn from "@views/SignIn";
+import Landing from "@views/Landing/Landing";
+import SignIn from "@views/Sign-in/SignIn";
 import { Routes, Route } from "react-router-dom";
-import SplitPane from "@components/SplitPane";
+import SplitPane from "@components/home/Home";
 function App() {
   return (
       <Routes>

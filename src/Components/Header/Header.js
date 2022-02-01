@@ -1,11 +1,11 @@
 import React,{useState} from "react";
-import "@components/header.css";
+import "@components/Header/header.css";
 import sortIcon from "@assets/sort.svg"
 import arrowIcon from "@assets/arrow.svg";
 import calenderIcon from "@assets/calenderIcon.svg";
 import searchIcon from "@assets/search.svg";
 import addIcon from "@assets/add.svg";
-import HeaderDropdown from "./HeaderDropdown";
+import HeaderDropdown from "@components/HeaderDropdown/HeaderDropdown";
 function Header() {
   const [sortText, setsortText] = useState("Alphabetical");
   const [Sortvisibility, setSortvisiblity] = useState("hidden");
@@ -36,7 +36,7 @@ function Header() {
                 height="14"
                 className="icon"
                 src={calenderIcon}
-                alt="My Happy SVG"
+                alt="Calendar"
               />
               Today
               <span className="arrow">
@@ -44,7 +44,7 @@ function Header() {
                   width="16"
                   height="16"
                   src={arrowIcon}
-                  alt="My Happy SVG"
+                  alt="Arrow"
                 />
               </span>
             </button>
@@ -56,7 +56,7 @@ function Header() {
               onClick={() => handleSortDropdown()}
             >
               <span className="icon">
-                <img width="16" height="16" src={sortIcon} alt="My Happy SVG" />
+                <img width="16" height="16" src={sortIcon} alt="Sort" />
               </span>
               {sortText}
               <span className="arrow">
@@ -64,7 +64,7 @@ function Header() {
                   width="16"
                   height="16"
                   src={arrowIcon}
-                  alt="My Happy SVG"
+                  alt="Arrow"
                 />
               </span>
             </button>
@@ -76,7 +76,7 @@ function Header() {
               onClick={() => handleHabitDropdown()}
             >
               <span className="icon">
-                <img width="12" height="12" src={addIcon} alt="My Happy SVG" />
+                <img width="12" height="12" src={addIcon} alt="Add" />
               </span>
               Add Habits
               <span className="arrow">
@@ -84,7 +84,7 @@ function Header() {
                   width="16"
                   height="16"
                   src={arrowIcon}
-                  alt="My Happy SVG"
+                  alt="Arrow"
                 />
               </span>
             </button>

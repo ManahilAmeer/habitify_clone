@@ -1,10 +1,10 @@
 import Split from "react-split";
 import React from "react";
-import Sidebar from "@components/SideBar";
-import Habits from "@views/Habits"
-import Progress from "./Progress.js";
-import "@components/split.css";
-function SplitPane() {
+import Sidebar from "@components/Sidebar/SideBar";
+import Habits from "@views/Habit/Habits"
+import Progress from "@components/Progress/Progress.js";
+import "@components/home/home.css";
+function Home() {
   return (
     <>
       <Split
@@ -27,4 +27,4 @@ function SplitPane() {
   );
 }
 
-export default SplitPane;
+export default Home;

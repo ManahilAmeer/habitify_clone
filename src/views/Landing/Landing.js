@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
-import "@views/landing.css";
-import MainNavbar from "@components/Navbar";
+import "@views/Landing/landing.css";
+import MainNavbar from "@components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 
 

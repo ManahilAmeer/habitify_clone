@@ -1,7 +1,7 @@
 import React from "react";
 import arrowIcon from "@assets/arrowGrey.svg";
-import "@components/habitCategory.css";
-import HabitItem from "@components/HabitItem";
+import "@components/HabitCategory/habitCategory.css";
+import HabitItem from "@components/HabitItem/HabitItem";
 function HabitCategory(props) {
   return (
     <>

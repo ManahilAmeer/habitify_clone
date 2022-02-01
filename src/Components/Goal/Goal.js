@@ -5,7 +5,7 @@ import arrowDown from "@assets/arrow.svg";
 import upDown from "@assets/upDown.svg";
 import cross from "@assets/cross.svg";
 import calender from "@assets/calenderGrey.svg";
-import "@components/goal.css";
+import "@components/Goal/goal.css";
 function Goal(props) {
   const [input, setInput] = useState(1);
   const increment = () => {

@@ -1,16 +1,16 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Header from "@components/Header";
+import Header from "@components/Header/Header";
 import {
   fetchHabits,
   updateCompleted,
   updateCategory,
 } from "@database/firebase";
-import HabitsDropdown from "@components/HabitsDropdown";
-import HabitCategory from "@components/HabitCategory";
-import HabitItem from "@components/HabitItem";
+import HabitsDropdown from "@components/HabitDropdown/HabitsDropdown";
+import HabitCategory from "@components/HabitCategory/HabitCategory";
+import HabitItem from "@components/HabitItem/HabitItem";
 import { addHabit, addFail, addskips, addSuccess } from "@store/habitsReducer";
-import "@views/habits.css";
+import "@views/Habit/habits.css";
 function Habits() {
   const dispatch = useDispatch();
   const mountedRef = useRef(true);
