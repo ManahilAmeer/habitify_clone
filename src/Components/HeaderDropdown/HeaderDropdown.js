@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 import { DropdownData, newHabitData, logMoodData } from "@config/HeaderData";
 import "@components/HeaderDropdown/Headerdropdown.css";
 import NewHabit from "@views/NewHabitForm/NewHabit";
@@ -44,7 +46,10 @@ function HeaderDropdown(props) {
                 <div
                   key={key}
                   className="list-item"
-                  onClick={() =>{ handleHabitButton(val.title);props.handleHabitDropdown();}}
+                  onClick={() => {
+                    handleHabitButton(val.title);
+                    props.handleHabitDropdown();
+                  }}
                 >
                   <div className="list-selected">{val.icon}</div>
                   <div className="list-title">
@@ -60,11 +65,7 @@ function HeaderDropdown(props) {
                 <div key={key} className="list-item">
                   <div className="list-selected">{val.icon}</div>
                   <div className="list-title">
-                    <p
-                      className="list-text"
-                    >
-                      {val.title}
-                    </p>
+                    <p className="list-text">{val.title}</p>
                   </div>
                 </div>
               );
@@ -72,8 +73,21 @@ function HeaderDropdown(props) {
           </div>
         </ul>
       </div>
-      {flag && <NewHabit handleHabitButton ={handleHabitButton}/>}
+      {flag && <NewHabit handleHabitButton={handleHabitButton} />}
     </div>
   );
 }
+HeaderDropdown.propTypes = {
+  Sortvisibility: PropTypes.string.isRequired,
+  Habitvisibility: PropTypes.string.isRequired,
+  handleSortButton: PropTypes.func.isRequired,
+  handleHabitDropdown: PropTypes.func.isRequired,
+};
+
+HeaderDropdown.defaultProps = {
+  Sortvisibility: "",
+  Habitvisibility: "",
+  handleSortButton: () => {},
+  handleHabitDropdown: () => {},
+};
 export default HeaderDropdown;

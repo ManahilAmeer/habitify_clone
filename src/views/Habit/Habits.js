@@ -22,7 +22,7 @@ function Habits() {
   const [Y, setY] = useState(0);
   const [goal, setGoal] = useState(0);
   const [showMore, setShowMore] = useState(false);
-  const [selectedKey, setSelectedKey] = useState(-1);
+  const [selectedKey, setSelectedKey] = useState(0);
   const uid = useSelector((state) => state.users.ID);
   const handleMore = (key) => {
     setShowMore(!showMore);
@@ -109,7 +109,7 @@ function Habits() {
             />
           )}
         </div>
-        {showMore && (
+        {showMore && habits.length>=1 &&(
           <HabitsDropdown
             Y={Y}
             id={habits[selectedKey]["id"]}

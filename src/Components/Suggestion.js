@@ -1,4 +1,6 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
+
 import { MostPopularData, StayFitData } from "@config/SuggestionData";
 
 function Suggestion(props) {
@@ -53,5 +55,15 @@ function Suggestion(props) {
     </>
   );
 }
+Suggestion.propTypes = {
+  Visibility: PropTypes.string.isRequired,
+  handleMenu: PropTypes.func.isRequired,
+  setFieldValue: PropTypes.func.isRequired,
+};
 
+Suggestion.defaultProps = {
+  Visibility: "hidden",
+  handleMenu: () => {},
+  setFieldValue: () => {},
+};
 export default Suggestion;

@@ -3,6 +3,7 @@ import {
   Navbar,
   NavItem,
 } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 import '@components/Navbar/navbar.css'
 function MainNavbar(props) {
@@ -42,5 +43,10 @@ function MainNavbar(props) {
       </div>
     );
 }
-
+MainNavbar.prototype={
+  handleClick: PropTypes.func.isRequired,
+}
+MainNavbar.defaultProps = {
+  handleClick: () => {},
+};
 export default MainNavbar

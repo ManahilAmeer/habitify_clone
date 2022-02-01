@@ -9,7 +9,7 @@ import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, signInWithGoogle } from "@database/firebase";
-function Sidebar() {
+function SignIn() {
   const dispatch = useDispatch();
 
   const [user, loading] = useAuthState(auth);
@@ -59,4 +59,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default SignIn;

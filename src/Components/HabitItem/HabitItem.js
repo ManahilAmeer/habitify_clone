@@ -1,11 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import QMark from "@assets/QMark.svg";
 import tick from "@assets/tick.svg";
 import addIcon from "@assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function HabitItem(props) {
-  
+  // {console.log(typeof(props.style))}
   return (
     <>
       {props.habits.map((habit, key) => {
@@ -82,5 +84,21 @@ function HabitItem(props) {
     </>
   );
 }
+HabitItem.propTypes = {
+  habits:PropTypes.array.isRequired,
+  style:PropTypes.object.isRequired,
+  visible:PropTypes.bool.isRequired,
+  changeCompleted:PropTypes.func.isRequired,
+  handleMore: PropTypes.func.isRequired,
+};
 
+HabitItem.defaultProps = {
+  habits: [],
+  style: {
+    strokeDasharray: "0 264",
+  },
+  visible: true,
+  changeCompleted: () => {},
+  handleMore: () => {},
+};
 export default HabitItem;

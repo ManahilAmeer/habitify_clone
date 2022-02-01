@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
+import PropTypes from "prop-types";
+
 import Goal from "@components/Goal/Goal";
 import Suggestion from "@components/Suggestion";
 import { addHabits } from "@database/firebase";
 import { useSelector } from "react-redux";
 import QMark from "@assets/QMark.svg";
 import "@views/NewHabitForm/newHabit.css";
+import { PinDropTwoTone } from "@mui/icons-material";
 function NewHabit(props) {
   const uid = useSelector((state) => state.users.ID);
   useEffect(()=>{
@@ -99,4 +102,10 @@ function NewHabit(props) {
     </>
   );
 }
+NewHabit.prototype={
+  handleHabitButton:PropTypes.func.isRequired,
+}
+NewHabit.defaultProps = {
+  handleHabitButton: () => {},
+};
 export default NewHabit;

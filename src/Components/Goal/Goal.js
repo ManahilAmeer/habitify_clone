@@ -1,5 +1,7 @@
 // import React from "react";
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 import arrowUp from "@assets/arrow-up.svg";
 import arrowDown from "@assets/arrow.svg";
 import upDown from "@assets/upDown.svg";
@@ -130,5 +132,11 @@ function Goal(props) {
     </>
   );
 }
+Goal.propTypes = {
+  setFieldValue: PropTypes.func.isRequired,
+};
 
+Goal.defaultProps = {
+  setFieldValue: () => {},
+};
 export default Goal;

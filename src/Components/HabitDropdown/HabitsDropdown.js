@@ -35,6 +35,11 @@ function HabitsDropdown(props) {
   );
 }
 HabitsDropdown.propTypes = {
-  props: PropTypes.string,
+  Y: PropTypes.number.isRequired,
+  id:PropTypes.string.isRequired,
 };
+HabitsDropdown.defaultProps={
+  Y:16.5,
+  id:""
+}
 export default HabitsDropdown;
