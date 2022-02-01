@@ -9,6 +9,7 @@ module.exports = function override(config) {
     "@styles": "src/styles",
     "@store": "src/store",
     "@config": "src/config",
+    "@database": "src/database",
   })(config);
 
   return config;
