@@ -9,7 +9,7 @@ import {
 import HabitsDropdown from "@components/HabitDropdown/HabitsDropdown";
 import HabitCategory from "@components/HabitCategory/HabitCategory";
 import HabitItem from "@components/HabitItem/HabitItem";
-import { addHabit, addFail, addskips, addSuccess } from "@store/habitsReducer";
+import { setHabit, addFail, addskips, addSuccess } from "@store/habitsReducer";
 import "@views/Habit/habits.css";
 function Habits() {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function Habits() {
       const skip = await fetchHabits(uid, "Skip");
       const success = await fetchHabits(uid, "Complete");
       const fail = await fetchHabits(uid, "Fail");
-      dispatch(addHabit(habits));
+      dispatch(setHabit(habits));
       dispatch(addFail(fail));
       dispatch(addskips(skip));
       dispatch(addSuccess(success));
@@ -61,7 +61,11 @@ function Habits() {
     }
     changeStroke(stroke)
   };
-  const updateCat = (id, title) => {
+  const updateCat = (id, title,key) => {
+    if(title=="Check-In"){
+      // changeCompleted(0,key)
+      console.log(key)
+    }
     if (title === "Skip" || title === "Fail" || title === "Complete") {
       updateCategory(id, title);
     }
@@ -83,6 +87,8 @@ function Habits() {
             handleMore={handleMore}
             style={style}
             visible={true}
+            id=""
+            updateCat={updateCat}
           />
           {success.length >= 1 && (
             <HabitCategory
@@ -109,11 +115,12 @@ function Habits() {
             />
           )}
         </div>
-        {showMore && habits.length>=1 &&(
+        {showMore && habits.length >= 1 && (
           <HabitsDropdown
             Y={Y}
             id={habits[selectedKey]["id"]}
             updateCat={updateCat}
+            changeCompleted={changeCompleted}
           />
         )}
       </div>

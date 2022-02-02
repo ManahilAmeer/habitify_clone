@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import "@components/HabitDropdown/habitDropdown.css";
 import {HabitDropdownData} from "@config/HabitDropdownData"
-// import { updateCategory } from "@views/firebase";
+
 function HabitsDropdown(props) {
   const y=props.Y;
   const id=props.id;
@@ -16,9 +16,10 @@ function HabitsDropdown(props) {
       <div className="habit-content">
         <div className="dropdown-container">
           <div className="dropdown-options">
+            
             {HabitDropdownData.map((val, key) => {
               return (
-                <div key={key} className="habit-item" onClick={()=>props.updateCat(id,val.title)}>
+                <div key={key} className="habit-item" onClick={()=>props.updateCat(id,val.title,key)}>
                   <div className="item-icon">
                     <div className="icon-container">{val.icon}</div>
                   </div>

@@ -4,15 +4,17 @@ import PropTypes from "prop-types";
 
 import Goal from "@components/Goal/Goal";
 import Suggestion from "@components/Suggestion";
-import { addHabits } from "@database/firebase";
-import { useSelector } from "react-redux";
+import { addHabit } from "@store/habitsReducer";
+import { useSelector,useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
+
 import "@views/NewHabitForm/newHabit.css";
-import { PinDropTwoTone } from "@mui/icons-material";
+
 function NewHabit(props) {
+  const dispatch = useDispatch();
   const uid = useSelector((state) => state.users.ID);
   useEffect(()=>{
-  },[addHabits])
+  },[addHabit])
   const [Visibility, setvisiblity] = useState("hidden");
   const [goal,setGoal]=useState(1)
   const handleMenu = () => {
@@ -23,7 +25,7 @@ function NewHabit(props) {
     <>
       <div className="tab">
         <Formik
-          initialValues={{ name: "", goal: 0 }}
+          initialValues={{ name: "", goal:1 }}
           validate={(values) => {
             const errors = {};
             if (!values.name) {
@@ -32,7 +34,10 @@ function NewHabit(props) {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            addHabits(values.name, values.goal, uid, "", 0);
+            const data={name: values.name,goal:values.goal,uid:uid,category:"",completed:0
+            }
+            // console.log(typeof(data))
+            dispatch(addHabit(data));
             setSubmitting(false);
             props.handleHabitButton("Create Good Habit");
           }}
