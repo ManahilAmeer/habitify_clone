@@ -24,7 +24,6 @@
   background-color: #323232;
   color: white;
 }
-
 .SideList #active {
   background-color: #3662cc;
   color: white;
@@ -150,7 +149,6 @@ a:link {
   line-height: 2.196vw;
   text-transform: capitalize;
   padding: 0vw 0.439vw 0vw 0.732vw;
-  /* border-radius: 0.3660vw; */
   border-top-left-radius: 0.366vw;
   border-top-right-radius: 0.366vw;
 }
@@ -160,7 +158,6 @@ a:link {
   font-weight: 400;
   line-height: 2.196vw;
   color: hsla(0, 0%, 100%, 0.7);
-  /* overflow: hidden; */
   text-overflow: ellipsis;
 }
 .label:hover {
