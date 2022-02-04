@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Dropdown from "react-bootstrap/Dropdown";
-import { HabitDropdownData } from "@config/HabitDropdownData";
+import {
+  HabitDropdownData,
+  CategoryDropdownData,
+} from "@config/HabitDropdownData";
 import QMark from "@assets/QMark.svg";
 import tick from "@assets/tick.svg";
 import addIcon from "@assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function HabitItem(props) {
-  // {console.log(typeof(props.style))}
+  var id = "";
+  if (props.habits[props.selectedKey]) {
+    id = props.habits[props.selectedKey]["id"];
+  }
+  var dropdownData;
+  props.visible
+    ? (dropdownData = HabitDropdownData)
+    : (dropdownData = CategoryDropdownData);
+
   return (
     <>
       {props.habits.map((habit, key) => {
@@ -70,7 +81,11 @@ function HabitItem(props) {
                   </div>
                 </>
               )}
-              <Dropdown>
+              <Dropdown
+                onClick={() => {
+                  props.handleMore(key);
+                }}
+              >
                 <Dropdown.Toggle className="more" variant="secondary" noCaret>
                   <MoreVertIcon className="more-icon"></MoreVertIcon>
                 </Dropdown.Toggle>
@@ -78,12 +93,15 @@ function HabitItem(props) {
                   <div className="habit-content">
                     <div className="dropdown-container">
                       <div className="dropdown-options">
-                        {HabitDropdownData.map((val, key) => {
+                        {dropdownData.map((val, key) => {
                           return (
                             <div
                               key={key}
                               className="habit-item"
-                              onClick={() => props.updateCat(props.id, val.title, key)}
+                              onClick={() =>{if(val.title=="Edit"){console.log("Kro Edit")}
+                              else{
+                                props.updateCat(id, val.title, key)
+                              }}}
                             >
                               <div className="item-icon">
                                 <div className="icon-container">{val.icon}</div>
