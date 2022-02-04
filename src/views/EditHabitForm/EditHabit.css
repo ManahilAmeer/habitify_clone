@@ -199,3 +199,6 @@ input:focus {
   background-color: #3662cc;
   color: white;
 }
+.delete{
+  color: rgb(210, 55, 55);;
+}
