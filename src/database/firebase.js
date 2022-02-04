@@ -30,10 +30,18 @@ const signInWithGoogle = async () => {
 const fetchHabits = async (uid,category) => {
   try {
     const arr=[];
+    const today = new Date();
+    const date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
     var allHabits = query(
       collectionGroup(db, "habit"),
       where("category", "==", category),
-      where("uid", "==", uid)
+      where("uid", "==", uid),
+      where("date","==",date)
     );
     const querySnapshot=await getDocs(allHabits)
     querySnapshot.forEach((doc)=>{
@@ -47,15 +55,22 @@ const fetchHabits = async (uid,category) => {
     alert(err.message);
   }
 };
-const addHabits = (name, goal,uid,category,completed) => {
+const addHabits = (name, goal,uid,category,completed,date) => {
   try {
-    db.collection("habit").add({
+    var doc = db.collection("habit").doc();
+    doc.set({
       Name: name,
       goal: goal,
       uid: uid,
       category: category,
       completed: completed,
+      date:date
+    }).then(()=>{
+      console.log(doc.id);
     });
+    doc.update({
+      id:doc.id
+    })
   } catch (err) {
     alert(err);
     console.log(err)
