@@ -3,13 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 import Header from "@components/Header/Header";
 import {
   fetchHabits,
-  updateCompleted,
-  updateCategory,
 } from "@database/firebase";
-import HabitsDropdown from "@components/HabitDropdown/HabitsDropdown";
 import HabitCategory from "@components/HabitCategory/HabitCategory";
 import HabitItem from "@components/HabitItem/HabitItem";
-import { setHabit, addFail, addskips, addSuccess } from "@store/habitsReducer";
+import {
+  setHabit,
+  addFail,
+  addskips,
+  addSuccess,
+  updateCateg,
+  updateComp,
+} from "@store/habitsReducer";
 import "@views/Habit/habits.css";
 function Habits() {
   const dispatch = useDispatch();
@@ -50,31 +54,27 @@ function Habits() {
   }, [dispatch, uid]);
   useEffect(() => {
     fetch();
-  }, [fetch,habits]);
-  const changeCompleted = (times, key) => {
-    const selectedDoc = habits[key];
-    updateCompleted(selectedDoc["id"], selectedDoc["completed"] + 1);
+  }, [fetch, habits]);
+  const changeCompleted = (times, completed,id,goal) => {
+    console.log(id)
+    dispatch(updateComp({id:id, completed:completed + 1}));
     let stroke = 264 / times;
-    setGoal(selectedDoc["completed"] + 1);
-    if (selectedDoc["completed"]+1 === selectedDoc["goal"]) {
-      updateCat(selectedDoc["id"], "Complete");
+    setGoal(completed + 1);
+    if (completed + 1 === goal) {
+      updateCat(id, "Complete");
     }
-    changeStroke(stroke)
+    changeStroke(stroke);
   };
-  const updateCat = (id, title,key) => {
-    if(title=="Check-In"){
-      // changeCompleted(0,key)
-      console.log(key)
-    }
-    if (title === "Skip" || title === "Fail" || title === "Complete") {
-      updateCategory(id, title);
+  const updateCat = (id, category) => {
+    if (category === "Skip" || category === "Fail" || category === "Complete") {
+      dispatch(updateCateg({ id, category }));
     }
   };
   const style = {
-    strokeDasharray: (stroke + 0 )+ " " + (264 - stroke),
+    strokeDasharray: stroke + 0 + " " + (264 - stroke),
   };
   const changeStroke = (strokePoint) => {
-    setStroke((stroke + strokePoint));
+    setStroke(stroke + strokePoint);
   };
   return (
     <>
@@ -86,8 +86,8 @@ function Habits() {
             changeCompleted={changeCompleted}
             handleMore={handleMore}
             style={style}
+            selectedKey={selectedKey}
             visible={true}
-            id=""
             updateCat={updateCat}
           />
           {success.length >= 1 && (
@@ -115,14 +115,6 @@ function Habits() {
             />
           )}
         </div>
-        {showMore && habits.length >= 1 && (
-          <HabitsDropdown
-            Y={Y}
-            id={habits[selectedKey]["id"]}
-            updateCat={updateCat}
-            changeCompleted={changeCompleted}
-          />
-        )}
       </div>
     </>
   );

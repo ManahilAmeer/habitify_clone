@@ -5,18 +5,19 @@ import PropTypes from "prop-types";
 import Goal from "@components/Goal/Goal";
 import Suggestion from "@components/Suggestion";
 import { addHabit } from "@store/habitsReducer";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
 
 import "@views/NewHabitForm/newHabit.css";
 
 function NewHabit(props) {
   const dispatch = useDispatch();
+  const today = new Date();
+  const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
   const uid = useSelector((state) => state.users.ID);
-  useEffect(()=>{
-  },[addHabit])
+  useEffect(() => {}, [addHabit]);
   const [Visibility, setvisiblity] = useState("hidden");
-  const [goal,setGoal]=useState(1)
+  const [goal, setGoal] = useState(1);
   const handleMenu = () => {
     const visible = Visibility === "hidden" ? "visible" : "hidden";
     setvisiblity(visible);
@@ -25,7 +26,7 @@ function NewHabit(props) {
     <>
       <div className="tab">
         <Formik
-          initialValues={{ name: "", goal:1 }}
+          initialValues={{ name: "", goal: 1 }}
           validate={(values) => {
             const errors = {};
             if (!values.name) {
@@ -34,8 +35,14 @@ function NewHabit(props) {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            const data={name: values.name,goal:values.goal,uid:uid,category:"",completed:0
-            }
+            const data = {
+              name: values.name,
+              goal: values.goal,
+              uid: uid,
+              category: "",
+              completed: 0,
+              date: date,
+            };
             // console.log(typeof(data))
             dispatch(addHabit(data));
             setSubmitting(false);
@@ -107,9 +114,9 @@ function NewHabit(props) {
     </>
   );
 }
-NewHabit.prototype={
-  handleHabitButton:PropTypes.func.isRequired,
-}
+NewHabit.prototype = {
+  handleHabitButton: PropTypes.func.isRequired,
+};
 NewHabit.defaultProps = {
   handleHabitButton: () => {},
 };

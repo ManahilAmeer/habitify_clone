@@ -9,17 +9,23 @@ import QMark from "@assets/QMark.svg";
 import tick from "@assets/tick.svg";
 import addIcon from "@assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-
+import EditHabit from "@views/EditHabitForm/EditHabit";
 function HabitItem(props) {
-  var id = "";
-  if (props.habits[props.selectedKey]) {
-    id = props.habits[props.selectedKey]["id"];
-  }
+  // var id = "";
+  const [flag, setFlag] = useState(false);
+  const [name, setName] = useState("");
+  const [ID, setID] = useState("");
+  const [goal,setGoal]=useState(1)
+  const handleButton = (name, id,goal) => {
+    setName(name);
+    setFlag(!flag);
+    setID(id);
+    setGoal(goal)
+  };
   var dropdownData;
   props.visible
     ? (dropdownData = HabitDropdownData)
     : (dropdownData = CategoryDropdownData);
-
   return (
     <>
       {props.habits.map((habit, key) => {
@@ -55,7 +61,14 @@ function HabitItem(props) {
                 <>
                   <div
                     className="habit-done"
-                    onClick={() => props.changeCompleted(habit.goal, key)}
+                    onClick={() =>
+                      props.changeCompleted(
+                        habit.goal,
+                        habit.completed,
+                        habit.id,
+                        habit.goal
+                      )
+                    }
                   >
                     <div className="done-icon">
                       <div className="icon-img">
@@ -70,7 +83,14 @@ function HabitItem(props) {
                 <>
                   <div
                     className="habit-done"
-                    onClick={() => props.changeCompleted(habit.goal, key)}
+                    onClick={() =>
+                      props.changeCompleted(
+                        habit.goal,
+                        habit.completed,
+                        habit.id,
+                        habit.goal
+                      )
+                    }
                   >
                     <div className="done-icon">
                       <div className="icon-img">
@@ -93,15 +113,22 @@ function HabitItem(props) {
                   <div className="habit-content">
                     <div className="dropdown-container">
                       <div className="dropdown-options">
-                        {dropdownData.map((val, key) => {
+                        {dropdownData.map((val) => {
                           return (
                             <div
-                              key={key}
+                              // key={key}
                               className="habit-item"
-                              onClick={() =>{if(val.title=="Edit"){console.log("Kro Edit")}
-                              else{
-                                props.updateCat(id, val.title, key)
-                              }}}
+                              onClick={() => {
+                                if (val.title == "Edit") {
+                                  handleButton(
+                                    habit.Name,
+                                    habit.id,
+                                    habit.goal
+                                  );
+                                } else {
+                                  props.updateCat(habit.id, val.title);
+                                }
+                              }}
                             >
                               <div className="item-icon">
                                 <div className="icon-container">{val.icon}</div>
@@ -121,6 +148,7 @@ function HabitItem(props) {
           </div>
         );
       })}
+      {flag && <EditHabit handleButton={handleButton} name={name} ID={ID} goal={goal}/>};
     </>
   );
 }
