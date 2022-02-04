@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+
 import PropTypes from "prop-types";
 
 import Goal from "@components/Goal/Goal";
@@ -11,6 +13,10 @@ import QMark from "@assets/QMark.svg";
 import "@views/NewHabitForm/newHabit.css";
 
 function NewHabit(props) {
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Please select a habit"),
+    goal: Yup.number().min(1).max(100).required(),
+  });
   const dispatch = useDispatch();
   const today = new Date();
   const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
@@ -27,13 +33,7 @@ function NewHabit(props) {
       <div className="tab">
         <Formik
           initialValues={{ name: "", goal: 1 }}
-          validate={(values) => {
-            const errors = {};
-            if (!values.name) {
-              errors.name = "Required";
-            }
-            return errors;
-          }}
+          validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
             const data = {
               name: values.name,
