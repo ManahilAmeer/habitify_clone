@@ -11,7 +11,6 @@ import addIcon from "@assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditHabit from "@views/EditHabitForm/EditHabit";
 function HabitItem(props) {
-  // var id = "";
   const [flag, setFlag] = useState(false);
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
@@ -40,7 +39,7 @@ function HabitItem(props) {
                     cy="50"
                     r="42"
                     className="indicator"
-                    style={props.style}
+                    // style={props.style}
                   ></circle>
                 </svg>
                 <div className="habit-symbol">
@@ -154,7 +153,7 @@ function HabitItem(props) {
 }
 HabitItem.propTypes = {
   habits: PropTypes.array.isRequired,
-  style: PropTypes.object.isRequired,
+  // style: PropTypes.object.isRequired,
   visible: PropTypes.bool.isRequired,
   changeCompleted: PropTypes.func.isRequired,
   handleMore: PropTypes.func.isRequired,
@@ -163,10 +162,10 @@ HabitItem.propTypes = {
 
 HabitItem.defaultProps = {
   habits: [],
-  id: "",
-  style: {
-    strokeDasharray: "0 264",
-  },
+  // id: "",
+  // style: {
+  //   strokeDasharray: "0 264",
+  // },
   visible: true,
   changeCompleted: () => {},
   handleMore: () => {},

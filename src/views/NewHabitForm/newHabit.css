@@ -5,6 +5,9 @@
   border-style: solid;
   box-sizing: border-box;
 }
+.display-none{
+  display: none;
+}
 .tab {
   display: flex;
   width: 100vw;
@@ -21,9 +24,6 @@
     opacity, box-shadow, transform;
   transition-duration: 2s;
 }
-/* .tab:active {
-  height: auto;
-} */
 .tab-content {
   border-radius: 0.375rem;
   background: rgb(51, 51, 51);
@@ -131,7 +131,8 @@ input:focus {
 .save:disabled {
   opacity: 0.4;
 }
-.menu {
+.menu-visible {
+  visibility: visible;
   border-radius: 0.5vw;
   border: 0.0732vw solid #616161;
   z-index: 10;
@@ -141,7 +142,21 @@ input:focus {
   position: absolute;
   min-width: max-content;
   inset: 0vw auto auto 0vw;
-  /* user-select: auto; */
+  margin: 0vw;
+  transform: translate(0vw, 4.245vw);
+  width: 27.525vw;
+  --popper-transform-origin: top left;
+}
+.menu {
+  visibility: hidden;
+  border-radius: 0.5vw;
+  border: 0.0732vw solid #616161;
+  z-index: 10;
+  background-color: rgb(51, 51, 51);
+  overflow: auto;
+  position: absolute;
+  min-width: max-content;
+  inset: 0vw auto auto 0vw;
   margin: 0vw;
   transform: translate(0vw, 4.245vw);
   width: 27.525vw;
@@ -176,9 +191,6 @@ input:focus {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-/* .icon-container img{
-  width: 0;
-} */
 .sug-icon {
   margin-right: 0vw;
   width: 1.647vw;

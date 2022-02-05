@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import { SidebarData,SidebarAreas } from "@config/SidebarData.js";
 import { logout } from "@database/firebase";
-
-import "@components/Sidebar/sidebar.css";
-
+import "Components/Sidebar/sidebar.css";
 function Sidebar() {
-  const [visibility, setvisibility] = useState("hidden");
-  const [zIndex,setZIndex]=useState(0)
+  const [visibility, setvisibility] = useState(false);
+  const [zIndex, setZIndex] = useState("popUp");
+  var signoutClassName="sign-out"
+  visibility ? (signoutClassName = "sign-out-visible") : (signoutClassName= "sign-out");
   const navigate=useNavigate()
   const photoURL=useSelector((state)=>state.users.photoURL)
   const displayName = useSelector((state) => state.users.displayName);
@@ -18,10 +17,8 @@ function Sidebar() {
     logout();
   }
   const handleDropdown = () => {
-    const visible = visibility === "hidden" ? "visible" : "hidden";
-    const Z = visibility === "hidden" ? 10 : 0;
-    setvisibility(visible);
-    setZIndex(Z);
+    visibility ? setZIndex("popUp") : setZIndex("popUp-zIndex");
+    setvisibility(!visibility);
   }; 
   return (
     <>
@@ -31,8 +28,9 @@ function Sidebar() {
             <img src={photoURL} className="user-img" alt="user"></img>
             <p className="user-text">{displayName}</p>
           </div>
-          <div className="popUp" style={{ zIndex: zIndex }}>
-            <div className="sign-out" style={{ visibility: visibility }}>
+          <div className={zIndex} 
+          >
+            <div className={signoutClassName} >
               <div className="label">
                 <p className="label-text">Profile</p>
               </div>
@@ -71,5 +69,4 @@ function Sidebar() {
     </>
   );
 }
-
 export default Sidebar;

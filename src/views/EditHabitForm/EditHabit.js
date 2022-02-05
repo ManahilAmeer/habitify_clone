@@ -65,7 +65,7 @@ function EditHabit(props) {
                   <Field
                     name="goal"
                     value={goal}
-                    style={{ display: "none" }}
+                    className="display-none"
                   ></Field>
                   <Goal setFieldValue={setFieldValue} goal={usergoal}></Goal>
                 </div>

@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { MostPopularData, StayFitData } from "@config/SuggestionData";
+import { MostPopularData, StayFitData } from "config/SuggestionData";
 
 function Suggestion(props) {
+  var className="";
+  props.Visibility
+    ? (className = "menu-visible")
+    : (className = "menu");
   return (
     <>
-      <div style={{ visibility: props.Visibility }} className="menu">
+      <div className={className}>
         <div className="popular">
           <p className="popular-heading">Most Popular Habits</p>
 

@@ -22,11 +22,10 @@ function NewHabit(props) {
   const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
   const uid = useSelector((state) => state.users.ID);
   useEffect(() => {}, [addHabit]);
-  const [Visibility, setvisiblity] = useState("hidden");
+  const [Visibility, setvisiblity] = useState(false);
   const [goal, setGoal] = useState(1);
   const handleMenu = () => {
-    const visible = Visibility === "hidden" ? "visible" : "hidden";
-    setvisiblity(visible);
+    setvisiblity(!Visibility)
   };
   return (
     <>
@@ -83,7 +82,7 @@ function NewHabit(props) {
                   <Field
                     name="goal"
                     value={goal}
-                    style={{ display: "none" }}
+                    className="display-none"
                   ></Field>
                   <Goal setFieldValue={setFieldValue}></Goal>
                 </div>

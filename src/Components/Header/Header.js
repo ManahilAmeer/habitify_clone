@@ -1,25 +1,25 @@
 import React,{useState} from "react";
-import "@components/Header/header.css";
-import sortIcon from "@assets/sort.svg"
-import arrowIcon from "@assets/arrow.svg";
-import calenderIcon from "@assets/calenderIcon.svg";
-import searchIcon from "@assets/search.svg";
-import addIcon from "@assets/add.svg";
-import HeaderDropdown from "@components/HeaderDropdown/HeaderDropdown";
+import "Components/Header/header.css";
+import sortIcon from "assets/sort.svg"
+import arrowIcon from "assets/arrow.svg";
+import calenderIcon from "assets/calenderIcon.svg";
+import searchIcon from "assets/search.svg";
+import addIcon from "assets/add.svg";
+import HeaderDropdown from "Components/HeaderDropdown/HeaderDropdown";
 function Header() {
   const [sortText, setsortText] = useState("Alphabetical");
-  const [Sortvisibility, setSortvisiblity] = useState("hidden");
-  const [Habitvisibility, setHabitvisibility] = useState("hidden");
+  const [Sortvisibility, setSortvisiblity] = useState(false);
+  const [Habitvisibility, setHabitvisibility] = useState(false);
   const handleSortButton = (option) => {
     setsortText(option);
   };
  const handleSortDropdown = () => {
-   const visible = Sortvisibility === "hidden" ? "visible" : "hidden";
-   setSortvisiblity(visible);
+  //  const visible = Sortvisibility === "hidden" ? "visible" : "hidden";
+   setSortvisiblity(!Sortvisibility);
  };
  const handleHabitDropdown = () => {
-   const visible = Habitvisibility === "hidden" ? "visible" : "hidden";
-   setHabitvisibility(visible);
+  //  const visible = Habitvisibility === "hidden" ? "visible" : "hidden";
+   setHabitvisibility(!Habitvisibility);
  };
   return (
     <div className="header">

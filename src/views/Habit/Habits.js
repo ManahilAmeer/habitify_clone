@@ -85,7 +85,6 @@ function Habits() {
             habits={habits}
             changeCompleted={changeCompleted}
             handleMore={handleMore}
-            style={style}
             selectedKey={selectedKey}
             visible={true}
             updateCat={updateCat}

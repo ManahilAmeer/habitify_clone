@@ -10,7 +10,6 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSANGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
 };
-console.log(process.env.REACT_APP_API_KEY);
 const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
 const db = app.firestore();
@@ -41,7 +40,7 @@ const fetchHabits = async (uid,category) => {
       collectionGroup(db, "habit"),
       where("category", "==", category),
       where("uid", "==", uid),
-      where("date","==",date)
+      // where("date","==",date)
     );
     const querySnapshot=await getDocs(allHabits)
     querySnapshot.forEach((doc)=>{

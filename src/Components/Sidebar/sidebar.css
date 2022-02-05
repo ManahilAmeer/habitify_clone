@@ -122,6 +122,18 @@ a:link {
   color: #7b7c7c;
 }
 .popUp {
+  z-index: 0;
+  /* visibility: hidden; */
+  min-width: max-content;
+  position: absolute;
+  inset: 0vw auto auto 0vw;
+  margin: 0vw;
+  transform: translate(0.878vw, 6.515vw);
+  width: 15.666vw;
+}
+.popUp-zIndex {
+  z-index: 10;
+  /* visibility: visible; */
   min-width: max-content;
   position: absolute;
   inset: 0vw auto auto 0vw;
@@ -130,6 +142,19 @@ a:link {
   width: 15.666vw;
 }
 .sign-out {
+  width: auto;
+  transform-origin: top center;
+  opacity: 1;
+  visibility: hidden;
+  transform: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(50, 50, 50);
+  border-radius: 0.366vw;
+  border: 0.0732vw solid rgb(74, 74, 74);
+}
+.sign-out-visible {
   width: auto;
   transform-origin: top center;
   opacity: 1;

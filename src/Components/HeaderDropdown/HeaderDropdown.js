@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { DropdownData, newHabitData, logMoodData } from "@config/HeaderData";
-import "@components/HeaderDropdown/Headerdropdown.css";
-import NewHabit from "@views/NewHabitForm/NewHabit";
+import "Components/HeaderDropdown/Headerdropdown.css";
+import NewHabit from "views/NewHabitForm/NewHabit";
 function HeaderDropdown(props) {
+  var sortClassName = "Sortdropdown";
+  var habitClassName = "newDropdown Sortdropdown";
+  props.Sortvisibility
+    ? (sortClassName = "Sortdropdown-visible")
+    : (sortClassName = "Sortdropdown");
+  props.Habitvisibility
+    ? (habitClassName = "newDropdown Sortdropdown-visible")
+    : (habitClassName = "newDropdown Sortdropdown");
   const [flag, setFlag] = useState(false);
   const handleHabitButton = (title) => {
     if (title === "Create Good Habit") {
@@ -15,8 +23,7 @@ function HeaderDropdown(props) {
     <div>
       <div>
         <ul
-          className="Sortdropdown"
-          style={{ visibility: props.Sortvisibility }}
+          className={sortClassName}
         >
           {DropdownData.map((val, key) => {
             return (
@@ -37,8 +44,7 @@ function HeaderDropdown(props) {
       </div>
       <div>
         <ul
-          className="newDropdown Sortdropdown"
-          style={{ visibility: props.Habitvisibility }}
+          className={habitClassName}
         >
           <div className="habits">
             {newHabitData.map((val, key) => {
@@ -78,15 +84,15 @@ function HeaderDropdown(props) {
   );
 }
 HeaderDropdown.propTypes = {
-  Sortvisibility: PropTypes.string.isRequired,
-  Habitvisibility: PropTypes.string.isRequired,
+  Sortvisibility: PropTypes.bool.isRequired,
+  Habitvisibility: PropTypes.bool.isRequired,
   handleSortButton: PropTypes.func.isRequired,
   handleHabitDropdown: PropTypes.func.isRequired,
 };
 
 HeaderDropdown.defaultProps = {
-  Sortvisibility: "",
-  Habitvisibility: "",
+  Sortvisibility: false,
+  Habitvisibility: false,
   handleSortButton: () => {},
   handleHabitDropdown: () => {},
 };
