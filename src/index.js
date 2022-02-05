@@ -7,11 +7,11 @@ import App from '@/App';
 import "bootstrap/dist/css/bootstrap.min.css";
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    {/* <BrowserRouter> */}
       <Provider store={store}>
         <App />
       </Provider>
-    </BrowserRouter>
+    {/* </BrowserRouter> */}
   </React.StrictMode>,
   document.getElementById("root")
 );
