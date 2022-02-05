@@ -3,14 +3,14 @@ import { collectionGroup, query, where, getDocs } from "firebase/firestore";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 const firebaseConfig = {
-  apiKey: "AIzaSyDZsGUnrUdoj9O6Yg6DpnXXsz0b8SYCoAI",
-  authDomain: "habitify-d9ebc.firebaseapp.com",
-  projectId: "habitify-d9ebc",
-  storageBucket: "habitify-d9ebc.appspot.com",
-  messagingSenderId: "213736257615",
-  appId: "1:213736257615:web:f8e18b82fdd88cb033923a",
-  measurementId: "G-NEQ76JYFNJ",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSANGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
+console.log(process.env.REACT_APP_API_KEY);
 const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
 const db = app.firestore();
