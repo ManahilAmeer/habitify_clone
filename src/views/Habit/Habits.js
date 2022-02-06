@@ -1,16 +1,11 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "@components/Header/Header";
+import HabitCategory from "Components/HabitCategory/HabitCategory";
+import HabitItem from "Components/HabitItem/HabitItem";
 import {
-  fetchHabits,
-} from "@database/firebase";
-import HabitCategory from "@components/HabitCategory/HabitCategory";
-import HabitItem from "@components/HabitItem/HabitItem";
-import {
-  setHabit,
-  addFail,
-  addskips,
-  addSuccess,
+  fetchFail,
+  // fetchHabits,fetchSkips,fetchSuccess,
   updateCateg,
   updateComp,
 } from "@store/habitsReducer";
@@ -22,41 +17,35 @@ function Habits() {
   const [success, setSucces] = useState([]);
   const [skip, setSkip] = useState([]);
   const [fail, setFail] = useState([]);
-  const [habits, setHabits] = useState([]);
+  const [habit, setHabit] = useState([]);
   const [Y, setY] = useState(0);
   const [goal, setGoal] = useState(0);
   const [showMore, setShowMore] = useState(false);
   const [selectedKey, setSelectedKey] = useState(0);
   const uid = useSelector((state) => state.users.ID);
+  const habits=useSelector((state)=>state.habit.habit);
+  const skips = useSelector((state) => state.habit.skips);
+  const successes = useSelector((state) => state.habit.success);
+  const fails = useSelector((state) => state.habit.fails);
   const handleMore = (key) => {
     setShowMore(!showMore);
     setY(16.5 + key * 10.7);
     setSelectedKey(key);
   };
-  const fetch = useCallback(async () => {
-    try {
-      const habits = await fetchHabits(uid, "");
-      const skip = await fetchHabits(uid, "Skip");
-      const success = await fetchHabits(uid, "Complete");
-      const fail = await fetchHabits(uid, "Fail");
-      dispatch(setHabit(habits));
-      dispatch(addFail(fail));
-      dispatch(addskips(skip));
-      dispatch(addSuccess(success));
-      if (!mountedRef.current) return null;
-      else {
-        setHabits(habits);
-        setSkip(skip);
-        setSucces(success);
-        setFail(fail);
-      }
-    } catch (err) {}
-  }, [dispatch, uid]);
+  const fetch = () => {
+    // dispatch(fetchHabits({ uid: uid }));
+    // dispatch(fetchSkips({ uid: uid }));
+    // dispatch(fetchSuccess({ uid: uid }));
+    // dispatch(fetchFail({ uid: uid }));
+    setHabit(habits);
+    setSkip(skips);
+    setSucces(successes);
+    setFail(fails);
+  };
   useEffect(() => {
     fetch();
-  }, [fetch, habits]);
+  }, [fetch, habit]);
   const changeCompleted = (times, completed,id,goal) => {
-    console.log(id)
     dispatch(updateComp({id:id, completed:completed + 1}));
     let stroke = 264 / times;
     setGoal(completed + 1);

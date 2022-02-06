@@ -65,7 +65,7 @@ const addHabits = (name, goal,uid,category,completed,date) => {
       completed: completed,
       date:date
     }).then(()=>{
-      console.log(doc.id);
+      // console.log(doc.id);
     });
     doc.update({
       id:doc.id

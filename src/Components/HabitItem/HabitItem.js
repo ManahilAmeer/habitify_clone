@@ -11,6 +11,7 @@ import addIcon from "@assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditHabit from "@views/EditHabitForm/EditHabit";
 function HabitItem(props) {
+  
   const [flag, setFlag] = useState(false);
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
@@ -105,7 +106,7 @@ function HabitItem(props) {
                   props.handleMore(key);
                 }}
               >
-                <Dropdown.Toggle className="more" variant="secondary" noCaret>
+                <Dropdown.Toggle className="more" variant="secondary" >
                   <MoreVertIcon className="more-icon"></MoreVertIcon>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="habitDropdown">

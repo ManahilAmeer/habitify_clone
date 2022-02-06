@@ -1,20 +1,89 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { addHabits } from "@database/firebase";
-import { fetchHabits, db } from "@database/firebase";
-import { collectionGroup, query, doc, deleteDoc } from "firebase/firestore";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { addHabits, db } from "@database/firebase";
+import {
+  collectionGroup,
+  query,
+  doc,
+  deleteDoc,
+  where,
+  getDocs,
+} from "firebase/firestore";
 export const initialState = {
   id: "",
-  habits: [],
+  habit: [],
   skips: [],
   fails: [],
   success: [],
 };
+export const fetchHabits = createAsyncThunk("getNotes", async (uid) => {
+  try {
+    var allHabits = query(
+      collectionGroup(db, "habit"),
+      where("category", "==", ""),
+      where("uid", "==", uid.uid)
+    );
+    const response = await getDocs(allHabits);
+    const notes = response.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id };
+    });
+    return notes;
+  } catch (err) {
+    console.log(err);
+  }
+});
+export const fetchSkips = createAsyncThunk("getSkips", async (uid) => {
+  try {
+    var allHabits = query(
+      collectionGroup(db, "habit"),
+      where("category", "==", "Skip"),
+      where("uid", "==", uid.uid)
+    );
+    const response = await getDocs(allHabits);
+    const notes = response.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id };
+    });
+    return notes;
+  } catch (err) {
+    console.log(err);
+  }
+});
+export const fetchSuccess = createAsyncThunk("getSuccess", async (uid) => {
+  try {
+    var allHabits = query(
+      collectionGroup(db, "habit"),
+      where("category", "==", "Complete"),
+      where("uid", "==", uid.uid)
+    );
+    const response = await getDocs(allHabits);
+    const notes = response.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id };
+    });
+    return notes;
+  } catch (err) {
+    console.log(err);
+  }
+});
+export const fetchFail = createAsyncThunk("getFail", async (uid) => {
+  try {
+    var allHabits = query(
+      collectionGroup(db, "habit"),
+      where("category", "==", "Fail"),
+      where("uid", "==", uid.uid)
+    );
+    const response = await getDocs(allHabits);
+    const notes = response.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id };
+    });
+    return notes;
+  } catch (err) {
+    console.log(err);
+  }
+});
 const habitReducer = createSlice({
   name: "habit",
   initialState,
   reducers: {
     updateCateg: (state, action) => {
-      // console.log(action.payload);
       try {
         const data = db.collection("habit").doc(action.payload.id);
         data.update({
@@ -26,7 +95,6 @@ const habitReducer = createSlice({
     },
     updateComp: (state, action) => {
       try {
-        console.log(action.payload.id);
         const data = db.collection("habit").doc(action.payload.id);
         data.update({
           completed: action.payload.completed,
@@ -38,7 +106,6 @@ const habitReducer = createSlice({
     updateHabit: (state, action) => {
       try {
         const data = action.payload;
-        // console.log(data.ID)
         const ref = db.collection("habit").doc(data.ID);
         ref.update({
           Name: data.name,
@@ -51,15 +118,9 @@ const habitReducer = createSlice({
     deleteHabit: (state, action) => {
       try {
         const data = action.payload;
-        console.log(action.payload.ID);
         const ref = db.collection("habit").doc(action.payload.ID);
         deleteDoc(doc(db, "habit", action.payload.ID));
-        // querySnapshot.docs[0].ref.delete();
       } catch (err) {
-        // ref.update({
-        //   Name: data.name,
-        //   goal: data.goal,
-        // });
         alert(err);
       }
     },
@@ -74,26 +135,26 @@ const habitReducer = createSlice({
         data.date
       );
     },
-    setHabit: (state, action) => {
-      state.habits = action.payload;
+  },
+  extraReducers: {
+    [fetchHabits.pending]: (state) => {},
+    [fetchHabits.fulfilled]: (state, action) => {
+      state.habit = action.payload;
     },
-    addFail: (state, action) => {
-      state.fails = action.payload;
-    },
-    addskips: (state, action) => {
+    [fetchHabits.rejected]: (state) => {},
+    [fetchSkips.fulfilled]: (state, action) => {
       state.skips = action.payload;
     },
-    addSuccess: (state, action) => {
+    [fetchSuccess.fulfilled]: (state, action) => {
       state.success = action.payload;
+    },
+    [fetchFail.fulfilled]: (state, action) => {
+      state.fails = action.payload;
     },
   },
 });
 export const {
-  setHabit,
   addHabit,
-  addFail,
-  addskips,
-  addSuccess,
   updateCateg,
   updateComp,
   updateHabit,

@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-
 import PropTypes from "prop-types";
-
 import Goal from "@components/Goal/Goal";
 import Suggestion from "@components/Suggestion";
 import { addHabit } from "@store/habitsReducer";
 import { useSelector, useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
-
 import "@views/NewHabitForm/newHabit.css";
-
 function NewHabit(props) {
   const validationSchema = Yup.object({
     name: Yup.string().required("Please select a habit"),
@@ -42,7 +38,6 @@ function NewHabit(props) {
               completed: 0,
               date: date,
             };
-            // console.log(typeof(data))
             dispatch(addHabit(data));
             setSubmitting(false);
             props.handleHabitButton("Create Good Habit");
