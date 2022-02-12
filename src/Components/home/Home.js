@@ -1,9 +1,9 @@
 import Split from "react-split";
 import React from "react";
-import Sidebar from "@components/Sidebar/SideBar";
-import Habits from "@views/Habit/Habits"
-import Progress from "@components/Progress/Progress.js";
-import "@components/home/home.css";
+import Sidebar from "Components/Sidebar/SideBar";
+import Habits from "views/Habit/Habits"
+import Progress from "Components/Progress/Progress.js";
+import "Components/Home/home.css";
 function Home() {
   return (
     <>
