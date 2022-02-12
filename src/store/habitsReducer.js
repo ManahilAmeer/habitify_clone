@@ -1,13 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addHabits, db } from "@database/firebase";
-import {
-  collectionGroup,
-  query,
-  doc,
-  deleteDoc,
-  where,
-  getDocs,
-} from "firebase/firestore";
+import { progressDocRef, habitDocRef, habitsRef } from "database/firebase";
+import { deleteDoc, getDocs, increment } from "firebase/firestore";
+import firebase from "firebase/compat/app";
 export const initialState = {
   id: "",
   habit: [],
@@ -17,64 +11,93 @@ export const initialState = {
 };
 export const fetchHabits = createAsyncThunk("getNotes", async (uid) => {
   try {
-    var allHabits = query(
-      collectionGroup(db, "habit"),
-      where("category", "==", ""),
-      where("uid", "==", uid.uid)
-    );
+    var allHabits = habitsRef(uid.uid);
+    allHabits = allHabits.where("category", "==", "");
     const response = await getDocs(allHabits);
-    const notes = response.docs.map((doc) => {
+    const habits = response.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
-    return notes;
+    return habits;
   } catch (err) {
     console.log(err);
   }
 });
 export const fetchSkips = createAsyncThunk("getSkips", async (uid) => {
   try {
-    var allHabits = query(
-      collectionGroup(db, "habit"),
-      where("category", "==", "Skip"),
-      where("uid", "==", uid.uid)
-    );
+    var allHabits = habitsRef(uid.uid);
+    allHabits = allHabits.where("category", "==", "Skip");
     const response = await getDocs(allHabits);
-    const notes = response.docs.map((doc) => {
+    const habits = response.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
-    return notes;
+    return habits;
   } catch (err) {
     console.log(err);
   }
 });
 export const fetchSuccess = createAsyncThunk("getSuccess", async (uid) => {
   try {
-    var allHabits = query(
-      collectionGroup(db, "habit"),
-      where("category", "==", "Complete"),
-      where("uid", "==", uid.uid)
-    );
+    var allHabits = habitsRef(uid.uid);
+    allHabits = allHabits.where("category", "==", "Complete");
     const response = await getDocs(allHabits);
-    const notes = response.docs.map((doc) => {
+    const habits = response.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
-    return notes;
+    return habits;
   } catch (err) {
     console.log(err);
   }
 });
 export const fetchFail = createAsyncThunk("getFail", async (uid) => {
   try {
-    var allHabits = query(
-      collectionGroup(db, "habit"),
-      where("category", "==", "Fail"),
-      where("uid", "==", uid.uid)
-    );
+    var allHabits = habitsRef(uid.uid);
+    allHabits = allHabits.where("category", "==", "Fail");
     const response = await getDocs(allHabits);
-    const notes = response.docs.map((doc) => {
+    const habits = response.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
-    return notes;
+    return habits;
+  } catch (err) {
+    console.log(err);
+  }
+});
+export const changeHabits = createAsyncThunk("changeHabits", async (uid) => {
+  try {
+    const date = new Date();
+    const increment = firebase.firestore.FieldValue.increment(1);
+    const yesterday =
+      date.getFullYear() +
+      "-" +
+      (date.getMonth() + 1) +
+      "-" +
+      (date.getDate() - 1);
+    const today =
+      date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    var allHabits = habitsRef(uid.uid);
+    allHabits = allHabits.where("date", "==", yesterday);
+    const response = await getDocs(allHabits);
+    const habits = response.docs.map((docs) => {
+      const doc = habitDocRef(docs.data().id);
+      if (docs.data().category === "Skip") {
+        doc.update({
+          SkipLength: increment,
+        });
+      } else if (docs.data().category === "Fail") {
+        doc.update({
+          FailLength: increment,
+        });
+      } else if (docs.data().category === "Complete") {
+        doc.update({
+          CompleteLength: increment,
+        });
+      }
+        doc.update({
+          category: "",
+          completed: 0,
+          date: today,
+        });
+    });
+    return habits;
   } catch (err) {
     console.log(err);
   }
@@ -85,55 +108,65 @@ const habitReducer = createSlice({
   reducers: {
     updateCateg: (state, action) => {
       try {
-        const data = db.collection("habit").doc(action.payload.id);
+        const data = habitDocRef(action.payload.id);
         data.update({
           category: action.payload.category,
         });
       } catch (err) {
-        alert(err);
+        console.log(err);
       }
     },
     updateComp: (state, action) => {
       try {
-        const data = db.collection("habit").doc(action.payload.id);
+        const data = habitDocRef(action.payload.id);
         data.update({
           completed: action.payload.completed,
         });
       } catch (err) {
-        alert(err);
+        console.log(err);
       }
     },
     updateHabit: (state, action) => {
       try {
         const data = action.payload;
-        const ref = db.collection("habit").doc(data.ID);
+        const ref = habitDocRef(action.payload.id);
         ref.update({
           Name: data.name,
           goal: data.goal,
         });
       } catch (err) {
-        alert(err);
+        console.log(err);
       }
     },
     deleteHabit: (state, action) => {
       try {
-        const data = action.payload;
-        const ref = db.collection("habit").doc(action.payload.ID);
-        deleteDoc(doc(db, "habit", action.payload.ID));
+        const data = habitDocRef(action.payload.id);
+        deleteDoc(data);
       } catch (err) {
-        alert(err);
+        console.log(err);
       }
     },
     addHabit: (state, action) => {
       const data = action.payload;
-      addHabits(
-        data.name,
-        data.goal,
-        data.uid,
-        data.category,
-        data.completed,
-        data.date
-      );
+      try {
+        const doc = habitDocRef();
+        doc
+          .set({
+            Name: data.name,
+            goal: data.goal,
+            uid: data.uid,
+            category: data.category,
+            completed: data.completed,
+            date: data.date,
+          })
+          .then(() => {});
+        doc.update({
+          id: doc.id,
+        });
+        console.log(doc.id);
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
   extraReducers: {
@@ -153,11 +186,6 @@ const habitReducer = createSlice({
     },
   },
 });
-export const {
-  addHabit,
-  updateCateg,
-  updateComp,
-  updateHabit,
-  deleteHabit,
-} = habitReducer.actions;
+export const { addHabit, updateCateg, updateComp, updateHabit, deleteHabit } =
+  habitReducer.actions;
 export default habitReducer.reducer;
