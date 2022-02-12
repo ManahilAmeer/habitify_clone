@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
 import "views/NewHabitForm/newHabit.css";
 function NewHabit(props) {
+  const {handleHabitButton} = props;
   const validationSchema = Yup.object({
     name: Yup.string().required("Please select a habit"),
     goal: Yup.number().min(1).max(100).required(),
@@ -40,7 +41,7 @@ function NewHabit(props) {
             };
             dispatch(addHabit(data));
             setSubmitting(false);
-            props.handleHabitButton("Create Good Habit");
+            handleHabitButton("Create Good Habit");
           }}
         >
           {({ setFieldValue, resetForm, isSubmitting }) => (
@@ -86,7 +87,7 @@ function NewHabit(props) {
                     <button
                       className="cancel"
                       onClick={() =>
-                        props.handleHabitButton("Create Good Habit")
+                        handleHabitButton("Create Good Habit")
                       }
                     >
                       Cancel

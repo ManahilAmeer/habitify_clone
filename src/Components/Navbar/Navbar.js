@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 import '@components/Navbar/navbar.css'
 function MainNavbar(props) {
-  
+  const {handleClick }= props;
     return (
       <div>
         <Navbar sticky="top" className="navbar">
@@ -28,13 +28,13 @@ function MainNavbar(props) {
             <NavItem className="navItem">Blog</NavItem>
             <NavItem
               className="navItem pri"
-              onClick={() => props.handleClick()}
+              onClick={() => handleClick()}
             >
               Sign Up
             </NavItem>
             <NavItem
               className="navItem pri"
-              onClick={() => props.handleClick()}
+              onClick={() => handleClick()}
             >
               Sign In
             </NavItem>

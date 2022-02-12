@@ -10,10 +10,11 @@ import {
   updateComp,
 } from "@store/habitsReducer";
 import "@views/Habit/habits.css";
-function Habits() {
+function Habits(props) {
+  const {handleProgress}=props;
   const dispatch = useDispatch();
   // const mountedRef = useRef(true);
-  const [stroke, setStroke] = useState(0);
+  // const [stroke, setStroke] = useState(0);
   const [success, setSucces] = useState([]);
   const [skip, setSkip] = useState([]);
   const [fail, setFail] = useState([]);
@@ -44,7 +45,7 @@ function Habits() {
   };
   const changeCompleted = (times, completed, id, goal) => {
     dispatch(updateComp({ id: id, completed: completed + 1 }));
-    let stroke = 264 / times;
+    // let stroke = 264 / times;
     setGoal(completed + 1);
     if (completed + 1 === goal) {
       updateCat(id, "Complete");
@@ -59,7 +60,6 @@ function Habits() {
   useEffect(() => {
     fetch();
   }, [fetch, habits]);
-  
   // const style = {
   //   strokeDasharray: stroke + 0 + " " + (264 - stroke),
   // };
@@ -73,6 +73,7 @@ function Habits() {
         <div className="habits">
           <HabitItem
             habits={habits}
+            handleProgress={handleProgress}
             changeCompleted={changeCompleted}
             handleMore={handleMore}
             selectedKey={selectedKey}
@@ -81,6 +82,7 @@ function Habits() {
           />
           {success.length >= 1 && (
             <HabitCategory
+              handleProgress={handleProgress}
               arr={success}
               changeCompleted={changeCompleted}
               handleMore={handleMore}
@@ -89,6 +91,7 @@ function Habits() {
           )}
           {skip.length >= 1 && (
             <HabitCategory
+              handleProgress={handleProgress}
               arr={skip}
               changeCompleted={changeCompleted}
               handleMore={handleMore}
@@ -98,6 +101,7 @@ function Habits() {
           {fail.length >= 1 && (
             <HabitCategory
               arr={fail}
+              handleProgress={handleProgress}
               changeCompleted={changeCompleted}
               handleMore={handleMore}
               title="Fail"

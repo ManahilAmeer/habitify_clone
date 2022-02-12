@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { MostPopularData, StayFitData } from "config/SuggestionData";
 
 function Suggestion(props) {
+  const {setFieldValue,handleMenu}=props;
   var className="";
   props.Visibility
     ? (className = "menu-visible")
@@ -22,8 +23,8 @@ function Suggestion(props) {
                 </div>
                 <div
                   onClick={() => {
-                    props.setFieldValue("name", val.title);
-                    props.handleMenu();
+                    setFieldValue("name", val.title);
+                    handleMenu();
                   }}
                   className="item-text"
                 >
@@ -44,8 +45,8 @@ function Suggestion(props) {
                 </div>
                 <div
                   onClick={() => {
-                    props.setFieldValue("name", val.title);
-                    props.handleMenu();
+                    setFieldValue("name", val.title);
+                    handleMenu();
                   }}
                   className="item-text"
                 >

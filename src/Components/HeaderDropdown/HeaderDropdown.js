@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { DropdownData, newHabitData, logMoodData } from "@config/HeaderData";
+import { DropdownData, newHabitData, logMoodData } from "config/HeaderData";
 import "Components/HeaderDropdown/Headerdropdown.css";
 import NewHabit from "views/NewHabitForm/NewHabit";
 function HeaderDropdown(props) {
+  const {Sortvisibility,Habitvisibility,handleSortButton,handleHabitDropdown}=props;
   var sortClassName = "Sortdropdown";
   var habitClassName = "newDropdown Sortdropdown";
-  props.Sortvisibility
+  Sortvisibility
     ? (sortClassName = "Sortdropdown-visible")
     : (sortClassName = "Sortdropdown");
-  props.Habitvisibility
+  Habitvisibility
     ? (habitClassName = "newDropdown Sortdropdown-visible")
     : (habitClassName = "newDropdown Sortdropdown");
   const [flag, setFlag] = useState(false);
@@ -32,7 +33,7 @@ function HeaderDropdown(props) {
                 <div className="list-title">
                   <p
                     className="list-text"
-                    onClick={() => props.handleSortButton(val.title)}
+                    onClick={() => handleSortButton(val.title)}
                   >
                     {val.title}
                   </p>
@@ -54,7 +55,7 @@ function HeaderDropdown(props) {
                   className="list-item"
                   onClick={() => {
                     handleHabitButton(val.title);
-                    props.handleHabitDropdown();
+                    handleHabitDropdown();
                   }}
                 >
                   <div className="list-selected">{val.icon}</div>

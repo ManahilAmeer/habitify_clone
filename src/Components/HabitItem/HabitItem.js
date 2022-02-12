@@ -11,24 +11,25 @@ import addIcon from "@assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditHabit from "@views/EditHabitForm/EditHabit";
 function HabitItem(props) {
-  
+  const {habits,visible,changeCompleted,handleMore,updateCat}=props
   const [flag, setFlag] = useState(false);
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
-  const [goal,setGoal]=useState(1)
-  const handleButton = (name, id,goal) => {
+  const [goal, setGoal] = useState(1);
+  const handleButton = (name, id, goal) => {
     setName(name);
     setFlag(!flag);
     setID(id);
-    setGoal(goal)
+    setGoal(goal);
   };
+  const handleProgress = props.handleProgress;
   var dropdownData;
-  props.visible
+  visible
     ? (dropdownData = HabitDropdownData)
     : (dropdownData = CategoryDropdownData);
   return (
     <>
-      {props.habits.map((habit, key) => {
+      {habits.map((habit, key) => {
         return (
           <div key={habit.id} className="habit">
             <div className="habit-icon">
@@ -49,7 +50,16 @@ function HabitItem(props) {
               </div>
             </div>
             <div className="habit-info">
-              <div>
+              <div
+                onClick={() =>
+                  handleProgress(
+                    habit.Name,
+                    habit.CompleteLength,
+                    habit.FailLength,
+                    habit.SkipLength
+                  )
+                }
+              >
                 <p className="habit-name">{habit.Name}</p>
                 <div className="habit-times">
                   <p className="times-text">
@@ -57,12 +67,12 @@ function HabitItem(props) {
                   </p>
                 </div>
               </div>
-              {habit.goal === 1 && props.visible && (
+              {habit.goal === 1 && visible && (
                 <>
                   <div
                     className="habit-done"
                     onClick={() =>
-                      props.changeCompleted(
+                      changeCompleted(
                         habit.goal,
                         habit.completed,
                         habit.id,
@@ -79,12 +89,12 @@ function HabitItem(props) {
                   </div>
                 </>
               )}
-              {habit.goal !== 1 && props.visible && (
+              {habit.goal !== 1 && visible && (
                 <>
                   <div
                     className="habit-done"
                     onClick={() =>
-                      props.changeCompleted(
+                      changeCompleted(
                         habit.goal,
                         habit.completed,
                         habit.id,
@@ -103,10 +113,10 @@ function HabitItem(props) {
               )}
               <Dropdown
                 onClick={() => {
-                  props.handleMore(key);
+                  handleMore(key);
                 }}
               >
-                <Dropdown.Toggle className="more" variant="secondary" >
+                <Dropdown.Toggle className="more" variant="secondary">
                   <MoreVertIcon className="more-icon"></MoreVertIcon>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="habitDropdown">
@@ -126,7 +136,7 @@ function HabitItem(props) {
                                     habit.goal
                                   );
                                 } else {
-                                  props.updateCat(habit.id, val.title);
+                                  updateCat(habit.id, val.title);
                                 }
                               }}
                             >
@@ -148,7 +158,15 @@ function HabitItem(props) {
           </div>
         );
       })}
-      {flag && <EditHabit handleButton={handleButton} name={name} ID={ID} goal={goal}/>};
+      {flag && (
+        <EditHabit
+          handleButton={handleButton}
+          name={name}
+          ID={ID}
+          goal={goal}
+        />
+      )}
+      ;
     </>
   );
 }
@@ -159,7 +177,6 @@ HabitItem.propTypes = {
   visible: PropTypes.bool.isRequired,
   changeCompleted: PropTypes.func.isRequired,
   handleMore: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
 };
 
 HabitItem.defaultProps = {
@@ -168,8 +185,7 @@ HabitItem.defaultProps = {
   // style: {
   //   strokeDasharray: "0 264",
   // },
-  updateCat:()=>{
-  },
+  updateCat: () => {},
   visible: true,
   changeCompleted: () => {},
   handleMore: () => {},

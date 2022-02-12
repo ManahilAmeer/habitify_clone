@@ -9,7 +9,8 @@ import cross from "@assets/cross.svg";
 import calender from "@assets/calenderGrey.svg";
 import "@components/Goal/goal.css";
 function Goal(props) {
-  const [input, setInput] = useState(props.goal);
+  const {setFieldValue, goal}=props
+  const [input, setInput] = useState(goal);
   const increment = () => {
     input <= 100 ? handleChange(input + 1) : handleChange(input);
   };
@@ -18,7 +19,7 @@ function Goal(props) {
   };
   const handleChange = (num) => {
     setInput(num);
-    props.setFieldValue("goal", num);
+    setFieldValue("goal", num);
   };
   return (
     <>
