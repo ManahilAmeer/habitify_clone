@@ -5,6 +5,7 @@ import arrowIcon from "@assets/arrowGrey.svg";
 import "@components/HabitCategory/habitCategory.css";
 import HabitItem from "@components/HabitItem/HabitItem";
 function HabitCategory(props) {
+  const {habits,title,handleProgress,changeCompleted,handleMore}=props;
   return (
     <>
       <div className="category">
@@ -12,14 +13,15 @@ function HabitCategory(props) {
           <div className="heading-div">
             <img src={arrowIcon}></img>
             <p className="heading-text">
-              {props.arr.length} {props.title}
+              {habits.length} {title}
             </p>
           </div>
         </div>
         <HabitItem
-          habits={props.arr}
-          changeCompleted={props.changeCompleted}
-          handleMore={props.handleMore}
+          habits={habits}
+          handleProgress={handleProgress}
+          changeCompleted={changeCompleted}
+          handleMore={handleMore}
           visible={false}
         />
       </div>
@@ -28,15 +30,19 @@ function HabitCategory(props) {
 }
 HabitCategory.propTypes = {
   habits: PropTypes.array.isRequired,
+  title:PropTypes.string.isRequired,
+  handleProgress:PropTypes.func.isRequired,
   changeCompleted: PropTypes.func.isRequired,
   handleMore: PropTypes.func.isRequired,
-  visible: PropTypes.bool.isRequired,
+  // visible: PropTypes.bool.isRequired,
 };
 
 HabitCategory.defaultProps = {
   habits: [],
+  title:"",
+  handleProgress:()=>{},
   changeCompleted: () => {},
   handleMore: () => {},
-  visible: false,
+  // visible: false,
 };
 export default HabitCategory;
