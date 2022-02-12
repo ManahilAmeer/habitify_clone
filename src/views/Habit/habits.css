@@ -1,7 +1,6 @@
 .main {
   grid-area: journal-main / journal-main / journal-main / journal-main;
   overflow: overlay;
-  height: 100%;
   z-index: -10;
   background-color: rgba(23, 23, 23, 255);
 }
