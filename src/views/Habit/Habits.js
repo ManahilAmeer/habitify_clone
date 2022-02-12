@@ -5,14 +5,14 @@ import HabitCategory from "Components/HabitCategory/HabitCategory";
 import HabitItem from "Components/HabitItem/HabitItem";
 import {
   fetchFail,
-  // fetchHabits,fetchSkips,fetchSuccess,
+  fetchHabits,fetchSkips,fetchSuccess,
   updateCateg,
   updateComp,
 } from "@store/habitsReducer";
 import "@views/Habit/habits.css";
 function Habits() {
   const dispatch = useDispatch();
-  const mountedRef = useRef(true);
+  // const mountedRef = useRef(true);
   const [stroke, setStroke] = useState(0);
   const [success, setSucces] = useState([]);
   const [skip, setSkip] = useState([]);
@@ -33,38 +33,39 @@ function Habits() {
     setSelectedKey(key);
   };
   const fetch = () => {
-    // dispatch(fetchHabits({ uid: uid }));
-    // dispatch(fetchSkips({ uid: uid }));
-    // dispatch(fetchSuccess({ uid: uid }));
-    // dispatch(fetchFail({ uid: uid }));
+    dispatch(fetchHabits({ uid: uid }));
+    dispatch(fetchSkips({ uid: uid }));
+    dispatch(fetchSuccess({ uid: uid }));
+    dispatch(fetchFail({ uid: uid }));
     setHabit(habits);
     setSkip(skips);
     setSucces(successes);
     setFail(fails);
   };
-  useEffect(() => {
-    fetch();
-  }, [fetch, habit]);
-  const changeCompleted = (times, completed,id,goal) => {
-    dispatch(updateComp({id:id, completed:completed + 1}));
+  const changeCompleted = (times, completed, id, goal) => {
+    dispatch(updateComp({ id: id, completed: completed + 1 }));
     let stroke = 264 / times;
     setGoal(completed + 1);
     if (completed + 1 === goal) {
       updateCat(id, "Complete");
     }
-    changeStroke(stroke);
+    // changeStroke(stroke);
   };
   const updateCat = (id, category) => {
     if (category === "Skip" || category === "Fail" || category === "Complete") {
       dispatch(updateCateg({ id, category }));
     }
   };
-  const style = {
-    strokeDasharray: stroke + 0 + " " + (264 - stroke),
-  };
-  const changeStroke = (strokePoint) => {
-    setStroke(stroke + strokePoint);
-  };
+  useEffect(() => {
+    fetch();
+  }, [fetch, habits]);
+  
+  // const style = {
+  //   strokeDasharray: stroke + 0 + " " + (264 - stroke),
+  // };
+  // const changeStroke = (strokePoint) => {
+  //   setStroke(stroke + strokePoint);
+  // };
   return (
     <>
       <Header></Header>
