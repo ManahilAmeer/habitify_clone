@@ -25,9 +25,9 @@ function HeaderDropdown(props) {
         <ul
           className={sortClassName}
         >
-          {DropdownData.map((val, key) => {
+          {DropdownData.map((val) => {
             return (
-              <div key={key} className="list-item">
+              <div key={val.id} className="list-item">
                 <div className="list-selected"></div>
                 <div className="list-title">
                   <p
@@ -50,7 +50,7 @@ function HeaderDropdown(props) {
             {newHabitData.map((val, key) => {
               return (
                 <div
-                  key={key}
+                  key={val.id}
                   className="list-item"
                   onClick={() => {
                     handleHabitButton(val.title);
@@ -68,7 +68,7 @@ function HeaderDropdown(props) {
           <div className="mood">
             {logMoodData.map((val, key) => {
               return (
-                <div key={key} className="list-item">
+                <div key={val.id} className="list-item">
                   <div className="list-selected">{val.icon}</div>
                   <div className="list-title">
                     <p className="list-text">{val.title}</p>

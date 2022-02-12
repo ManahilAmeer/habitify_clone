@@ -43,7 +43,7 @@ function Sidebar() {
             <div className="one">
               {SidebarData.map((val, key) => {
                 return (
-                  <a key={key} className="sidebar-link">
+                  <a key={val.id} className="sidebar-link">
                     <div className="item">
                       <div className="item-icon">{val.icon}</div>
                       <p className="item-title">{val.title}</p>
@@ -56,7 +56,7 @@ function Sidebar() {
           <li className="MenuType">AREAS</li>
           {SidebarAreas.map((val, key) => {
             return (
-              <a key={key} className="sidebar-link">
+              <a key={val.id} className="sidebar-link">
                 <div className="item">
                   <div className="item-icon">{val.icon}</div>
                   <p className="item-title">{val.title}</p>

@@ -30,7 +30,7 @@ function HabitItem(props) {
     <>
       {props.habits.map((habit, key) => {
         return (
-          <div key={key} className="habit">
+          <div key={habit.id} className="habit">
             <div className="habit-icon">
               <div className="habit-progress">
                 <svg viewBox="0 0 100 100" className="circle">
@@ -116,10 +116,10 @@ function HabitItem(props) {
                         {dropdownData.map((val) => {
                           return (
                             <div
-                              // key={key}
+                              key={val.id}
                               className="habit-item"
                               onClick={() => {
-                                if (val.title == "Edit") {
+                                if (val.title === "Edit") {
                                   handleButton(
                                     habit.Name,
                                     habit.id,
@@ -155,6 +155,7 @@ function HabitItem(props) {
 HabitItem.propTypes = {
   habits: PropTypes.array.isRequired,
   // style: PropTypes.object.isRequired,
+  updateCat: PropTypes.func.isRequired,
   visible: PropTypes.bool.isRequired,
   changeCompleted: PropTypes.func.isRequired,
   handleMore: PropTypes.func.isRequired,
@@ -167,6 +168,8 @@ HabitItem.defaultProps = {
   // style: {
   //   strokeDasharray: "0 264",
   // },
+  updateCat:()=>{
+  },
   visible: true,
   changeCompleted: () => {},
   handleMore: () => {},

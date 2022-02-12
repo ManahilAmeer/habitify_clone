@@ -16,7 +16,7 @@ function Suggestion(props) {
 
           {MostPopularData.map((val, key) => {
             return (
-              <div key={key} className="habit-sug">
+              <div key={val.id} className="habit-sug">
                 <div className="sug-icon">
                   <div className="icon-container">{val.icon}</div>
                 </div>
@@ -38,7 +38,7 @@ function Suggestion(props) {
 
           {StayFitData.map((val, key) => {
             return (
-              <div key={key} className="habit-sug">
+              <div key={val.id} className="habit-sug">
                 <div className="sug-icon">
                   <div className="icon-container">{val.icon}</div>
                 </div>
