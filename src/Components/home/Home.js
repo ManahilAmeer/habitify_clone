@@ -1,10 +1,24 @@
 import Split from "react-split";
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "Components/Sidebar/SideBar";
-import Habits from "views/Habit/Habits"
+import Habits from "views/Habit/Habits";
 import Progress from "Components/Progress/Progress.js";
 import "Components/Home/home.css";
 function Home() {
+  const [showProgress, setShowProgress] = useState(false);
+  const [habitName,setHabitName]=useState("")
+  const [CompleteLength,setCompleteLength]=useState(0);
+  const [FailLength, setFailLength] = useState(0);
+  const [SkipLength, setSkipLength] = useState(0);
+  const handleProgress = (habitName,CompleteLength,FailLength,SkipLength) => {
+    setShowProgress(!showProgress);
+    setHabitName(habitName);
+    setCompleteLength(CompleteLength);
+    setFailLength(FailLength);
+    setSkipLength(SkipLength);
+    // console.log(CompleteLength)
+    // console.log(showProgress);
+  };
   return (
     <>
       <Split
@@ -17,10 +31,17 @@ function Home() {
           <Sidebar />
         </div>
         <div>
-          <Habits />
+          <Habits handleProgress={handleProgress} />
         </div>
         <div>
-          <Progress />
+          {showProgress && (
+            <Progress
+              habitName={habitName}
+              CompleteLength={CompleteLength}
+              FailLength={FailLength}
+              SkipLength={SkipLength}
+            />
+          )}
         </div>
       </Split>
     </>
