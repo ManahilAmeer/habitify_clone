@@ -18,4 +18,16 @@ function Progress(props) {
     </div>
   );
 }
+Progress.prototype = {
+  habitName: PropTypes.string,
+  CompleteLength: PropTypes.number,
+  SkipLength: PropTypes.number,
+  FailLength: PropTypes.number,
+};
+Progress.defaultProps = {
+  habitName:"",
+  CompleteLength:0,
+  SkipLength:0,
+  FailLength:0,
+};
 export default Progress;

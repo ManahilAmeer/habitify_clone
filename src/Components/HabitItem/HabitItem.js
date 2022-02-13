@@ -4,14 +4,22 @@ import Dropdown from "react-bootstrap/Dropdown";
 import {
   HabitDropdownData,
   CategoryDropdownData,
-} from "@config/HabitDropdownData";
+} from "config/HabitDropdownData";
 import QMark from "@assets/QMark.svg";
 import tick from "@assets/tick.svg";
 import addIcon from "@assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditHabit from "@views/EditHabitForm/EditHabit";
+import NewHabit from "views/NewHabitForm/NewHabit";
 function HabitItem(props) {
-  const {habits,visible,changeCompleted,handleMore,updateCat}=props
+  const {
+    arr,
+    visible,
+    changeCompleted,
+    handleMore,
+    updateCat,
+    handleProgress,
+  } = props;
   const [flag, setFlag] = useState(false);
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
@@ -22,14 +30,13 @@ function HabitItem(props) {
     setID(id);
     setGoal(goal);
   };
-  const handleProgress = props.handleProgress;
   var dropdownData;
   visible
     ? (dropdownData = HabitDropdownData)
     : (dropdownData = CategoryDropdownData);
   return (
     <>
-      {habits.map((habit, key) => {
+      {arr.map((habit, key) => {
         return (
           <div key={habit.id} className="habit">
             <div className="habit-icon">
@@ -135,7 +142,15 @@ function HabitItem(props) {
                                     habit.id,
                                     habit.goal
                                   );
-                                } else {
+                                } else if(val.title==="View Progress"){
+                                  handleProgress(
+                                    habit.Name,
+                                    habit.CompleteLength,
+                                    habit.FailLength,
+                                    habit.SkipLength
+                                  );
+                                }
+                                else {
                                   updateCat(habit.id, val.title);
                                 }
                               }}
@@ -163,7 +178,7 @@ function HabitItem(props) {
           handleButton={handleButton}
           name={name}
           ID={ID}
-          goal={goal}
+          usergoal={goal}
         />
       )}
       ;
@@ -172,11 +187,11 @@ function HabitItem(props) {
 }
 HabitItem.propTypes = {
   habits: PropTypes.array.isRequired,
-  // style: PropTypes.object.isRequired,
   updateCat: PropTypes.func.isRequired,
   visible: PropTypes.bool.isRequired,
   changeCompleted: PropTypes.func.isRequired,
   handleMore: PropTypes.func.isRequired,
+  handleProgress: PropTypes.func.isRequired,
 };
 
 HabitItem.defaultProps = {
@@ -189,5 +204,6 @@ HabitItem.defaultProps = {
   visible: true,
   changeCompleted: () => {},
   handleMore: () => {},
+  handleProgress: () => {},
 };
 export default HabitItem;

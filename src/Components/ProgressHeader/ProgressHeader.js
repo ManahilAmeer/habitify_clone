@@ -1,5 +1,4 @@
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
 import 'Components/ProgressHeader/progressHeader.css'
 import FullScreen from "assets/FullScreen.svg";
 import arrowIcon from "assets/arrow.svg";
@@ -7,15 +6,9 @@ import calenderIcon from "assets/calenderIcon.svg";
 import Share from "assets/Share.svg";
 import OpenNote from "assets/OpenNote.svg";
 import edit from "assets/edit.svg";
-import current_streak from "assets/current-streak.svg"
-import tick from "assets/tick.svg";
-import DoneIcon from "@mui/icons-material/Done";
-import CloseIcon from "@mui/icons-material/Close";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import PropTypes from "prop-types";
 function ProgressHeader(props) {
-  // const name = useSelector((state) => state.habit.name);
-  // console.log(name);
-  const habitName=props.habitName;
+  const {habitName}=props;
   const today=new Date();
   const monthNames = [
     "January",
@@ -33,7 +26,6 @@ function ProgressHeader(props) {
   ];
   return (
     <>
-      {/* <div className="progress-section"> */}
         <div className="progress_header">
           <div className="title_div">
             <div className="progress_button" role="button">
@@ -50,9 +42,7 @@ function ProgressHeader(props) {
                 src={calenderIcon}
                 alt="Calendar"
               />
-              {/* <p> */}
               {monthNames[today.getMonth()]}, {today.getFullYear()}
-              {/* </p> */}
               <span className="arrow">
                 <img width="16" height="16" src={arrowIcon} alt="Arrow" />
               </span>
@@ -68,10 +58,10 @@ function ProgressHeader(props) {
             </div>
           </div>
         </div>
-        
-      {/* </div> */}
     </>
   );
 }
-
+ProgressHeader.prototype = {
+  habitName: PropTypes.string,
+};
 export default ProgressHeader

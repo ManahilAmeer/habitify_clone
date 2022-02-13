@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import { MostPopularData, StayFitData } from "config/SuggestionData";
 
 function Suggestion(props) {
-  const {setFieldValue,handleMenu}=props;
+  const {setFieldValue,handleMenu,Visibility}=props;
   var className="";
-  props.Visibility
+  Visibility
     ? (className = "menu-visible")
     : (className = "menu");
   return (
@@ -61,13 +61,13 @@ function Suggestion(props) {
   );
 }
 Suggestion.propTypes = {
-  Visibility: PropTypes.string.isRequired,
+  Visibility: PropTypes.bool.isRequired,
   handleMenu: PropTypes.func.isRequired,
   setFieldValue: PropTypes.func.isRequired,
 };
 
 Suggestion.defaultProps = {
-  Visibility: "hidden",
+  Visibility: false,
   handleMenu: () => {},
   setFieldValue: () => {},
 };

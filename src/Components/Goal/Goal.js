@@ -134,10 +134,12 @@ function Goal(props) {
   );
 }
 Goal.propTypes = {
+  goal: PropTypes.number.isRequired,
   setFieldValue: PropTypes.func.isRequired,
 };
 
 Goal.defaultProps = {
+  goal:1,
   setFieldValue: () => {},
 };
 export default Goal;
