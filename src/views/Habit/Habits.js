@@ -1,5 +1,6 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import Header from "@components/Header/Header";
 import HabitCategory from "Components/HabitCategory/HabitCategory";
 import HabitItem from "Components/HabitItem/HabitItem";
@@ -8,8 +9,8 @@ import {
   fetchHabits,fetchSkips,fetchSuccess,
   updateCateg,
   updateComp,
-} from "@store/habitsReducer";
-import "@views/Habit/habits.css";
+} from "store/habitsReducer";
+import "views/Habit/habits.css";
 function Habits(props) {
   const {handleProgress}=props;
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function Habits(props) {
     setSkip(skips);
     setSucces(successes);
     setFail(fails);
+    
   };
   const changeCompleted = (times, completed, id, goal) => {
     dispatch(updateComp({ id: id, completed: completed + 1 }));
@@ -72,7 +74,7 @@ function Habits(props) {
       <div className="main">
         <div className="habits">
           <HabitItem
-            habits={habits}
+            arr={habits}
             handleProgress={handleProgress}
             changeCompleted={changeCompleted}
             handleMore={handleMore}
@@ -111,5 +113,11 @@ function Habits(props) {
       </div>
     </>
   );
+}
+Habits.propTypes = {
+  handleProgress:PropTypes.func.isRequired,
+};
+Habits.defaultProps={
+  handleProgress:()=>{}
 }
 export default Habits;

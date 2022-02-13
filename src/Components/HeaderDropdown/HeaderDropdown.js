@@ -29,7 +29,7 @@ function HeaderDropdown(props) {
           {DropdownData.map((val) => {
             return (
               <div key={val.id} className="list-item">
-                <div className="list-selected"></div>
+                {/* <div className="list-selected"></div> */}
                 <div className="list-title">
                   <p
                     className="list-text"

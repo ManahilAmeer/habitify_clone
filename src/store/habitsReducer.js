@@ -40,10 +40,11 @@ export const fetchSuccess = createAsyncThunk("getSuccess", async (uid) => {
     var allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("category", "==", "Complete");
     const response = await getDocs(allHabits);
-    const habits = response.docs.map((doc) => {
+    const success = response.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
-    return habits;
+    // console.log(success)
+    return success;
   } catch (err) {
     console.log(err);
   }
@@ -78,19 +79,7 @@ export const changeHabits = createAsyncThunk("changeHabits", async (uid) => {
     const response = await getDocs(allHabits);
     const habits = response.docs.map((docs) => {
       const doc = habitDocRef(docs.data().id);
-      if (docs.data().category === "Skip") {
-        doc.update({
-          SkipLength: increment,
-        });
-      } else if (docs.data().category === "Fail") {
-        doc.update({
-          FailLength: increment,
-        });
-      } else if (docs.data().category === "Complete") {
-        doc.update({
-          CompleteLength: increment,
-        });
-      }
+      
         doc.update({
           category: "",
           completed: 0,
@@ -112,15 +101,30 @@ const habitReducer = createSlice({
         data.update({
           category: action.payload.category,
         });
+        if (action.payload.category === "Skip") {
+          data.update({
+            SkipLength: increment,
+          });
+        } else if (action.payload.category === "Fail") {
+          data.update({
+            FailLength: increment,
+          });
+          // } else if (docs.data().category === "Complete") {
+          //   doc.update({
+          //     CompleteLength: increment,
+          //   });
+        }
       } catch (err) {
         console.log(err);
       }
     },
     updateComp: (state, action) => {
       try {
+        const increment = firebase.firestore.FieldValue.increment(1);
         const data = habitDocRef(action.payload.id);
         data.update({
           completed: action.payload.completed,
+          CompleteLength: increment,
         });
       } catch (err) {
         console.log(err);

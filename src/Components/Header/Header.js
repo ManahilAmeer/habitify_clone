@@ -8,17 +8,19 @@ import addIcon from "assets/add.svg";
 import HeaderDropdown from "Components/HeaderDropdown/HeaderDropdown";
 function Header() {
   const [sortText, setsortText] = useState("Alphabetical");
+  const [visible,setVisible]=useState(false)
   const [Sortvisibility, setSortvisiblity] = useState(false);
   const [Habitvisibility, setHabitvisibility] = useState(false);
   const handleSortButton = (option) => {
     setsortText(option);
   };
+  const handleSearch=()=>{
+    setVisible(!visible);
+  }
  const handleSortDropdown = () => {
-  //  const visible = Sortvisibility === "hidden" ? "visible" : "hidden";
    setSortvisiblity(!Sortvisibility);
  };
  const handleHabitDropdown = () => {
-  //  const visible = Habitvisibility === "hidden" ? "visible" : "hidden";
    setHabitvisibility(!Habitvisibility);
  };
   return (
@@ -27,7 +29,20 @@ function Header() {
         <div className="title">All Habits</div>
         <div className="options">
           <div className="Buttondiv" role="button">
-            <img width="16" height="16" src={searchIcon} alt="My Happy SVG" />
+            <img
+              onClick={() => handleSearch()}
+              width="16"
+              height="16"
+              src={searchIcon}
+              alt="My Happy SVG"
+            />
+            {visible && (
+              <input
+                type="text"
+                placeholder="Search"
+                className="search_input visible"
+              ></input>
+            )}
           </div>
           <div>
             <button type="button" className="button">
@@ -38,35 +53,29 @@ function Header() {
                 src={calenderIcon}
                 alt="Calendar"
               />
-              Today
-              <span className="arrow">
-                <img
-                  width="16"
-                  height="16"
-                  src={arrowIcon}
-                  alt="Arrow"
-                />
-              </span>
+              {!visible && <div>Today</div>}
+              {!visible && (
+                <span className="arrow">
+                  <img width="16" height="16" src={arrowIcon} alt="Arrow" />
+                </span>
+              )}
             </button>
           </div>
           <div>
             <button
               type="button"
-              className="button sort"
+              className="button"
               onClick={() => handleSortDropdown()}
             >
               <span className="icon">
                 <img width="16" height="16" src={sortIcon} alt="Sort" />
               </span>
-              {sortText}
-              <span className="arrow">
-                <img
-                  width="16"
-                  height="16"
-                  src={arrowIcon}
-                  alt="Arrow"
-                />
-              </span>
+              {!visible && <div>{sortText}</div>}
+              {!visible && (
+                <span className="arrow">
+                  <img width="16" height="16" src={arrowIcon} alt="Arrow" />
+                </span>
+              )}
             </button>
           </div>
           <div>
@@ -80,12 +89,7 @@ function Header() {
               </span>
               Add Habits
               <span className="arrow">
-                <img
-                  width="16"
-                  height="16"
-                  src={arrowIcon}
-                  alt="Arrow"
-                />
+                <img width="16" height="16" src={arrowIcon} alt="Arrow" />
               </span>
             </button>
           </div>

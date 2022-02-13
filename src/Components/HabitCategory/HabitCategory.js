@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import arrowIcon from "@assets/arrowGrey.svg";
 import "@components/HabitCategory/habitCategory.css";
-import HabitItem from "@components/HabitItem/HabitItem";
+import HabitItem from "Components/HabitItem/HabitItem";
 function HabitCategory(props) {
-  const {habits,title,handleProgress,changeCompleted,handleMore}=props;
+  const {arr,title,handleProgress,changeCompleted,handleMore}=props;
   return (
     <>
       <div className="category">
@@ -13,12 +13,12 @@ function HabitCategory(props) {
           <div className="heading-div">
             <img src={arrowIcon}></img>
             <p className="heading-text">
-              {habits.length} {title}
+              {arr.length} {title}
             </p>
           </div>
         </div>
         <HabitItem
-          habits={habits}
+          arr={arr}
           handleProgress={handleProgress}
           changeCompleted={changeCompleted}
           handleMore={handleMore}

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 import PropTypes from "prop-types";
 import Goal from "@components/Goal/Goal";
-import { updateHabit,deleteHabit } from "@store/habitsReducer";
+import { updateHabit,deleteHabit } from "store/habitsReducer";
 import { useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
 import "@views/EditHabitForm/EditHabit.css";
@@ -31,11 +32,9 @@ function EditHabit(props) {
             const data = {
               name: values.name,
               goal: values.goal,
-              ID: props.ID,
+              id: props.ID,
             };
-            dispatch(updateHabit(data));
-            setSubmitting(false);
-            props.handleButton();
+            
           }}
         >
           {({ setFieldValue, isSubmitting }) => (
