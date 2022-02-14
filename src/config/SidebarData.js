@@ -30,20 +30,20 @@ export const SidebarAreas = [
 export const Preferences = [
   {
     id: 0,
-    title: "Manage Habits",
-    icon: <FormatListNumberedIcon />,
-    link: "/manage-habits",
+    title: "Theme",
+    icon: <LightModeIcon width="15" height="15" />,
+    link: "/",
   },
-  {
-    id: 1,
-    title: "App Settings",
-    icon: <img src={setting} alt="App Settings" />,
-    link: "/app-settings",
-  },
-  {
-    id: 2,
-    title: "Resources",
-    icon: <ShareIcon />,
-    link: "/resources",
-  },
+  // {
+  //   id: 1,
+  //   title: "App Settings",
+  //   icon: <img src={setting} alt="App Settings" />,
+  //   link: "/app-settings",
+  // },
+  // {
+  //   id: 2,
+  //   title: "Resources",
+  //   icon: <ShareIcon />,
+  //   link: "/resources",
+  // },
 ];

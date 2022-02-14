@@ -9,18 +9,16 @@ import {
   fetchHabits,fetchSkips,fetchSuccess,
   updateCateg,
   updateComp,
+  updateStreak
 } from "store/habitsReducer";
 import "views/Habit/habits.css";
 function Habits(props) {
   const {handleProgress}=props;
   const dispatch = useDispatch();
-  // const mountedRef = useRef(true);
-  // const [stroke, setStroke] = useState(0);
   const [success, setSucces] = useState([]);
   const [skip, setSkip] = useState([]);
   const [fail, setFail] = useState([]);
   const [habit, setHabit] = useState([]);
-  const [Y, setY] = useState(0);
   const [goal, setGoal] = useState(0);
   const [showMore, setShowMore] = useState(false);
   const [selectedKey, setSelectedKey] = useState(0);
@@ -31,7 +29,6 @@ function Habits(props) {
   const fails = useSelector((state) => state.habit.fails);
   const handleMore = (key) => {
     setShowMore(!showMore);
-    setY(16.5 + key * 10.7);
     setSelectedKey(key);
   };
   const fetch = () => {
@@ -43,16 +40,14 @@ function Habits(props) {
     setSkip(skips);
     setSucces(successes);
     setFail(fails);
-    
   };
   const changeCompleted = (times, completed, id, goal) => {
     dispatch(updateComp({ id: id, completed: completed + 1 }));
-    // let stroke = 264 / times;
     setGoal(completed + 1);
     if (completed + 1 === goal) {
       updateCat(id, "Complete");
+      dispatch(updateStreak({ id: id }));
     }
-    // changeStroke(stroke);
   };
   const updateCat = (id, category) => {
     if (category === "Skip" || category === "Fail" || category === "Complete") {
@@ -62,19 +57,13 @@ function Habits(props) {
   useEffect(() => {
     fetch();
   }, [fetch, habits]);
-  // const style = {
-  //   strokeDasharray: stroke + 0 + " " + (264 - stroke),
-  // };
-  // const changeStroke = (strokePoint) => {
-  //   setStroke(stroke + strokePoint);
-  // };
   return (
     <>
       <Header></Header>
       <div className="main">
         <div className="habits">
           <HabitItem
-            arr={habits}
+            arr={habit}
             handleProgress={handleProgress}
             changeCompleted={changeCompleted}
             handleMore={handleMore}
@@ -112,7 +101,7 @@ function Habits(props) {
         </div>
       </div>
     </>
-  );
+  )
 }
 Habits.propTypes = {
   handleProgress:PropTypes.func.isRequired,

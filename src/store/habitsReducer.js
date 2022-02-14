@@ -1,6 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { progressDocRef, habitDocRef, habitsRef } from "database/firebase";
-import { deleteDoc, getDocs, increment } from "firebase/firestore";
+import {
+  deleteDoc,
+  getDocs,
+  increment,
+  snapshotEqual,
+} from "firebase/firestore";
 import firebase from "firebase/compat/app";
 export const initialState = {
   id: "",
@@ -9,6 +14,11 @@ export const initialState = {
   fails: [],
   success: [],
 };
+const date = new Date();
+const yesterday =
+  date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() - 1);
+const today =
+  date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 export const fetchHabits = createAsyncThunk("getNotes", async (uid) => {
   try {
     var allHabits = habitsRef(uid.uid);
@@ -43,7 +53,6 @@ export const fetchSuccess = createAsyncThunk("getSuccess", async (uid) => {
     const success = response.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
-    // console.log(success)
     return success;
   } catch (err) {
     console.log(err);
@@ -64,27 +73,26 @@ export const fetchFail = createAsyncThunk("getFail", async (uid) => {
 });
 export const changeHabits = createAsyncThunk("changeHabits", async (uid) => {
   try {
-    const date = new Date();
-    const increment = firebase.firestore.FieldValue.increment(1);
-    const yesterday =
-      date.getFullYear() +
-      "-" +
-      (date.getMonth() + 1) +
-      "-" +
-      (date.getDate() - 1);
-    const today =
-      date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    // const date = new Date();
+    // const increment = firebase.firestore.FieldValue.increment(1);
+    // const yesterday =
+    //   date.getFullYear() +
+    //   "-" +
+    //   (date.getMonth() + 1) +
+    //   "-" +
+    //   (date.getDate() - 1);
+    // const today =
+    //   date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     var allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("date", "==", yesterday);
     const response = await getDocs(allHabits);
     const habits = response.docs.map((docs) => {
       const doc = habitDocRef(docs.data().id);
-      
-        doc.update({
-          category: "",
-          completed: 0,
-          date: today,
-        });
+      doc.update({
+        category: "",
+        completed: 0,
+        date: today,
+      });
     });
     return habits;
   } catch (err) {
@@ -97,6 +105,7 @@ const habitReducer = createSlice({
   reducers: {
     updateCateg: (state, action) => {
       try {
+        const increment = firebase.firestore.FieldValue.increment(1);
         const data = habitDocRef(action.payload.id);
         data.update({
           category: action.payload.category,
@@ -109,22 +118,43 @@ const habitReducer = createSlice({
           data.update({
             FailLength: increment,
           });
-          // } else if (docs.data().category === "Complete") {
-          //   doc.update({
-          //     CompleteLength: increment,
-          //   });
-        }
+          } else if (action.payload.category === "Complete") {
+            data.update({
+              CompleteLength: increment,
+            });
+          }
       } catch (err) {
         console.log(err);
       }
     },
+    updateStreak: (state, action) => {
+      const data = habitDocRef(action.payload.id);
+      const increment = firebase.firestore.FieldValue.increment(1);
+      data.get().then((snapshot) => {
+        if (snapshot.data().completedDate === yesterday) {
+          data.update({
+            completedDate: today,
+            streak: increment,
+          });
+        }
+        else{
+          data.update({
+            completedDate: today,
+            streak: 0,
+          });
+        }
+      });
+    },
     updateComp: (state, action) => {
       try {
-        const increment = firebase.firestore.FieldValue.increment(1);
         const data = habitDocRef(action.payload.id);
+        const increment = firebase.firestore.FieldValue.increment(1);
+        
+        console.log(action.payload.completed);
         data.update({
+          total:increment,
           completed: action.payload.completed,
-          CompleteLength: increment,
+          // CompleteLength: increment,
         });
       } catch (err) {
         console.log(err);
@@ -167,7 +197,6 @@ const habitReducer = createSlice({
         doc.update({
           id: doc.id,
         });
-        console.log(doc.id);
       } catch (err) {
         console.log(err);
       }
@@ -190,6 +219,12 @@ const habitReducer = createSlice({
     },
   },
 });
-export const { addHabit, updateCateg, updateComp, updateHabit, deleteHabit } =
-  habitReducer.actions;
+export const {
+  addHabit,
+  updateCateg,
+  updateComp,
+  updateHabit,
+  deleteHabit,
+  updateStreak,
+} = habitReducer.actions;
 export default habitReducer.reducer;
