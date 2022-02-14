@@ -77,7 +77,7 @@
   margin-bottom: 0;
   padding-bottom: 0.439vw;
   padding-top: 0.292vw;
-  border-bottom: 0.0732vw solid rgb(74, 74, 74);
+  border-bottom: 0.0732vw solid var(--border);
 }
 .mood {
   padding: 0.292vw 0vw;

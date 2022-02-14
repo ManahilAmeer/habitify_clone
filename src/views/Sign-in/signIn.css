@@ -1,8 +1,9 @@
+
 .content {
   height: 100%;
   width: 100%;
-  background: rgb(23, 23, 23);
-  color: rgb(255, 255, 255);
+  background: --dark-back;
+  color: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +13,7 @@
   position: relative;
   margin: 0;
   border: 0.0732vw solid rgb(41, 40, 41);
-  background: rgb(50, 50, 50);
+  background: var(--dark-back);
   text-align: center;
   padding: 3.294vw 3.953vw 3.147vw 4.026vw;
   width: 29.355vw;
@@ -30,7 +31,7 @@
   font-size: 1.61vw;
   font-weight: 700;
   line-height: 1.949vw;
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
   margin-top: 0.878vw;
   margin-bottom: 0.366vw;
 }
@@ -80,7 +81,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
   border-radius: 0.366vw;
   width: 21.376vw;
   height: 2.928vw;

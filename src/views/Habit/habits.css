@@ -2,17 +2,17 @@
   grid-area: journal-main / journal-main / journal-main / journal-main;
   overflow: overlay;
   z-index: -10;
-  background-color: rgba(23, 23, 23, 255);
+  background-color: var(--dark-back);
 }
 .habits {
-  margin-bottom: 6.4vw;
+  /* margin-bottom: 6.4vw; */
   position: relative;
 }
 .habit {
   display: grid;
   grid-template-areas: "circle name";
   grid-template-columns: 4.53vw 1fr;
-  background-color: rgb(23, 23, 23);
+  background-color: var(--dark-back);
 }
 .habit-icon {
   display: flex;
@@ -66,7 +66,7 @@
   -webkit-box-align: center;
   align-items: center;
   padding: 0.988vw 0vw;
-  border-bottom: 0.0732vw solid rgb(74, 74, 74);
+  border-bottom: 0.0732vw solid var(--border);
 }
 .habit-name {
   text-transform: capitalize;
@@ -77,7 +77,7 @@
   font-size: 0.951vw;
   font-weight: 500;
   line-height: 1.43vw;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-color);
 }
 .habit-times {
   padding-top: 0.4vw;
@@ -94,8 +94,8 @@
 .habit-done {
   grid-area: smartAction / smartAction / smartAction / smartAction;
   height: 2.196vw;
-  background-color: rgb(66, 66, 66);
-  border: 0.0732vw solid rgb(74, 74, 74);
+  background-color: var(--elements-color);
+  border: 0.0732vw solid var(--border);
   border-radius: 0.2196vw;
   margin-right: 0.585vw;
   margin-left: 1.171vw;
@@ -115,9 +115,10 @@
   margin-right: 0vw;
   padding-bottom: 29px;
   width: 15px;
+  fill: var(--text-color);
 }
-.icon-img img{
-  width:15px;
+.icon-img img {
+  width: 15px;
   height: 15px;
 }
 .done-text {
@@ -125,20 +126,20 @@
   font-size: 0.878vw;
   font-weight: 500;
   line-height: 2.196vw;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-color);
   margin-left: 0.366vw;
   margin-bottom: 0;
 }
 .more {
   display: inline-flex !important;
   appearance: none;
-  color: white;
+  color: var(--icon-color) !important;
   align-items: center;
   justify-content: center;
   width: 2.342vw;
   height: 2.196vw;
   cursor: pointer;
-  background-color: rgb(66, 66, 66) !important;
+  background-color: var(--elements-color) !important;
   margin-right: 1.024vw;
   border-radius: 0.2196vw;
   border-width: 0.0732vw;
@@ -147,32 +148,32 @@
   padding: 0 !important;
 }
 .dropdown-toggle::after {
-  display: none !important; 
+  display: none !important;
 }
 .btn-secondary {
-    color: #fff;
-   
+  color: #fff;
 }
 .btn {
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.show>.btn-secondary.dropdown-toggle:focus {
-    /* box-shadow: 0 0 0 .25rem rgba(130,138,145,.5); */
+.show > .btn-secondary.dropdown-toggle:focus {
+  /* box-shadow: 0 0 0 .25rem rgba(130,138,145,.5); */
 }
 .btn-secondary:focus {
-    color: #fff;
-    background-color: #5c636a;
-    border-color: #565e64;
-    /* box-shadow: 0 0 0 0.25rem rgb(130 138 145 / 50%); */
+  color: #fff;
+  background-color: #5c636a;
+  border-color: #565e64;
+  /* box-shadow: 0 0 0 0.25rem rgb(130 138 145 / 50%); */
 }
-Dropdown:first-child{
+Dropdown:first-child {
   padding-top: 2px;
 }
-.dropdown-menu{
-   background-color: rgb(51, 51, 51) !important; 
-   border-radius: 5px !important;
-   border-color: #565e64 !important;
-   padding: 0vw !important; 
+.dropdown-menu {
+  background-color: rgb(51, 51, 51) !important;
+  border-radius: 5px !important;
+  border-color: #565e64 !important;
+  padding: 0vw !important;
 }
 .habit-content {
   width: 15.37vw;
@@ -181,10 +182,10 @@ Dropdown:first-child{
 }
 .dropdown-container {
   padding: 0.292vw 0vw;
-  border-bottom: 0.0732vw solid rgb(74, 74, 74);
+  border-bottom: 0.0732vw solid var(--border);
 }
 .dropdown-options {
-  padding-top: .146vw;
+  padding-top: 0.146vw;
 }
 .habit-item {
   color: hsla(0, 0%, 100%, 0.7);
@@ -192,7 +193,7 @@ Dropdown:first-child{
   cursor: default;
   height: 2.196vw;
   line-height: 2.196vw;
-  padding: 0vw .43vw 0vw .73vw;
+  padding: 0vw 0.43vw 0vw 0.73vw;
 }
 .item-icon {
   margin-right: 0vw;
@@ -207,12 +208,12 @@ Dropdown:first-child{
 }
 .icon-container svg {
   width: 1.46vw;
-  padding-bottom: .43vw;
+  padding-bottom: 0.43vw;
 }
 .icon-container img {
   width: 1.171vw;
   border-radius: 0;
-  padding-bottom: .43vw;
+  padding-bottom: 0.43vw;
 }
 .habit-item:hover {
   cursor: pointer;

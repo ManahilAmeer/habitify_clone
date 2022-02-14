@@ -1,28 +1,23 @@
 .progress-section {
-  /* width: 100%; */
   height: 100%;
-  /* position: absolute;
-    right: 0px; */
-  background-color: rgb(23, 23, 23);
+  background-color: var(--dark-back);
 }
 .progress_header {
   height: 50px;
   display: flex;
   padding: 0px 12px 0px 10px;
-  background-color: #171717;
-  /* -webkit-box-pack: justify; */
+  background-color: --dark-back;
   justify-content: space-between;
-  /* -webkit-box-align: center; */
   align-items: center;
-  border-bottom: 1px solid rgb(74, 74, 74);
+  border-bottom: 1px solid var(--border);
   overflow-x: auto;
 }
 .title_div {
   max-width: 55%;
   display: flex;
-  /* -webkit-box-align: center; */
   align-items: center;
 }
+
 .progress_button {
   padding-right: 0px;
   display: inline-flex;
@@ -31,24 +26,23 @@
   justify-content: center;
   font-weight: 500;
   font-size: 0.878vw;
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgb(66, 66, 66);
+  color: var(--text-color);
+  background-color: var(--elements-color);
   padding-left: 0vw;
   font-family: Inter;
-  border: 0.0732vw solid rgb(74, 74, 74);
+  border: 0.0732vw solid var(--border);
   border-radius: 0.366vw;
   width: 2.342vw;
   height: 2.196vw;
 }
 .title {
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-color);
   font-family: Inter;
   font-size: 17px;
   font-weight: 600;
   line-height: 20.4px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  /* overflow: hidden; */
   margin-top: 5.766px;
 }
 .buttons-div {
@@ -63,9 +57,9 @@
   align-items: center;
   margin-left: 8px;
   border-radius: 3px;
-  border: 0.0732vw solid rgb(74, 74, 74);
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgb(66, 66, 66);
+  border: 0.0732vw solid var(--border);
+  color: var(--text-color);
+  background-color: var(--elements-color);
 }
 .calender {
   width: 147px;
@@ -81,7 +75,7 @@
   border-radius: 0.366vw;
   margin-top: 1.464vw;
   margin-bottom: 1.464vw;
-  background: rgb(66, 66, 66);
+  background: var(--elements-color);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
@@ -97,14 +91,13 @@
   grid-template-columns: 1fr auto;
   column-gap: 20px;
   padding: 18px 12px 18px 20px;
-  border: 1px solid rgb(74, 74, 74);
+  border: 1px solid var(--border);
   border-radius: 5px;
   -webkit-box-align: center;
   align-items: center;
 }
 .streak-data {
   display: flex;
-  /* -webkit-box-align: center; */
   align-items: center;
 }
 .streak-logo {
@@ -142,7 +135,7 @@
   grid-template-columns: 1fr;
   row-gap: 6px;
   padding: 16.5px 16px;
-  border: 1px solid rgb(74, 74, 74);
+  border: 1px solid var(--border);
   border-radius: 10px;
   align-content: center;
 }
@@ -152,12 +145,12 @@
   margin: 0;
 }
 .category-logo {
-      max-height: 100%;
-    margin-right: 6px;
-    margin-top: 1px;
-    width: 13px !important;
-    height: 26px !important;
-    padding-bottom: 14px;
+  max-height: 100%;
+  margin-right: 6px;
+  margin-top: 1px;
+  width: 13px !important;
+  height: 26px !important;
+  padding-bottom: 14px;
 }
 .category-text {
   text-transform: uppercase;
@@ -171,20 +164,20 @@
   line-height: 13.2px;
   margin: 0;
 }
-.category-days{
-      text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    color: rgba(255, 255, 255, 0.95);
-    font-family: Inter;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-    margin: 0;
+.category-days {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--text-color);
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
 }
-.category-change{
-      display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    height: 15px;
+.category-change {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 15px;
 }
