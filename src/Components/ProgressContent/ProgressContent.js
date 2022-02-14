@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import current_streak from "assets/current-streak.svg";
 import tick from "assets/tick.svg";
 import DoneIcon from "@mui/icons-material/Done";
@@ -6,9 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PropTypes from "prop-types";
 function ProgressContent(props) {
-    const CompleteLength = props.CompleteLength;
-    const FailLength = props.FailLength;
-    const SkipLength = props.SkipLength;
+  const { CompleteLength, FailLength, SkipLength, streak, total } = props;
   return (
     <>
       <div className="progress-content">
@@ -24,7 +22,7 @@ function ProgressContent(props) {
             </div>
             <div className="streak-info">
               <p className="streak">Current Streak</p>
-              <p className="days">0 days</p>
+              <p className="days">{streak} days</p>
             </div>
           </div>
         </div>
@@ -58,7 +56,7 @@ function ProgressContent(props) {
               <div className="category-logo"></div>
               <p className="category-text">Total</p>
             </div>
-            <p className="category-days">0 days</p>
+            <p className="category-days">{total} times</p>
             <div className="category-change">---</div>
           </div>
         </div>
@@ -66,14 +64,18 @@ function ProgressContent(props) {
     </>
   );
 }
-ProgressContent.prototype={
-    CompleteLength:PropTypes.number,
-    SkipLength:PropTypes.number,
-    FailLength:PropTypes.number
-}
+ProgressContent.prototype = {
+  CompleteLength: PropTypes.number,
+  SkipLength: PropTypes.number,
+  FailLength: PropTypes.number,
+  streak: PropTypes.number,
+  total: PropTypes.number,
+};
 ProgressContent.defaultProps = {
-  CompleteLength:0,
+  CompleteLength: 0,
   SkipLength: 0,
   FailLength: 0,
+  streak: 0,
+  total: 0,
 };
-export default ProgressContent
+export default ProgressContent;
