@@ -10,14 +10,17 @@ function Home() {
   const [CompleteLength,setCompleteLength]=useState(0);
   const [FailLength, setFailLength] = useState(0);
   const [SkipLength, setSkipLength] = useState(0);
-  const handleProgress = (habitName,CompleteLength,FailLength,SkipLength) => {
+  const [streak,setStreak]=useState(0);
+  const [total, setTotal] = useState(0);
+  const handleProgress = (habitName,CompleteLength,FailLength,SkipLength,streak,total) => {
     setShowProgress(!showProgress);
     setHabitName(habitName);
     setCompleteLength(CompleteLength);
     setFailLength(FailLength);
     setSkipLength(SkipLength);
-    // console.log(CompleteLength)
-    // console.log(showProgress);
+    setStreak(streak);
+    setTotal(total);
+    console.log(total)
   };
   return (
     <>
@@ -40,6 +43,8 @@ function Home() {
               CompleteLength={CompleteLength}
               FailLength={FailLength}
               SkipLength={SkipLength}
+              streak={streak}
+              total={total}
             />
           )}
         </div>
