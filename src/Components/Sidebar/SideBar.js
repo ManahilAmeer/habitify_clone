@@ -9,7 +9,7 @@ function Sidebar() {
   const [sign_outvisibility, setSign_outvisibility] = useState(false);
   const [z_index, setZ_index] = useState("popUp");
   const [theme, setTheme] = useState("themeDrop");
-  var signoutClassName = "sign-out";
+  let signoutClassName = "sign-out";
   sign_outvisibility
     ? (signoutClassName = "sign-out-visible")
     : (signoutClassName = "sign-out");
@@ -134,9 +134,7 @@ function Sidebar() {
                       >
                         <p className="label-text">Light</p>
                       </div>
-                      <div
-                        className="label bottom"
-                      >
+                      <div className="label bottom">
                         <p className="label-text">Dark</p>
                       </div>
                     </div>

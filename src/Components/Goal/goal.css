@@ -131,8 +131,6 @@
   outline-offset: 0.146vw;
   position: relative;
   appearance: none;
-  transition-property: var(--chakra-transition-property-common);
-  transition-duration: var(--chakra-transition-duration-normal);
   font-size: 0.732vw;
   padding-inline-start: 0vw;
   padding-inline-end: 0vw;

@@ -9,8 +9,8 @@ function HeaderDropdown({
   handleSortButton,
   handleHabitDropdown,
 }) {
-  var sortClassName = "Sortdropdown";
-  var habitClassName = "newDropdown Sortdropdown";
+  let sortClassName = "Sortdropdown";
+  let habitClassName = "newDropdown Sortdropdown";
   sortvisibility
     ? (sortClassName = "Sortdropdown-visible")
     : (sortClassName = "Sortdropdown");

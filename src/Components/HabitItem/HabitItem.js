@@ -29,7 +29,7 @@ function HabitItem({
     setID(id);
     setGoal(goal);
   };
-  var dropdownData;
+  let dropdownData;
   visible
     ? (dropdownData = HabitDropdownData)
     : (dropdownData = CategoryDropdownData);

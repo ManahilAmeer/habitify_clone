@@ -21,7 +21,7 @@ const today =
   date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 export const fetchHabits = createAsyncThunk("getNotes", async (uid) => {
   try {
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("category", "==", "");
     const response = await getDocs(allHabits);
     const habits = response.docs.map((doc) => {
@@ -34,7 +34,7 @@ export const fetchHabits = createAsyncThunk("getNotes", async (uid) => {
 });
 export const fetchSkips = createAsyncThunk("getSkips", async (uid) => {
   try {
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("category", "==", "Skip");
     const response = await getDocs(allHabits);
     const habits = response.docs.map((doc) => {
@@ -47,7 +47,7 @@ export const fetchSkips = createAsyncThunk("getSkips", async (uid) => {
 });
 export const fetchSuccess = createAsyncThunk("getSuccess", async (uid) => {
   try {
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("category", "==", "Complete");
     const response = await getDocs(allHabits);
     const success = response.docs.map((doc) => {
@@ -60,7 +60,7 @@ export const fetchSuccess = createAsyncThunk("getSuccess", async (uid) => {
 });
 export const fetchFail = createAsyncThunk("getFail", async (uid) => {
   try {
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("category", "==", "Fail");
     const response = await getDocs(allHabits);
     const habits = response.docs.map((doc) => {
@@ -83,7 +83,7 @@ export const changeHabits = createAsyncThunk("changeHabits", async (uid) => {
     //   (date.getDate() - 1);
     // const today =
     //   date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("date", "==", yesterday);
     const response = await getDocs(allHabits);
     const habits = response.docs.map((docs) => {
@@ -118,11 +118,11 @@ const habitReducer = createSlice({
           data.update({
             FailLength: increment,
           });
-          } else if (action.payload.category === "Complete") {
-            data.update({
-              CompleteLength: increment,
-            });
-          }
+        } else if (action.payload.category === "Complete") {
+          data.update({
+            CompleteLength: increment,
+          });
+        }
       } catch (err) {
         console.log(err);
       }
@@ -136,8 +136,7 @@ const habitReducer = createSlice({
             completedDate: today,
             streak: increment,
           });
-        }
-        else{
+        } else {
           data.update({
             completedDate: today,
             streak: 0,
@@ -151,7 +150,7 @@ const habitReducer = createSlice({
         const increment = firebase.firestore.FieldValue.increment(1);
         console.log(action.payload.id);
         data.update({
-          total:increment,
+          total: increment,
           completed: action.payload.completed,
           // CompleteLength: increment,
         });

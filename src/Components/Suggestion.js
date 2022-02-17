@@ -3,11 +3,9 @@ import PropTypes from "prop-types";
 
 import { mostPopularData, stayFitData } from "config/SuggestionData";
 
-function Suggestion({setFieldValue,handleMenu,visibility}) {
-  var className="";
-  visibility
-    ? (className = "menu-visible")
-    : (className = "menu");
+function Suggestion({ setFieldValue, handleMenu, visibility }) {
+  let className = "";
+  visibility ? (className = "menu-visible") : (className = "menu");
   return (
     <>
       <div className={className}>
