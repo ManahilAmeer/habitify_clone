@@ -6,21 +6,27 @@ import Progress from "Components/Progress/Progress.js";
 import "Components/Home/home.css";
 function Home() {
   const [showProgress, setShowProgress] = useState(false);
-  const [habitName,setHabitName]=useState("")
-  const [CompleteLength,setCompleteLength]=useState(0);
-  const [FailLength, setFailLength] = useState(0);
+  const [habitName, setHabitName] = useState("");
+  const [completeLength, setCompleteLength] = useState(0);
+  const [failLength, setFailLength] = useState(0);
   const [SkipLength, setSkipLength] = useState(0);
-  const [streak,setStreak]=useState(0);
+  const [streak, setStreak] = useState(0);
   const [total, setTotal] = useState(0);
-  const handleProgress = (habitName,CompleteLength,FailLength,SkipLength,streak,total) => {
+  const handleProgress = (
+    habitName,
+    completeLength,
+    failLength,
+    skipLength,
+    streak,
+    total
+  ) => {
     setShowProgress(!showProgress);
     setHabitName(habitName);
-    setCompleteLength(CompleteLength);
-    setFailLength(FailLength);
-    setSkipLength(SkipLength);
+    setCompleteLength(completeLength);
+    setFailLength(failLength);
+    setSkipLength(skipLength);
     setStreak(streak);
     setTotal(total);
-    console.log(total)
   };
   return (
     <>
@@ -40,9 +46,9 @@ function Home() {
           {showProgress && (
             <Progress
               habitName={habitName}
-              CompleteLength={CompleteLength}
-              FailLength={FailLength}
-              SkipLength={SkipLength}
+              completeLength={completeLength}
+              failLength={failLength}
+              skipLength={SkipLength}
               streak={streak}
               total={total}
             />
@@ -52,5 +58,4 @@ function Home() {
     </>
   );
 }
-
 export default Home;

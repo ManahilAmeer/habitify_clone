@@ -5,7 +5,7 @@
   --icon-color: rgb(255, 255, 255);
   --popUp-color: rgb(50, 50, 50);
   --popUp-text-color: #ffffffb3;
-  --border: var(--border);
+  --border: rgb(74, 74, 74);
 }
 .split {
   display: flex;

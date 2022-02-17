@@ -12,8 +12,7 @@ import {
   updateStreak
 } from "store/habitsReducer";
 import "views/Habit/habits.css";
-function Habits(props) {
-  const {handleProgress}=props;
+function Habits({handleProgress}) {
   const dispatch = useDispatch();
   const [success, setSucces] = useState([]);
   const [skip, setSkip] = useState([]);
@@ -106,7 +105,4 @@ function Habits(props) {
 Habits.propTypes = {
   handleProgress:PropTypes.func.isRequired,
 };
-Habits.defaultProps={
-  handleProgress:()=>{}
-}
 export default Habits;

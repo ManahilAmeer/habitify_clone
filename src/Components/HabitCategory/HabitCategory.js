@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 import arrowIcon from "@assets/arrowGrey.svg";
 import "@components/HabitCategory/habitCategory.css";
 import HabitItem from "Components/HabitItem/HabitItem";
-function HabitCategory(props) {
-  const {arr,title,handleProgress,changeCompleted,handleMore}=props;
+function HabitCategory({arr,title,handleProgress,changeCompleted,handleMore}) {
   return (
     <>
       <div className="category">
@@ -29,20 +28,10 @@ function HabitCategory(props) {
   );
 }
 HabitCategory.propTypes = {
-  habits: PropTypes.array.isRequired,
+  arr: PropTypes.array.isRequired,
   title:PropTypes.string.isRequired,
   handleProgress:PropTypes.func.isRequired,
   changeCompleted: PropTypes.func.isRequired,
   handleMore: PropTypes.func.isRequired,
-  // visible: PropTypes.bool.isRequired,
-};
-
-HabitCategory.defaultProps = {
-  habits: [],
-  title:"",
-  handleProgress:()=>{},
-  changeCompleted: () => {},
-  handleMore: () => {},
-  // visible: false,
 };
 export default HabitCategory;

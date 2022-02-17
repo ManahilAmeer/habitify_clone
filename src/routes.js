@@ -9,6 +9,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { changeHabits } from "store/habitsReducer";
+import { addID, addPhoto, addDisplayName } from "store/usersReducer";
 import SignIn from "@views/Sign-in/SignIn";
 import Home from "Components/Home/Home";
 const Routers = () => {
@@ -18,17 +19,12 @@ const Routers = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(true);
+        dispatch(addID(user.uid));
+      dispatch(addDisplayName(user.displayName));
+      dispatch(addPhoto(user.photoURL));
         dispatch(changeHabits({uid:user.uid}));
-        // setLoading(false);
-        // dispatch(setUserId(user.uid));
-        // dispatch(fetchHabits({uid:user.uid}));
-        // dispatch(fetchSkips({ uid: user.uid}));
-        // dispatch(fetchSuccess({ uid: user.uid }));
-        // dispatch(fetchFail({ uid: user.uid }));
-        // dispatch(getLabels(user.uid));
       } else {
         setUser(false);
-        // setLoading(false);
       }
     });
   }, []);

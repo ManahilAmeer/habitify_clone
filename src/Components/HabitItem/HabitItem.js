@@ -5,21 +5,20 @@ import {
   HabitDropdownData,
   CategoryDropdownData,
 } from "config/HabitDropdownData";
-import QMark from "@assets/QMark.svg";
-import tick from "@assets/tick.svg";
-import addIcon from "@assets/add.svg";
+import QMark from "assets/QMark.svg";
+import tick from "assets/tick.svg";
+import addIcon from "assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import EditHabit from "@views/EditHabitForm/EditHabit";
+import EditHabit from "views/EditHabitForm/EditHabit";
 import NewHabit from "views/NewHabitForm/NewHabit";
-function HabitItem(props) {
-  const {
-    arr,
-    visible,
-    changeCompleted,
-    handleMore,
-    updateCat,
-    handleProgress,
-  } = props;
+function HabitItem({
+  arr,
+  visible,
+  changeCompleted,
+  handleMore,
+  updateCat,
+  handleProgress,
+}) {
   const [flag, setFlag] = useState(false);
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
@@ -43,13 +42,7 @@ function HabitItem(props) {
               <div className="habit-progress">
                 <svg viewBox="0 0 100 100" className="circle">
                   <circle cx="50" cy="50" r="42" className="track"></circle>
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="42"
-                    className="indicator"
-                    // style={props.style}
-                  ></circle>
+                  <circle cx="50" cy="50" r="42" className="indicator"></circle>
                 </svg>
                 <div className="habit-symbol">
                   <img src={QMark} alt="Question Mark"></img>
@@ -207,22 +200,13 @@ function HabitItem(props) {
 HabitItem.propTypes = {
   habits: PropTypes.array.isRequired,
   updateCat: PropTypes.func.isRequired,
-  visible: PropTypes.bool.isRequired,
+  visible: PropTypes.bool,
   changeCompleted: PropTypes.func.isRequired,
   handleMore: PropTypes.func.isRequired,
   handleProgress: PropTypes.func.isRequired,
 };
 
 HabitItem.defaultProps = {
-  habits: [],
-  // id: "",
-  // style: {
-  //   strokeDasharray: "0 264",
-  // },
-  updateCat: () => {},
   visible: true,
-  changeCompleted: () => {},
-  handleMore: () => {},
-  handleProgress: () => {},
 };
 export default HabitItem;

@@ -1,17 +1,14 @@
-// import React from "react";
-// import "@App.css";
 import habitifyIcon from "@assets/habitify.png";
 import GoogleIcon from "@assets/google.svg";
 import "@views/Sign-in/signIn.css";
 import { useDispatch } from "react-redux";
-import { addID, addPhoto, addDisplayName } from "@store/usersReducer";
+import { addID, addPhoto, addDisplayName } from "store/usersReducer";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, signInWithGoogle } from "@database/firebase";
+import { auth, signInWithGoogle } from "database/firebase";
 function SignIn() {
   const dispatch = useDispatch();
-
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
@@ -58,5 +55,4 @@ function SignIn() {
     </>
   );
 }
-
 export default SignIn;

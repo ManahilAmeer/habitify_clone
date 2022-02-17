@@ -1,8 +1,7 @@
 import React from "react";
 import goodHabit from "@assets/GoodHabit.svg";
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
-import AddIcon from "@mui/icons-material/Add";
-export const DropdownData = [
+export const dropdownData = [
   {
     id: 0,
     title: "Reminder Time",

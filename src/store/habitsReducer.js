@@ -149,8 +149,7 @@ const habitReducer = createSlice({
       try {
         const data = habitDocRef(action.payload.id);
         const increment = firebase.firestore.FieldValue.increment(1);
-        
-        console.log(action.payload.completed);
+        console.log(action.payload.id);
         data.update({
           total:increment,
           completed: action.payload.completed,
@@ -184,6 +183,7 @@ const habitReducer = createSlice({
       const data = action.payload;
       try {
         const doc = habitDocRef();
+        console.log(data.name);
         doc
           .set({
             Name: data.name,

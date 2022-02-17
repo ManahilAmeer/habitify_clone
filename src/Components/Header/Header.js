@@ -17,8 +17,8 @@ function Header() {
   };
   const [sortText, setsortText] = useState("Alphabetical");
   const [visible, setVisible] = useState(false);
-  const [Sortvisibility, setSortvisiblity] = useState(false);
-  const [Habitvisibility, setHabitvisibility] = useState(false);
+  const [sortvisibility, setSortvisiblity] = useState(false);
+  const [habitvisibility, setHabitvisibility] = useState(false);
   const handleSortButton = (option) => {
     setsortText(option);
   };
@@ -26,10 +26,10 @@ function Header() {
     setVisible(!visible);
   };
   const handleSortDropdown = () => {
-    setSortvisiblity(!Sortvisibility);
+    setSortvisiblity(!sortvisibility);
   };
   const handleHabitDropdown = () => {
-    setHabitvisibility(!Habitvisibility);
+    setHabitvisibility(!habitvisibility);
   };
   return (
     <div className="header">
@@ -37,12 +37,6 @@ function Header() {
         <div className="title">All Habits</div>
         <div className="options">
           <div className="Buttondiv" role="button">
-            {/* <img
-              onClick={() => handleSearch()}
-              
-              src={searchIcon}
-              alt="My Happy SVG"
-            /> */}
             <svg
               onClick={() => handleSearch()}
               width="16"
@@ -136,9 +130,9 @@ function Header() {
       </div>
       <HeaderDropdown
         handleHabitDropdown={handleHabitDropdown}
-        Sortvisibility={Sortvisibility}
+        sortvisibility={sortvisibility}
         handleSortButton={handleSortButton}
-        Habitvisibility={Habitvisibility}
+        habitvisibility={habitvisibility}
       />
     </div>
   );

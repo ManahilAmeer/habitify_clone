@@ -6,11 +6,11 @@ import { logout } from "@database/firebase";
 import "Components/Sidebar/sidebar.css";
 function Sidebar() {
   const [lightTheme, setLightTheme] = useState(false);
-  const [SignOutvisibility, setvisibility] = useState(false);
-  const [zIndex, setZIndex] = useState("popUp");
-  const [ThemezIndex, setThemezIndex] = useState("themeDrop");
+  const [sign_outvisibility, setSign_outvisibility] = useState(false);
+  const [z_index, setZ_index] = useState("popUp");
+  const [theme, setTheme] = useState("themeDrop");
   var signoutClassName = "sign-out";
-  SignOutvisibility
+  sign_outvisibility
     ? (signoutClassName = "sign-out-visible")
     : (signoutClassName = "sign-out");
   const navigate = useNavigate();
@@ -21,19 +21,15 @@ function Sidebar() {
     logout();
   };
   const handleThemeDropdown = () => {
-    SignOutvisibility
-      ? setThemezIndex("themeDrop")
-      : setThemezIndex("themeDrop-zindex");
-    setvisibility(!SignOutvisibility);
+    sign_outvisibility ? setTheme("themeDrop") : setTheme("themeDrop-zindex");
+    setSign_outvisibility(!sign_outvisibility);
   };
   const handleDropdown = () => {
-    SignOutvisibility ? setZIndex("popUp") : setZIndex("popUp-zIndex");
-    setvisibility(!SignOutvisibility);
+    sign_outvisibility ? setZ_index("popUp") : setZ_index("popUp-zIndex");
+    setSign_outvisibility(!sign_outvisibility);
   };
   const changeTheme = () => {
-    console.log(lightTheme);
     if (lightTheme) {
-      console.log("sjgdh");
       document.documentElement.style.setProperty("--dark-back", "#ffffff");
       document.documentElement.style.setProperty("--text-color", "#000000");
       document.documentElement.style.setProperty("--elements-color", "#ffffff");
@@ -47,6 +43,32 @@ function Sidebar() {
         "--border",
         "rgb(229, 228, 229)"
       );
+    } else {
+      document.documentElement.style.setProperty(
+        "--dark-back",
+        "rgb(23, 23, 23)"
+      );
+      document.documentElement.style.setProperty(
+        "--text-color",
+        "rgb(255, 255, 255)"
+      );
+      document.documentElement.style.setProperty(
+        "--elements-color",
+        "rgb(66, 66, 66)"
+      );
+      document.documentElement.style.setProperty(
+        "--icon-color",
+        "rgb(255, 255, 255)"
+      );
+      document.documentElement.style.setProperty(
+        "--popUp-color",
+        "rgb(50, 50, 50)"
+      );
+      document.documentElement.style.setProperty(
+        "--popUp-text-color",
+        "#ffffffb3"
+      );
+      document.documentElement.style.setProperty("--border", "rgb(74, 74, 74)");
     }
   };
   return (
@@ -57,7 +79,7 @@ function Sidebar() {
             <img src={photoURL} className="user-img" alt="user"></img>
             <p className="user-text">{displayName}</p>
           </div>
-          <div className={zIndex}>
+          <div className={z_index}>
             <div className={signoutClassName}>
               <div className="label">
                 <p className="label-text">Profile</p>
@@ -101,7 +123,7 @@ function Sidebar() {
                     <div className="item-icon">{val.icon}</div>
                     <p className="item-title">{val.title}</p>
                   </div>
-                  <div className={ThemezIndex}>
+                  <div className={theme}>
                     <div className={signoutClassName}>
                       <div
                         className="label"
@@ -114,7 +136,6 @@ function Sidebar() {
                       </div>
                       <div
                         className="label bottom"
-                        onClick={() => handleSignOut()}
                       >
                         <p className="label-text">Dark</p>
                       </div>
