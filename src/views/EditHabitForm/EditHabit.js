@@ -10,11 +10,12 @@ import "@views/EditHabitForm/EditHabit.css";
 function EditHabit(props) {
   const name=props.name;
   const usergoal = props.goal;
+
   const dispatch = useDispatch();
   useEffect(() => {}, [updateHabit,deleteHabit]);
   const [goal, setGoal] = useState(1);
   const handleDeleteButton=()=>{
-    dispatch(deleteHabit({ID:props.ID}))
+    dispatch(deleteHabit({id:props.ID}))
   }
   return (
     <>

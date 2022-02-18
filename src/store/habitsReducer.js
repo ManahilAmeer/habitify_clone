@@ -1,11 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { progressDocRef, habitDocRef, habitsRef } from "database/firebase";
-import {
-  deleteDoc,
-  getDocs,
-  increment,
-  snapshotEqual,
-} from "firebase/firestore";
+import { habitDocRef, habitsRef } from "database/firebase";
+import { getDocs } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 export const initialState = {
   id: "",
@@ -73,16 +68,6 @@ export const fetchFail = createAsyncThunk("getFail", async (uid) => {
 });
 export const changeHabits = createAsyncThunk("changeHabits", async (uid) => {
   try {
-    // const date = new Date();
-    // const increment = firebase.firestore.FieldValue.increment(1);
-    // const yesterday =
-    //   date.getFullYear() +
-    //   "-" +
-    //   (date.getMonth() + 1) +
-    //   "-" +
-    //   (date.getDate() - 1);
-    // const today =
-    //   date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("date", "==", yesterday);
     const response = await getDocs(allHabits);
@@ -107,9 +92,11 @@ const habitReducer = createSlice({
       try {
         const increment = firebase.firestore.FieldValue.increment(1);
         const data = habitDocRef(action.payload.id);
-        data.update({
-          category: action.payload.category,
-        });
+        if (action.payload.category) {
+          data.update({
+            category: action.payload.category,
+          });
+        }
         if (action.payload.category === "Skip") {
           data.update({
             SkipLength: increment,
@@ -118,10 +105,6 @@ const habitReducer = createSlice({
           data.update({
             FailLength: increment,
           });
-        } else if (action.payload.category === "Complete") {
-          data.update({
-            CompleteLength: increment,
-          });
         }
       } catch (err) {
         console.log(err);
@@ -129,13 +112,19 @@ const habitReducer = createSlice({
     },
     updateStreak: (state, action) => {
       const data = habitDocRef(action.payload.id);
+      console.log("aa gya");
       const increment = firebase.firestore.FieldValue.increment(1);
       data.get().then((snapshot) => {
         if (snapshot.data().completedDate === yesterday) {
-          data.update({
-            completedDate: today,
-            streak: increment,
-          });
+          if (snapshot.data().completed === snapshot.data().goal) {
+            console.log(snapshot.data().completed);
+            data.update({
+              CompleteLength: increment,
+              category: "Complete",
+              completedDate: today,
+              streak: increment,
+            });
+          }
         } else {
           data.update({
             completedDate: today,
@@ -151,8 +140,7 @@ const habitReducer = createSlice({
         console.log(action.payload.id);
         data.update({
           total: increment,
-          completed: action.payload.completed,
-          // CompleteLength: increment,
+          completed: increment,
         });
       } catch (err) {
         console.log(err);
@@ -171,12 +159,15 @@ const habitReducer = createSlice({
       }
     },
     deleteHabit: (state, action) => {
-      try {
-        const data = habitDocRef(action.payload.id);
-        deleteDoc(data);
-      } catch (err) {
-        console.log(err);
-      }
+      console.log(action.payload.id);
+      habitDocRef(action.payload.id)
+        .delete()
+        .then(() => {
+          console.log("Deleted");
+        })
+        .catch((error) => {
+          console.log("Error removing document:", error);
+        });
     },
     addHabit: (state, action) => {
       const data = action.payload;

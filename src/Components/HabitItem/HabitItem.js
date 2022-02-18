@@ -27,6 +27,7 @@ function HabitItem({
     setName(name);
     setFlag(!flag);
     setID(id);
+    console.log(ID)
     setGoal(goal);
   };
   let dropdownData;
@@ -75,10 +76,7 @@ function HabitItem({
                     className="habit-done"
                     onClick={() =>
                       changeCompleted(
-                        habit.goal,
-                        habit.completed,
                         habit.id,
-                        habit.goal
                       )
                     }
                   >
@@ -105,10 +103,10 @@ function HabitItem({
                     className="habit-done"
                     onClick={() =>
                       changeCompleted(
-                        habit.goal,
-                        habit.completed,
+                        // habit.goal,
+                        // habit.completed,
                         habit.id,
-                        habit.goal
+                        // habit.goal
                       )
                     }
                   >
@@ -198,8 +196,8 @@ function HabitItem({
   );
 }
 HabitItem.propTypes = {
-  habits: PropTypes.array.isRequired,
-  updateCat: PropTypes.func.isRequired,
+  arr: PropTypes.array.isRequired,
+  updateCat: PropTypes.func,
   visible: PropTypes.bool,
   changeCompleted: PropTypes.func.isRequired,
   handleMore: PropTypes.func.isRequired,
@@ -208,5 +206,7 @@ HabitItem.propTypes = {
 
 HabitItem.defaultProps = {
   visible: true,
+  updateCat:()=>{},
+  
 };
 export default HabitItem;
