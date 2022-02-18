@@ -2,28 +2,13 @@ import React from 'react'
 import 'Components/ProgressHeader/progressHeader.css'
 import FullScreen from "assets/FullScreen.svg";
 import arrowIcon from "assets/arrow.svg";
-import calenderIcon from "assets/calenderIcon.svg";
 import Share from "assets/Share.svg";
 import OpenNote from "assets/OpenNote.svg";
 import edit from "assets/edit.svg";
 import PropTypes from "prop-types";
 function ProgressHeader({ habitName }) {
-  // const =props;
   const today = new Date();
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  let month = today.toLocaleString("en-us", { month: "long" }); 
   return (
     <>
       <div className="progress_header">
@@ -43,7 +28,7 @@ function ProgressHeader({ habitName }) {
                 />
               </svg>
             </div>
-            {monthNames[today.getMonth()]}, {today.getFullYear()}
+            {month}, {today.getFullYear()}
             <span className="arrow">
               <img width="16" height="16" src={arrowIcon} alt="Arrow" />
             </span>
