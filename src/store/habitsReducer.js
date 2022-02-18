@@ -145,6 +145,7 @@ const habitReducer = createSlice({
     },
     updateHabit: (state, action) => {
       try {
+        console.log(action.payload.id)
         const data = action.payload;
         const ref = habitDocRef(action.payload.id);
         ref.update({
