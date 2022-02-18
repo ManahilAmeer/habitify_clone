@@ -1,20 +1,7 @@
 import React, { useState } from "react";
 import "Components/Header/header.css";
-import sortIcon from "assets/sort.svg";
-import arrowIcon from "assets/arrow.svg";
-import calenderIcon from "assets/calenderIcon.svg";
-import searchIcon from "assets/search.svg";
-import addIcon from "assets/add.svg";
-import { useSelector } from "react-redux";
 import HeaderDropdown from "Components/HeaderDropdown/HeaderDropdown";
-function Header() {
-  const habits = useSelector((state) => state.habit.habit);
-  const skips = useSelector((state) => state.habit.skips);
-  const successes = useSelector((state) => state.habit.success);
-  const fails = useSelector((state) => state.habit.fails);
-  const search = (title) => {
-    console.log(title);
-  };
+function Header({setInput}) {
   const [sortText, setsortText] = useState("Alphabetical");
   const [visible, setVisible] = useState(false);
   const [sortvisibility, setSortvisiblity] = useState(false);
@@ -55,7 +42,8 @@ function Header() {
                 placeholder="Search"
                 className="search_input visible"
                 onChange={(e) => {
-                  search(e.target.value);
+                  setInput(e.target.value);
+                  
                 }}
               ></input>
             )}
