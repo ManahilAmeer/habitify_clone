@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SidebarData, SidebarAreas, Preferences } from "@config/SidebarData.js";
 import { logout } from "@database/firebase";
+import path from "config/routes";
 import "Components/Sidebar/sidebar.css";
 function Sidebar() {
   const [lightTheme, setLightTheme] = useState(false);
@@ -17,7 +18,7 @@ function Sidebar() {
   const photoURL = useSelector((state) => state.users.photoURL);
   const displayName = useSelector((state) => state.users.displayName);
   const handleSignOut = () => {
-    navigate("/");
+    navigate(path.home);
     logout();
   };
   const handleThemeDropdown = () => {
@@ -125,7 +126,6 @@ function Sidebar() {
           <li className="MenuType">THEME</li>
           {Preferences.map((val) => {
             return (
-              <>
                 <a key={val.id} className="sidebar-link">
                   <div className="item" onClick={() => handleThemeDropdown()}>
                     <div className="item-icon">{val.icon}</div>
@@ -148,7 +148,6 @@ function Sidebar() {
                     </div>
                   </div>
                 </a>
-              </>
             );
           })}
         </div>

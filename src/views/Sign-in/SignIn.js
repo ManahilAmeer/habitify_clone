@@ -7,6 +7,7 @@ import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, signInWithGoogle } from "database/firebase";
+import path from "config/routes";
 function SignIn() {
   const dispatch = useDispatch();
   const [user, loading] = useAuthState(auth);
@@ -17,7 +18,7 @@ function SignIn() {
       dispatch(addID(user.uid));
       dispatch(addDisplayName(user.displayName));
       dispatch(addPhoto(user.photoURL));
-      navigate("/app");
+      navigate(path.app);
     }
   }, [user, loading, navigate]);
   return (

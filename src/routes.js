@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { auth } from "database/firebase";
+import path from "config/routes";
 import {
   Routes,
   BrowserRouter as Router,
@@ -34,12 +35,12 @@ const Routers = () => {
         <Route
           exact
           path="/"
-          element={!user ? <SignIn /> : <Navigate to="/app" />}
+          element={!user ? <SignIn /> : <Navigate to={path.app} />}
         />
         <Route
           exact
           path="/app"
-          element={user ? <Home /> : <Navigate to="/" />}
+          element={user ? <Home /> : <Navigate to={path.home} />}
         />
       </Routes>
     </Router>
