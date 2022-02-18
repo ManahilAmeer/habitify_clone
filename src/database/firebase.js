@@ -42,8 +42,8 @@ const fetchHabits = async (uid, category) => {
     let allHabits = query(
       collectionGroup(db, "habit"),
       where("category", "==", category),
-      where("uid", "==", uid)
-      // where("date","==",date)
+      where("uid", "==", uid),
+      where("date","==",date)
     );
     const querySnapshot = await getDocs(allHabits);
     querySnapshot.forEach((doc) => {

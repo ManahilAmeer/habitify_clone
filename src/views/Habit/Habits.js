@@ -74,7 +74,7 @@ function Habits({handleProgress}) {
         </div>
       </div>
     </>
-  );
+  )
 }
 Habits.propTypes = {
   handleProgress:PropTypes.func.isRequired,

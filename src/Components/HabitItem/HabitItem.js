@@ -27,7 +27,6 @@ function HabitItem({
     setName(name);
     setFlag(!flag);
     setID(id);
-    console.log(ID)
     setGoal(goal);
   };
   let dropdownData;
