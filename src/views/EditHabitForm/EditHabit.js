@@ -3,20 +3,19 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import Goal from "@components/Goal/Goal";
-import { updateHabit,deleteHabit } from "store/habitsReducer";
+import { updateHabit, deleteHabit } from "store/habitsReducer";
 import { useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
 import "@views/EditHabitForm/EditHabit.css";
 function EditHabit(props) {
-  const name=props.name;
+  const name = props.name;
   const usergoal = props.goal;
-
   const dispatch = useDispatch();
-  useEffect(() => {}, [updateHabit,deleteHabit]);
+  useEffect(() => {}, [updateHabit, deleteHabit]);
   const [goal, setGoal] = useState(1);
-  const handleDeleteButton=()=>{
-    dispatch(deleteHabit({id:props.ID}))
-  }
+  const handleDeleteButton = () => {
+    dispatch(deleteHabit({ id: props.ID }));
+  };
   return (
     <>
       <div className="tab">
@@ -35,7 +34,7 @@ function EditHabit(props) {
               goal: values.goal,
               id: props.ID,
             };
-            
+            dispatch(updateHabit(data));
           }}
         >
           {({ setFieldValue, isSubmitting }) => (
@@ -73,9 +72,8 @@ function EditHabit(props) {
                   <div>
                     <button
                       className="cancel delete"
-                      type="button"
+                      type="submit"
                       onClick={() => handleDeleteButton()}
-                      // onClick={() => props.handleButton()}
                     >
                       Delete
                     </button>
