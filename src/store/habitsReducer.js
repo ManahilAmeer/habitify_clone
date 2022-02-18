@@ -112,12 +112,10 @@ const habitReducer = createSlice({
     },
     updateStreak: (state, action) => {
       const data = habitDocRef(action.payload.id);
-      console.log("aa gya");
       const increment = firebase.firestore.FieldValue.increment(1);
       data.get().then((snapshot) => {
         if (snapshot.data().completedDate === yesterday) {
           if (snapshot.data().completed === snapshot.data().goal) {
-            console.log(snapshot.data().completed);
             data.update({
               CompleteLength: increment,
               category: "Complete",
@@ -137,7 +135,6 @@ const habitReducer = createSlice({
       try {
         const data = habitDocRef(action.payload.id);
         const increment = firebase.firestore.FieldValue.increment(1);
-        console.log(action.payload.id);
         data.update({
           total: increment,
           completed: increment,
@@ -159,11 +156,9 @@ const habitReducer = createSlice({
       }
     },
     deleteHabit: (state, action) => {
-      console.log(action.payload.id);
       habitDocRef(action.payload.id)
         .delete()
         .then(() => {
-          console.log("Deleted");
         })
         .catch((error) => {
           console.log("Error removing document:", error);
@@ -173,7 +168,6 @@ const habitReducer = createSlice({
       const data = action.payload;
       try {
         const doc = habitDocRef();
-        console.log(data.name);
         doc
           .set({
             Name: data.name,
