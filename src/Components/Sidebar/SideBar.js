@@ -43,6 +43,10 @@ function Sidebar() {
         "--border",
         "rgb(229, 228, 229)"
       );
+      document.documentElement.style.setProperty(
+        "--user-box-color",
+        "rgb(236, 236, 236)"
+      );
     } else {
       document.documentElement.style.setProperty(
         "--dark-back",
@@ -69,6 +73,10 @@ function Sidebar() {
         "#ffffffb3"
       );
       document.documentElement.style.setProperty("--border", "rgb(74, 74, 74)");
+      document.documentElement.style.setProperty(
+        "--user-box-color",
+        "rgb(50, 50, 50)"
+      );
     }
   };
   return (
