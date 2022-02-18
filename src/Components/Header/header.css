@@ -1,5 +1,5 @@
 .header {
-  background-color: rgba(23, 23, 23, 255);
+  background-color: --dark-back;
   font-size: small;
 }
 .navb {
@@ -10,11 +10,11 @@
   height: 3.587vw;
   justify-content: space-between;
   align-items: center;
-  background: rgb(23, 23, 23);
+  background: var(--dark-back);
   border-bottom: 0.0732vw solid rgb(59, 59, 59);
 }
 .sort {
-  width: 12.644vw;
+  width: 9.644vw;
 }
 .title {
   margin: 1% 0% 0% 2%;
@@ -22,7 +22,7 @@
   font-size: 1.244vw;
   font-weight: 600;
   line-height: 1.493vw;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-color);
   white-space: nowrap;
   padding-bottom: 0.439vw;
 }
@@ -32,9 +32,38 @@
 .Buttondiv {
   height: 2.196vw;
   margin-right: 0.585vw;
-  border-radius: 0.2196vw;
   padding: 0vw 0.878vw;
-  background: rgb(66, 66, 66);
+  background: var(--elements-color);
+  border: 0.0732vw solid var(--border);
+  border-radius: 0.366vw;
+}
+.search_input {
+  width: 70%;
+  color: white;
+  min-width: 0px;
+  outline-offset: 2px;
+  position: relative;
+  appearance: none;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 200ms;
+  font-size: 12px;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+  height: 30px;
+  font-family: Inter;
+  font-weight: 500;
+  line-height: 14.4px;
+  margin-left: 10px;
+  outline: transparent solid 2px;
+  border-radius: 0.357rem;
+  border-color: inherit;
+  background: var(--elements-color);
+  padding: 0px;
+}
+.search_input:focus {
+  outline: transparent solid 2px;
+  outline-offset: 2px;
 }
 .button {
   display: inline-flex;
@@ -44,13 +73,16 @@
   font-weight: 500;
   height: 2.196vw;
   font-size: 0.878vw;
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgb(66, 66, 66);
+  color: var(--text-color);
+  background-color: var(--elements-color);
   padding-left: 0vw;
   padding-right: 0.2196vw;
   font-family: Inter;
-  border: 0.0732vw solid rgb(74, 74, 74);
+  border: 0.0732vw solid var(--border);
   border-radius: 0.366vw;
+}
+.button-text {
+  color: var(--text-color);
 }
 .primary {
   background-color: rgb(54, 98, 204);
@@ -66,4 +98,6 @@
 .icon {
   display: inline-flex;
   margin-inline-end: 0.5rem;
+  width: 14px;
+  height: 14px;
 }

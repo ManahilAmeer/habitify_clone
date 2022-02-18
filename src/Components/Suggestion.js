@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import { MostPopularData, StayFitData } from "config/SuggestionData";
 
 function Suggestion(props) {
+  const {setFieldValue,handleMenu,Visibility}=props;
   var className="";
-  props.Visibility
+  Visibility
     ? (className = "menu-visible")
     : (className = "menu");
   return (
@@ -16,14 +17,14 @@ function Suggestion(props) {
 
           {MostPopularData.map((val, key) => {
             return (
-              <div key={key} className="habit-sug">
+              <div key={val.id} className="habit-sug">
                 <div className="sug-icon">
                   <div className="icon-container">{val.icon}</div>
                 </div>
                 <div
                   onClick={() => {
-                    props.setFieldValue("name", val.title);
-                    props.handleMenu();
+                    setFieldValue("name", val.title);
+                    handleMenu();
                   }}
                   className="item-text"
                 >
@@ -38,14 +39,14 @@ function Suggestion(props) {
 
           {StayFitData.map((val, key) => {
             return (
-              <div key={key} className="habit-sug">
+              <div key={val.id} className="habit-sug">
                 <div className="sug-icon">
                   <div className="icon-container">{val.icon}</div>
                 </div>
                 <div
                   onClick={() => {
-                    props.setFieldValue("name", val.title);
-                    props.handleMenu();
+                    setFieldValue("name", val.title);
+                    handleMenu();
                   }}
                   className="item-text"
                 >
@@ -60,13 +61,13 @@ function Suggestion(props) {
   );
 }
 Suggestion.propTypes = {
-  Visibility: PropTypes.string.isRequired,
+  Visibility: PropTypes.bool.isRequired,
   handleMenu: PropTypes.func.isRequired,
   setFieldValue: PropTypes.func.isRequired,
 };
 
 Suggestion.defaultProps = {
-  Visibility: "hidden",
+  Visibility: false,
   handleMenu: () => {},
   setFieldValue: () => {},
 };

@@ -3,6 +3,7 @@
   grid-template-columns: 1.9fr 1fr;
   grid-gap: 0.768vw;
 }
+
 .goal {
   width: 100%;
   position: relative;
@@ -87,13 +88,13 @@
   margin-top: 1.171vw;
 }
 .reminder-box {
-  background-color: rgb(66, 66, 66);
+  background-color: var(--elements-color);
   display: flex;
   padding: 0.2196vw 0.439vw 0.146vw;
   flex-wrap: wrap;
   width: 100%;
   border-radius: 0.2196vw;
-  border: 0.0732vw solid rgb(74, 74, 74);
+  border: 0.0732vw solid var(--border);
 }
 .reminder-input {
   display: inline-flex;
@@ -111,7 +112,7 @@
   padding-inline-start: 0.5rem;
   padding-inline-end: 0.5rem;
   background: rgb(99, 99, 99);
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
   margin: auto 0.292vw 0.146vw 0vw;
 }
 .reminder-text {
@@ -122,7 +123,7 @@
   font-family: Inter;
   font-size: 0.732vw;
   font-weight: 500;
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
 }
 .reminder-inputBox {
   width: 100%;
@@ -140,7 +141,7 @@
   font-family: Inter;
   font-weight: 500;
   line-height: 0.878vw;
-  background-color: rgb(66, 66, 66);
+  background-color: var(--elements-color);
   display: inline-block;
   margin-top: unset !important;
   outline: transparent solid 0.146vw;
@@ -155,7 +156,7 @@
   margin-bottom: 0.146vw;
 }
 .buttons-area {
-  background-color: rgb(50, 50, 50);
+  background-color: var(--dark-back);
   padding: 0.732vw 0.878vw;
   margin-top: 1.464vw;
   border-bottom-left-radius: 0.585vw;

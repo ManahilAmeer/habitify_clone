@@ -3,23 +3,29 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import Goal from "@components/Goal/Goal";
+import { updateHabit, deleteHabit } from "@store/habitsReducer";
 import Suggestion from "@components/Suggestion";
-import { addHabit } from "@store/habitsReducer";
+import { addHabit } from "store/habitsReducer";
 import { useSelector, useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
-import "@views/NewHabitForm/newHabit.css";
+import "views/NewHabitForm/newHabit.css";
 function NewHabit(props) {
+  const {handleHabitButton} = props;
+  
+  const dispatch = useDispatch();
+  useEffect(() => {}, [updateHabit, deleteHabit]);
+  const [goal, setGoal] = useState(1);
   const validationSchema = Yup.object({
     name: Yup.string().required("Please select a habit"),
     goal: Yup.number().min(1).max(100).required(),
   });
-  const dispatch = useDispatch();
   const today = new Date();
   const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
   const uid = useSelector((state) => state.users.ID);
-  useEffect(() => {}, [addHabit]);
   const [Visibility, setvisiblity] = useState(false);
-  const [goal, setGoal] = useState(1);
+  const handleDeleteButton = () => {
+    dispatch(deleteHabit({ ID: props.ID }));
+  };
   const handleMenu = () => {
     setvisiblity(!Visibility)
   };
@@ -40,7 +46,7 @@ function NewHabit(props) {
             };
             dispatch(addHabit(data));
             setSubmitting(false);
-            props.handleHabitButton("Create Good Habit");
+            handleHabitButton("Create Good Habit");
           }}
         >
           {({ setFieldValue, resetForm, isSubmitting }) => (
@@ -84,9 +90,10 @@ function NewHabit(props) {
                 <div className="buttons-area">
                   <div className="margin">
                     <button
+                    type="button"
                       className="cancel"
                       onClick={() =>
-                        props.handleHabitButton("Create Good Habit")
+                        handleHabitButton("Create Good Habit")
                       }
                     >
                       Cancel

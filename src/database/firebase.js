@@ -1,5 +1,5 @@
 import firebase from "firebase/compat/app";
-import { collectionGroup, query, where, getDocs } from "firebase/firestore"; 
+import { collectionGroup, query, where, getDocs, collection } from "firebase/firestore"; 
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 const firebaseConfig = {
@@ -65,7 +65,6 @@ const addHabits = (name, goal,uid,category,completed,date) => {
       completed: completed,
       date:date
     }).then(()=>{
-      // console.log(doc.id);
     });
     doc.update({
       id:doc.id
@@ -98,5 +97,14 @@ const updateCompleted = (ID, completed) => {
 };
 const logout = () => {
   auth.signOut();
+};
+export const habitsRef=(uid)=>{
+  return db.collection("habit").where("uid", "==", uid);
+}
+export const habitDocRef = (id) => {
+  return db.collection("habit").doc(id);
+};
+export const progressDocRef = (id) => {
+  return db.collection("progress").doc(id);
 };
 export { auth, db, signInWithGoogle, logout, addHabits, fetchHabits,updateCategory,updateCompleted };

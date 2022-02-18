@@ -32,6 +32,6 @@
   font-size:   1.098vw;
   font-weight: 600;
   line-height:   1.317vw;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-color);
   margin-left:   0.951vw;
 }

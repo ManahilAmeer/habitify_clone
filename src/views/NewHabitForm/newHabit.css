@@ -5,7 +5,7 @@
   border-style: solid;
   box-sizing: border-box;
 }
-.display-none{
+.display-none {
   display: none;
 }
 .tab {
@@ -79,8 +79,8 @@
   font-size: 0.878vw;
   height: 2.196vw;
   border-radius: 0.2196vw;
-  border: 0.0732vw solid rgb(74, 74, 74);
-  background: rgb(66, 66, 66);
+  border: 0.0732vw solid var(--border);
+  background: var(--elements-color);
   color: #fff;
   font-family: Inter;
   font-weight: 500;
@@ -103,7 +103,7 @@ input:focus {
   min-width: 2rem;
   background: transparent;
   padding: 0vw;
-  border: 0.0732vw solid rgb(74, 74, 74);
+  border: 0.0732vw solid var(--border);
   color: rgb(42, 168, 208);
   cursor: default;
 }
@@ -115,14 +115,14 @@ input:focus {
   padding-inline-start: 1rem;
   padding-inline-end: 1rem;
   font-family: Inter;
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgb(66, 66, 66);
+  color: var(--text-color);
+  background-color: var(--elements-color);
   margin-right: 0.585vw;
   cursor: default;
   border-radius: 0.2196vw;
   border-width: 0.0732vw;
   border-style: solid;
-  border-color: rgb(74, 74, 74);
+  border-color: var(--border);
 }
 .save {
   background-color: rgb(54, 98, 204);
@@ -164,14 +164,14 @@ input:focus {
 }
 .popular {
   padding: 0.292vw 0vw;
-  border-bottom: 0.0732vw solid rgb(74, 74, 74);
+  border-bottom: 0.0732vw solid var(--border);
 }
 .popular-heading {
   font-family: Inter;
   font-size: 0.878vw;
   font-weight: 500;
   line-height: 1.054vw;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--text-color);
   padding: 0.292vw 0.732vw;
   text-transform: capitalize;
   margin: 0;
@@ -186,7 +186,7 @@ input:focus {
   border-radius: 0.366vw;
   margin-top: 1.464vw;
   margin-bottom: 1.464vw;
-  background: rgb(66, 66, 66);
+  background: var(--elements-color);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
