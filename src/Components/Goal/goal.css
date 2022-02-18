@@ -111,7 +111,7 @@
   border-radius: 0.2196vw;
   padding-inline-start: 0.5rem;
   padding-inline-end: 0.5rem;
-  background: rgb(99, 99, 99);
+  background: var(--elements-color);
   color: var(--text-color);
   margin: auto 0.292vw 0.146vw 0vw;
 }

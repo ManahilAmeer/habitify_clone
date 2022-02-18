@@ -6,6 +6,7 @@
   --popUp-color: rgb(50, 50, 50);
   --popUp-text-color: #ffffffb3;
   --border: rgb(74, 74, 74);
+  --user-box-color:rgb(50, 50, 50);
 }
 .split {
   display: flex;
