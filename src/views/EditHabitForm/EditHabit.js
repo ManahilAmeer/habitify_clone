@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import Goal from "@components/Goal/Goal";
+import Goal from "Components/Goal/Goal";
 import { updateHabit, deleteHabit } from "store/habitsReducer";
 import { useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
@@ -10,9 +10,10 @@ import "@views/EditHabitForm/EditHabit.css";
 function EditHabit(props) {
   const name = props.name;
   const usergoal = props.goal;
+  
   const dispatch = useDispatch();
   useEffect(() => {}, [updateHabit, deleteHabit]);
-  const [goal, setGoal] = useState(1);
+  // const [goal, setGoal] = useState(usergoal);
   const handleDeleteButton = () => {
     dispatch(deleteHabit({ id: props.ID }));
   };
@@ -28,7 +29,7 @@ function EditHabit(props) {
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values) => {
             const data = {
               name: values.name,
               goal: values.goal,
@@ -63,7 +64,7 @@ function EditHabit(props) {
                   </div>
                   <Field
                     name="goal"
-                    value={goal}
+                    value={usergoal}
                     className="display-none"
                   ></Field>
                   <Goal setFieldValue={setFieldValue} goal={usergoal}></Goal>
@@ -106,9 +107,11 @@ function EditHabit(props) {
   );
 }
 EditHabit.prototype = {
-  handleButton: PropTypes.func.isRequired,
+  // handleButton: PropTypes.func.isRequired,
+  goal:PropTypes.number,
 };
 EditHabit.defaultProps = {
-  handleButton: () => {},
+  // handleButton: () => {},
+  goal:1
 };
 export default EditHabit;

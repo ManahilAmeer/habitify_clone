@@ -102,10 +102,7 @@ function HabitItem({
                     className="habit-done"
                     onClick={() =>
                       changeCompleted(
-                        // habit.goal,
-                        // habit.completed,
                         habit.id,
-                        // habit.goal
                       )
                     }
                   >
@@ -187,7 +184,7 @@ function HabitItem({
           handleButton={handleButton}
           name={name}
           ID={ID}
-          usergoal={goal}
+          goal={goal}
         />
       )}
       ;

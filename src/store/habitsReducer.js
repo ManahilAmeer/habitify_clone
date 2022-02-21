@@ -114,20 +114,30 @@ const habitReducer = createSlice({
       const data = habitDocRef(action.payload.id);
       const increment = firebase.firestore.FieldValue.increment(1);
       data.get().then((snapshot) => {
-        if (snapshot.data().completedDate === yesterday) {
-          if (snapshot.data().completed === snapshot.data().goal) {
+        const compDate = snapshot.data().completedDate;
+        if (snapshot.data().completed === snapshot.data().goal) {
+          if (compDate === yesterday) {
+            data.update({
+              completedDate: today,
+              streak: increment,
+              CompleteLength: increment,
+              category: "Complete",
+            });
+          } else if (
+            (compDate == undefined || compDate === today) 
+          ) {
             data.update({
               CompleteLength: increment,
               category: "Complete",
               completedDate: today,
-              streak: increment,
+              streak: 1,
+            });
+          } else {
+            data.update({
+              completedDate: today,
+              streak: 0,
             });
           }
-        } else {
-          data.update({
-            completedDate: today,
-            streak: 0,
-          });
         }
       });
     },
@@ -145,13 +155,12 @@ const habitReducer = createSlice({
     },
     updateHabit: (state, action) => {
       try {
-        console.log(action.payload.id)
         const data = action.payload;
         const ref = habitDocRef(action.payload.id);
         ref.update({
           Name: data.name,
           goal: data.goal,
-        });
+        }).then(console.log("updated"));
       } catch (err) {
         console.log(err);
       }
@@ -159,8 +168,7 @@ const habitReducer = createSlice({
     deleteHabit: (state, action) => {
       habitDocRef(action.payload.id)
         .delete()
-        .then(() => {
-        })
+        .then(() => {})
         .catch((error) => {
           console.log("Error removing document:", error);
         });
