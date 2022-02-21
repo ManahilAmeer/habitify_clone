@@ -1,5 +1,5 @@
 
-export const MostPopularData = [
+export const mostPopularData = [
   {
     id: 0,
     title: "Meditate",
@@ -21,7 +21,7 @@ export const MostPopularData = [
     title: "running",
   },
 ];
-export const StayFitData = [
+export const stayFitData = [
   {
     id: 0,
     title: "hit the gym",
