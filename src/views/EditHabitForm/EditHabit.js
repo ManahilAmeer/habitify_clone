@@ -13,7 +13,7 @@ function EditHabit(props) {
   
   const dispatch = useDispatch();
   useEffect(() => {}, [updateHabit, deleteHabit]);
-  // const [goal, setGoal] = useState(usergoal);
+  
   const handleDeleteButton = () => {
     dispatch(deleteHabit({ id: props.ID }));
   };
@@ -107,11 +107,11 @@ function EditHabit(props) {
   );
 }
 EditHabit.prototype = {
-  // handleButton: PropTypes.func.isRequired,
+  
   goal:PropTypes.number,
 };
 EditHabit.defaultProps = {
-  // handleButton: () => {},
+  
   goal:1
 };
 export default EditHabit;

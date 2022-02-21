@@ -20,7 +20,6 @@ function HabitCategory({
   visible,
   updateCat,
 }) {
-  const [array, setArray] = useState([]);
   const dispatch = useDispatch();
   const uid = useSelector((state) => state.users.ID);
   const fetch = () => {
@@ -29,20 +28,6 @@ function HabitCategory({
     dispatch(fetchSuccess({ uid: uid }));
     dispatch(fetchFail({ uid: uid }));
   };
-  // const habits = useSelector((state) => state.habit.habit);
-  // const skips = useSelector((state) => state.habit.skips);
-  // const successes = useSelector((state) => state.habit.success);
-  // const fails = useSelector((state) => state.habit.fails);
-  // if (title === "Fail") {
-  //   arr = fails;
-  // } else if (title === "Success") {
-  //   arr = successes;
-  // } else if (title === "Skip") {
-  //   arr = skips;
-  // } else {
-  //   arr = habits;
-  // }
-
   const search = (searchWord) => {
     searchWord = searchWord.toLowerCase();
     arr = arr.filter((e) => {
@@ -83,6 +68,16 @@ function HabitCategory({
 }
 HabitCategory.propTypes = {
   title: PropTypes.string,
+  arr: PropTypes.arrayOf(
+    PropTypes.shape({
+      Name: PropTypes.string,
+      CompleteLength: PropTypes.number,
+      FailLength: PropTypes.number,
+      SkipLength: PropTypes.number,
+      streak: PropTypes.number,
+      total: PropTypes.number,
+    })
+  ),
   visible: PropTypes.bool,
   handleProgress: PropTypes.func.isRequired,
   changeCompleted: PropTypes.func.isRequired,
@@ -92,6 +87,7 @@ HabitCategory.propTypes = {
 };
 HabitCategory.defaultProps = {
   title: "",
+  arr:[],
   visible: false,
   input: "",
   updateCat: () => {},

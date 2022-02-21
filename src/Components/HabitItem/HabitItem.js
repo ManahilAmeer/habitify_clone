@@ -73,11 +73,7 @@ function HabitItem({
                 <>
                   <div
                     className="habit-done"
-                    onClick={() =>
-                      changeCompleted(
-                        habit.id,
-                      )
-                    }
+                    onClick={() => changeCompleted(habit.id)}
                   >
                     <div className="done-icon">
                       <div className="icon-img">
@@ -100,11 +96,7 @@ function HabitItem({
                 <>
                   <div
                     className="habit-done"
-                    onClick={() =>
-                      changeCompleted(
-                        habit.id,
-                      )
-                    }
+                    onClick={() => changeCompleted(habit.id)}
                   >
                     <div className="done-icon">
                       <div className="icon-img">
@@ -192,7 +184,16 @@ function HabitItem({
   );
 }
 HabitItem.propTypes = {
-  arr: PropTypes.array.isRequired,
+  arr: PropTypes.arrayOf(
+    PropTypes.shape({
+      Name: PropTypes.string,
+      CompleteLength: PropTypes.number,
+      FailLength: PropTypes.number,
+      SkipLength: PropTypes.number,
+      streak: PropTypes.number,
+      total: PropTypes.number,
+    })
+  ),
   updateCat: PropTypes.func,
   visible: PropTypes.bool,
   changeCompleted: PropTypes.func.isRequired,
@@ -202,7 +203,7 @@ HabitItem.propTypes = {
 
 HabitItem.defaultProps = {
   visible: true,
-  updateCat:()=>{},
-  
+  arr: [],
+  updateCat: () => {},
 };
 export default HabitItem;
