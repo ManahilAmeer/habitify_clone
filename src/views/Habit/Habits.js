@@ -10,7 +10,6 @@ import {
   fetchSuccess,
   updateCateg,
   updateComp,
-  updateHabit,
   updateStreak,
 } from "store/habitsReducer";
 import "views/Habit/habits.css";

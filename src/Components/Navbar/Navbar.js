@@ -4,7 +4,6 @@ import {
   NavItem,
 } from "react-bootstrap";
 import PropTypes from "prop-types";
-
 import '@components/Navbar/navbar.css'
 function MainNavbar({ handleClick }) {
   return (

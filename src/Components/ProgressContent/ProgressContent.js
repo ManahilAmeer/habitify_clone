@@ -1,6 +1,5 @@
 import React from "react";
 import current_streak from "assets/current-streak.svg";
-import tick from "assets/tick.svg";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -14,8 +13,7 @@ function ProgressContent(props) {
           <div className="streak-data">
             <div className="streak-logo" role="button">
               <img
-                width="23"
-                height="31"
+                className="streak-img"
                 src={current_streak}
                 alt="My Happy SVG"
               />

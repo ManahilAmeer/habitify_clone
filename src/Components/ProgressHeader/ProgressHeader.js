@@ -14,7 +14,7 @@ function ProgressHeader({ habitName }) {
       <div className="progress_header">
         <div className="title_div">
           <div className="progress_button" role="button">
-            <img width="16" height="16" src={FullScreen} alt="My Happy SVG" />
+            <img src={FullScreen} alt="Full Screen" />
           </div>
           <div className="title">{habitName}</div>
         </div>
@@ -30,17 +30,17 @@ function ProgressHeader({ habitName }) {
             </div>
             {month}, {today.getFullYear()}
             <span className="arrow">
-              <img width="16" height="16" src={arrowIcon} alt="Arrow" />
+              <img  src={arrowIcon} alt="Arrow" />
             </span>
           </button>
           <div className="progress_button" role="button">
-            <img width="16" height="16" src={edit} alt="My Happy SVG" />
+            <img  src={edit} alt="My Happy SVG" />
           </div>
           <div className="progress_button" role="button">
-            <img width="16" height="16" src={Share} alt="My Happy SVG" />
+            <img  src={Share} alt="My Happy SVG" />
           </div>
           <div className="progress_button" role="button">
-            <img width="16" height="16" src={OpenNote} alt="My Happy SVG" />
+            <img  src={OpenNote} alt="My Happy SVG" />
           </div>
         </div>
       </div>

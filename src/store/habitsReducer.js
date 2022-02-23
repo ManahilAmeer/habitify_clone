@@ -112,10 +112,12 @@ const habitReducer = createSlice({
     },
     updateStreak: (state, action) => {
       const data = habitDocRef(action.payload.id);
+      console.log("YHJDS")
       const increment = firebase.firestore.FieldValue.increment(1);
       data.get().then((snapshot) => {
         const compDate = snapshot.data().completedDate;
         if (snapshot.data().completed === snapshot.data().goal) {
+          console.log(compDate)
           if (compDate === yesterday) {
             data.update({
               completedDate: today,
@@ -134,6 +136,8 @@ const habitReducer = createSlice({
             });
           } else {
             data.update({
+              CompleteLength: increment,
+              category: "Complete",
               completedDate: today,
               streak: 0,
             });

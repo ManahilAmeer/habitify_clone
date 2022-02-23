@@ -39,8 +39,8 @@ function SignIn() {
             <div className="Apple">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14px"
-                height="18px"
+                width="1.024vw"
+                height="1.317vw"
                 viewBox="0 0 16 20"
               >
                 <path
