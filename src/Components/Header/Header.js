@@ -26,8 +26,7 @@ function Header({setInput}) {
           <div className="Buttondiv" role="button">
             <svg
               onClick={() => handleSearch()}
-              width="16"
-              height="16"
+              className="seacrh-button"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 18.193 18.193"
             >
