@@ -6,11 +6,8 @@ import {
   CategoryDropdownData,
 } from "config/HabitDropdownData";
 import QMark from "assets/QMark.svg";
-import tick from "assets/tick.svg";
-import addIcon from "assets/add.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditHabit from "views/EditHabitForm/EditHabit";
-import NewHabit from "views/NewHabitForm/NewHabit";
 function HabitItem({
   arr,
   visible,
