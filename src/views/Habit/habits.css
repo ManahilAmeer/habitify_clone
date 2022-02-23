@@ -111,15 +111,15 @@
 .icon-img {
   width: 1.171vw;
   margin: auto;
-  height: 14px;
+  height: 1.024vw;
   margin-right: 0vw;
-  padding-bottom: 29px;
-  width: 15px;
+  padding-bottom: 2.122vw;
+  width: 1.098vw;
   fill: var(--text-color);
 }
 .icon-img img {
-  width: 15px;
-  height: 15px;
+  width: 1.098vw;
+  height: 1.098vw;
 }
 .done-text {
   font-family: Inter;
@@ -147,6 +147,9 @@
   border-color: rgb(74, 74, 74) !important;
   padding: 0 !important;
 }
+.more-icon{
+  width: 1.756vw !important;
+}
 .dropdown-toggle::after {
   display: none !important;
 }
@@ -167,11 +170,11 @@
   /* box-shadow: 0 0 0 0.25rem rgb(130 138 145 / 50%); */
 }
 Dropdown:first-child {
-  padding-top: 2px;
+  padding-top: 0.146vw;
 }
 .dropdown-menu {
   background-color: var(--popUp-color) !important;
-  border-radius: 5px !important;
+  border-radius: 0.366vw !important;
   border-color: var(--border) !important;
   padding: 0vw !important;
 }
