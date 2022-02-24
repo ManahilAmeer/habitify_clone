@@ -3,7 +3,6 @@ import tick from "@assets/tick.svg";
 import progress from "@assets/progress.svg";
 import edit from "@assets/edit.svg";
 import viewProgress from "@assets/view_progress.svg";
-import fail from "@assets/fail.svg";
 import skip from "@assets/skip.svg";
 import UndoIcon from "@mui/icons-material/Undo";
 export const HabitDropdownData = [

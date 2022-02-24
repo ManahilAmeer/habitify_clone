@@ -5,51 +5,45 @@ import {
   HabitDropdownData,
   CategoryDropdownData,
 } from "config/HabitDropdownData";
-import QMark from "@assets/QMark.svg";
-import tick from "@assets/tick.svg";
-import addIcon from "@assets/add.svg";
+import QMark from "assets/QMark.svg";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import EditHabit from "@views/EditHabitForm/EditHabit";
-import NewHabit from "views/NewHabitForm/NewHabit";
-function HabitItem(props) {
-  const {
-    arr,
-    visible,
-    changeCompleted,
-    handleMore,
-    updateCat,
-    handleProgress,
-  } = props;
+import EditHabit from "views/EditHabitForm/EditHabit";
+function HabitItem({
+  arr,
+  visible,
+  changeCompleted,
+  handleMore,
+  updateCat,
+  handleProgress,
+}) {
   const [flag, setFlag] = useState(false);
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
+  const [category, setCategory] = useState("");
   const [goal, setGoal] = useState(1);
-  const handleButton = (name, id, goal) => {
+  const [index, setIndex] = useState(-1);
+  const handleButton = (index, category, name, id, goal) => {
+    setCategory(category);
+    setIndex(index);
     setName(name);
     setFlag(!flag);
     setID(id);
     setGoal(goal);
   };
-  var dropdownData;
+  let dropdownData;
   visible
     ? (dropdownData = HabitDropdownData)
     : (dropdownData = CategoryDropdownData);
   return (
     <>
-      {arr.map((habit, key) => {
+      {arr.map((habit, index) => {
         return (
           <div key={habit.id} className="habit">
             <div className="habit-icon">
               <div className="habit-progress">
                 <svg viewBox="0 0 100 100" className="circle">
                   <circle cx="50" cy="50" r="42" className="track"></circle>
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="42"
-                    className="indicator"
-                    // style={props.style}
-                  ></circle>
+                  <circle cx="50" cy="50" r="42" className="indicator"></circle>
                 </svg>
                 <div className="habit-symbol">
                   <img src={QMark} alt="Question Mark"></img>
@@ -58,7 +52,7 @@ function HabitItem(props) {
             </div>
             <div className="habit-info">
               <div
-                onClick={() =>
+                onClick={() => {
                   handleProgress(
                     habit.Name,
                     habit.CompleteLength,
@@ -66,8 +60,8 @@ function HabitItem(props) {
                     habit.SkipLength,
                     habit.streak,
                     habit.total
-                  )
-                }
+                  );
+                }}
               >
                 <p className="habit-name">{habit.Name}</p>
                 <div className="habit-times">
@@ -82,10 +76,11 @@ function HabitItem(props) {
                     className="habit-done"
                     onClick={() =>
                       changeCompleted(
-                        habit.goal,
-                        habit.completed,
                         habit.id,
-                        habit.goal
+                        habit.completedDate,
+                        habit.completed,
+                        habit.goal,
+                        index
                       )
                     }
                   >
@@ -112,10 +107,11 @@ function HabitItem(props) {
                     className="habit-done"
                     onClick={() =>
                       changeCompleted(
-                        habit.goal,
-                        habit.completed,
                         habit.id,
-                        habit.goal
+                        habit.completedDate,
+                        habit.completed,
+                        habit.goal,
+                        index
                       )
                     }
                   >
@@ -138,7 +134,7 @@ function HabitItem(props) {
               )}
               <Dropdown
                 onClick={() => {
-                  handleMore(key);
+                  handleMore(index);
                 }}
               >
                 <Dropdown.Toggle className="more" variant="secondary">
@@ -156,6 +152,8 @@ function HabitItem(props) {
                               onClick={() => {
                                 if (val.title === "Edit") {
                                   handleButton(
+                                    index,
+                                    habit.category,
                                     habit.Name,
                                     habit.id,
                                     habit.goal
@@ -170,7 +168,7 @@ function HabitItem(props) {
                                     habit.total
                                   );
                                 } else {
-                                  updateCat(habit.id, val.title);
+                                  updateCat(habit.id, val.title, index);
                                 }
                               }}
                             >
@@ -194,10 +192,14 @@ function HabitItem(props) {
       })}
       {flag && (
         <EditHabit
+          setFlag={setFlag}
+          flag={flag}
+          index={index}
+          category={category}
           handleButton={handleButton}
           name={name}
           ID={ID}
-          usergoal={goal}
+          goal={goal}
         />
       )}
       ;
@@ -205,24 +207,26 @@ function HabitItem(props) {
   );
 }
 HabitItem.propTypes = {
-  habits: PropTypes.array.isRequired,
-  updateCat: PropTypes.func.isRequired,
-  visible: PropTypes.bool.isRequired,
+  arr: PropTypes.arrayOf(
+    PropTypes.shape({
+      Name: PropTypes.string,
+      CompleteLength: PropTypes.number,
+      FailLength: PropTypes.number,
+      SkipLength: PropTypes.number,
+      streak: PropTypes.number,
+      total: PropTypes.number,
+    })
+  ),
+  updateCat: PropTypes.func,
+  visible: PropTypes.bool,
   changeCompleted: PropTypes.func.isRequired,
   handleMore: PropTypes.func.isRequired,
   handleProgress: PropTypes.func.isRequired,
 };
 
 HabitItem.defaultProps = {
-  habits: [],
-  // id: "",
-  // style: {
-  //   strokeDasharray: "0 264",
-  // },
-  updateCat: () => {},
   visible: true,
-  changeCompleted: () => {},
-  handleMore: () => {},
-  handleProgress: () => {},
+  arr: [],
+  updateCat: () => {},
 };
 export default HabitItem;

@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import "@views/Landing/landing.css";
 import MainNavbar from "@components/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
-
+import path from "config/routes";
 
 function Landing() {
   useEffect(()=>{
@@ -10,7 +10,7 @@ function Landing() {
   })
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/sign-in");
+    navigate(path.sign_in);
   };
   return (
     <>

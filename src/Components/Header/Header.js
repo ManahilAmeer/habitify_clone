@@ -1,24 +1,11 @@
 import React, { useState } from "react";
 import "Components/Header/header.css";
-import sortIcon from "assets/sort.svg";
-import arrowIcon from "assets/arrow.svg";
-import calenderIcon from "assets/calenderIcon.svg";
-import searchIcon from "assets/search.svg";
-import addIcon from "assets/add.svg";
-import { useSelector } from "react-redux";
 import HeaderDropdown from "Components/HeaderDropdown/HeaderDropdown";
-function Header() {
-  const habits = useSelector((state) => state.habit.habit);
-  const skips = useSelector((state) => state.habit.skips);
-  const successes = useSelector((state) => state.habit.success);
-  const fails = useSelector((state) => state.habit.fails);
-  const search = (title) => {
-    console.log(title);
-  };
+function Header({setInput}) {
   const [sortText, setsortText] = useState("Alphabetical");
   const [visible, setVisible] = useState(false);
-  const [Sortvisibility, setSortvisiblity] = useState(false);
-  const [Habitvisibility, setHabitvisibility] = useState(false);
+  const [sortvisibility, setSortvisiblity] = useState(false);
+  const [habitvisibility, setHabitvisibility] = useState(false);
   const handleSortButton = (option) => {
     setsortText(option);
   };
@@ -26,10 +13,10 @@ function Header() {
     setVisible(!visible);
   };
   const handleSortDropdown = () => {
-    setSortvisiblity(!Sortvisibility);
+    setSortvisiblity(!sortvisibility);
   };
   const handleHabitDropdown = () => {
-    setHabitvisibility(!Habitvisibility);
+    setHabitvisibility(!habitvisibility);
   };
   return (
     <div className="header">
@@ -37,16 +24,9 @@ function Header() {
         <div className="title">All Habits</div>
         <div className="options">
           <div className="Buttondiv" role="button">
-            {/* <img
-              onClick={() => handleSearch()}
-              
-              src={searchIcon}
-              alt="My Happy SVG"
-            /> */}
             <svg
               onClick={() => handleSearch()}
-              width="16"
-              height="16"
+              className="seacrh-button"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 18.193 18.193"
             >
@@ -61,7 +41,8 @@ function Header() {
                 placeholder="Search"
                 className="search_input visible"
                 onChange={(e) => {
-                  search(e.target.value);
+                  setInput(e.target.value);
+                  
                 }}
               ></input>
             )}
@@ -136,9 +117,9 @@ function Header() {
       </div>
       <HeaderDropdown
         handleHabitDropdown={handleHabitDropdown}
-        Sortvisibility={Sortvisibility}
+        sortvisibility={sortvisibility}
         handleSortButton={handleSortButton}
-        Habitvisibility={Habitvisibility}
+        habitvisibility={habitvisibility}
       />
     </div>
   );

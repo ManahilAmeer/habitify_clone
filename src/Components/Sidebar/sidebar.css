@@ -21,11 +21,10 @@
 }
 .item:hover {
   cursor: pointer;
-  background-color: #323232;
-  color: white;
+  background-color: var(--user-box-color);
+  color: var(--icon-color)
 }
 .SideList #active {
-  background-color: #3662cc;
   color: white;
 }
 .SideListItem .icon:hover {
@@ -56,7 +55,7 @@
   padding: 0.512vw;
   grid-area: user-menu / user-menu / user-menu / user-menu;
   border-radius: 0.366vw;
-  background: var(--popUp-color);
+  background: var(--user-box-color);
 }
 .user:hover {
   cursor: pointer;
@@ -145,7 +144,6 @@ a:link {
   width: auto;
   transform-origin: top center;
   opacity: 1;
-  /* visibility: hidden; */
   transform: none;
   position: relative;
   display: flex;
@@ -158,7 +156,6 @@ a:link {
   width: auto;
   transform-origin: top center;
   opacity: 1;
-  /* visibility: visible; */
   transform: none;
   position: relative;
   display: flex;

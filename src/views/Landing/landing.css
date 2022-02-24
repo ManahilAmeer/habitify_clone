@@ -63,7 +63,7 @@ img {
 .subtitle {
   font-size: 1.464vw;
   line-height: 2.489vw;
-  max-width: 658px;
+  max-width: 48.169vw;
   margin-bottom: 1.171vw;
   color: #707070;
   font-weight: 400;
@@ -73,7 +73,7 @@ img {
   width: 46.12vw;
 }
 .button-link {
-  padding: 14.5px 2.635vw 1.317vw 2.635vw;
+  padding: 1.061vw 2.635vw 1.317vw 2.635vw;
   border-radius: 0.366vw;
   background-color: #2a67f4;
   color: #fff;
