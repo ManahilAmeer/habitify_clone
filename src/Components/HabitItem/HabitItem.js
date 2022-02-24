@@ -19,8 +19,12 @@ function HabitItem({
   const [flag, setFlag] = useState(false);
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
+  const [category, setCategory] = useState("");
   const [goal, setGoal] = useState(1);
-  const handleButton = (name, id, goal) => {
+  const [index, setIndex] = useState(-1);
+  const handleButton = (index, category, name, id, goal) => {
+    setCategory(category);
+    setIndex(index);
     setName(name);
     setFlag(!flag);
     setID(id);
@@ -32,7 +36,7 @@ function HabitItem({
     : (dropdownData = CategoryDropdownData);
   return (
     <>
-      {arr.map((habit, key) => {
+      {arr.map((habit, index) => {
         return (
           <div key={habit.id} className="habit">
             <div className="habit-icon">
@@ -48,7 +52,7 @@ function HabitItem({
             </div>
             <div className="habit-info">
               <div
-                onClick={() =>
+                onClick={() => {
                   handleProgress(
                     habit.Name,
                     habit.CompleteLength,
@@ -56,8 +60,8 @@ function HabitItem({
                     habit.SkipLength,
                     habit.streak,
                     habit.total
-                  )
-                }
+                  );
+                }}
               >
                 <p className="habit-name">{habit.Name}</p>
                 <div className="habit-times">
@@ -70,7 +74,15 @@ function HabitItem({
                 <>
                   <div
                     className="habit-done"
-                    onClick={() => changeCompleted(habit.id)}
+                    onClick={() =>
+                      changeCompleted(
+                        habit.id,
+                        habit.completedDate,
+                        habit.completed,
+                        habit.goal,
+                        index
+                      )
+                    }
                   >
                     <div className="done-icon">
                       <div className="icon-img">
@@ -93,7 +105,15 @@ function HabitItem({
                 <>
                   <div
                     className="habit-done"
-                    onClick={() => changeCompleted(habit.id)}
+                    onClick={() =>
+                      changeCompleted(
+                        habit.id,
+                        habit.completedDate,
+                        habit.completed,
+                        habit.goal,
+                        index
+                      )
+                    }
                   >
                     <div className="done-icon">
                       <div className="icon-img">
@@ -114,7 +134,7 @@ function HabitItem({
               )}
               <Dropdown
                 onClick={() => {
-                  handleMore(key);
+                  handleMore(index);
                 }}
               >
                 <Dropdown.Toggle className="more" variant="secondary">
@@ -132,6 +152,8 @@ function HabitItem({
                               onClick={() => {
                                 if (val.title === "Edit") {
                                   handleButton(
+                                    index,
+                                    habit.category,
                                     habit.Name,
                                     habit.id,
                                     habit.goal
@@ -146,7 +168,7 @@ function HabitItem({
                                     habit.total
                                   );
                                 } else {
-                                  updateCat(habit.id, val.title);
+                                  updateCat(habit.id, val.title, index);
                                 }
                               }}
                             >
@@ -170,6 +192,10 @@ function HabitItem({
       })}
       {flag && (
         <EditHabit
+          setFlag={setFlag}
+          flag={flag}
+          index={index}
+          category={category}
           handleButton={handleButton}
           name={name}
           ID={ID}
