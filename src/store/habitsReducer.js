@@ -4,6 +4,7 @@ import { getDocs } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 export const initialState = {
   id: "",
+  allHabits:[],
   habit: [],
   skips: [],
   fails: [],
@@ -17,7 +18,6 @@ const today =
 export const fetchHabits = createAsyncThunk("getNotes", async (uid) => {
   try {
     let allHabits = habitsRef(uid.uid);
-    allHabits = allHabits.where("category", "==", "");
     const response = await getDocs(allHabits);
     const habits = response.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
@@ -27,49 +27,10 @@ export const fetchHabits = createAsyncThunk("getNotes", async (uid) => {
     console.log(err);
   }
 });
-export const fetchSkips = createAsyncThunk("getSkips", async (uid) => {
+export const changeHabits = createAsyncThunk("changeHabits", async (data) => {
   try {
-    let allHabits = habitsRef(uid.uid);
-    allHabits = allHabits.where("category", "==", "Skip");
-    const response = await getDocs(allHabits);
-    const habits = response.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
-    });
-    return habits;
-  } catch (err) {
-    console.log(err);
-  }
-});
-export const fetchSuccess = createAsyncThunk("getSuccess", async (uid) => {
-  try {
-    let allHabits = habitsRef(uid.uid);
-    allHabits = allHabits.where("category", "==", "Complete");
-    const response = await getDocs(allHabits);
-    const success = response.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
-    });
-    return success;
-  } catch (err) {
-    console.log(err);
-  }
-});
-export const fetchFail = createAsyncThunk("getFail", async (uid) => {
-  try {
-    let allHabits = habitsRef(uid.uid);
-    allHabits = allHabits.where("category", "==", "Fail");
-    const response = await getDocs(allHabits);
-    const habits = response.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
-    });
-    return habits;
-  } catch (err) {
-    console.log(err);
-  }
-});
-export const changeHabits = createAsyncThunk("changeHabits", async (uid) => {
-  try {
-    let allHabits = habitsRef(uid.uid);
-    allHabits = allHabits.where("date", "==", yesterday);
+    let allHabits = habitsRef(data.uid);
+    allHabits = allHabits.where("date", "!=", today);
     const response = await getDocs(allHabits);
     const habits = response.docs.map((docs) => {
       const doc = habitDocRef(docs.data().id);
@@ -84,11 +45,47 @@ export const changeHabits = createAsyncThunk("changeHabits", async (uid) => {
     console.log(err);
   }
 });
+export const updateStrk = createAsyncThunk("updateStrk", async (param) => {
+});
 const habitReducer = createSlice({
   name: "habit",
   initialState,
   reducers: {
-    updateCateg: (state, action) => {
+    updateStreak:(state,action)=>{
+      const data = habitDocRef(action.payload.id);
+      const increment = firebase.firestore.FieldValue.increment(1);
+      const compDate = action.payload.completedDate;
+      if (compDate === yesterday) {
+        data.update({
+          CompleteLength: increment,
+          category: "Complete",
+          completedDate: today,
+          streak: increment,
+        });
+        state.habit[action.payload.index].streak++;
+      } else if (compDate === undefined || compDate === today) {
+        data.update({
+          CompleteLength: increment,
+          category: "Complete",
+          completedDate: today,
+          streak: 1,
+        });
+        state.habit[action.payload.index].streak=1;
+      } else {
+        data.update({
+          CompleteLength: increment,
+          category: "Complete",
+          completedDate: today,
+          streak: 0,
+        });
+        state.habit[action.payload.index].streak=0;
+      }state.habit[action.payload.index].completedDate = today;
+      state.habit[action.payload.index].CompleteLength++;
+      state.habit[action.payload.index].category = "Complete";
+      state.success.push(state.habit[action.payload.index]);
+      state.habit.splice(action.payload.index, 1);
+    },
+    updateCategory:(state,action)=>{
       try {
         const increment = firebase.firestore.FieldValue.increment(1);
         const data = habitDocRef(action.payload.id);
@@ -96,56 +93,27 @@ const habitReducer = createSlice({
           data.update({
             category: action.payload.category,
           });
+          state.habit[action.payload.index].category = action.payload.category;
         }
         if (action.payload.category === "Skip") {
           data.update({
             SkipLength: increment,
           });
+          state.habit[action.payload.index].SkipLength++
+          state.skips.push(state.habit[action.payload.index]);
         } else if (action.payload.category === "Fail") {
           data.update({
             FailLength: increment,
           });
+          state.habit[action.payload.index].FailLength++;
+          state.fails.push(state.habit[action.payload.index]);
         }
+        state.habit.splice(action.payload.index,1);
       } catch (err) {
         console.log(err);
       }
     },
-    updateStreak: (state, action) => {
-      const data = habitDocRef(action.payload.id);
-      console.log("YHJDS")
-      const increment = firebase.firestore.FieldValue.increment(1);
-      data.get().then((snapshot) => {
-        const compDate = snapshot.data().completedDate;
-        if (snapshot.data().completed === snapshot.data().goal) {
-          console.log(compDate)
-          if (compDate === yesterday) {
-            data.update({
-              completedDate: today,
-              streak: increment,
-              CompleteLength: increment,
-              category: "Complete",
-            });
-          } else if (
-            (compDate == undefined || compDate === today) 
-          ) {
-            data.update({
-              CompleteLength: increment,
-              category: "Complete",
-              completedDate: today,
-              streak: 1,
-            });
-          } else {
-            data.update({
-              CompleteLength: increment,
-              category: "Complete",
-              completedDate: today,
-              streak: 0,
-            });
-          }
-        }
-      });
-    },
-    updateComp: (state, action) => {
+    updateCompleted: (state, action) => {
       try {
         const data = habitDocRef(action.payload.id);
         const increment = firebase.firestore.FieldValue.increment(1);
@@ -153,29 +121,60 @@ const habitReducer = createSlice({
           total: increment,
           completed: increment,
         });
+        state.habit[action.payload.index].completed++;
       } catch (err) {
         console.log(err);
       }
     },
     updateHabit: (state, action) => {
       try {
+        let obj;
+        if(action.payload.category==="Complete"){
+          obj = state.success.find((o) => o.id === action.payload.id);
+        }
+        if (action.payload.category === "Skip") {
+          obj = state.skips.find((o) => o.id === action.payload.id);
+        }
+        if (action.payload.category === "Fail") {
+          obj = state.fails.find((o) => o.id === action.payload.id);
+        }
+        if (action.payload.category === "") {
+          obj = state.habit.find((o) => o.id === action.payload.id);
+        }
         const data = action.payload;
         const ref = habitDocRef(action.payload.id);
-        ref.update({
-          Name: data.name,
-          goal: data.goal,
-        }).then(console.log("updated"));
+        ref
+          .update({
+            Name: data.name,
+            goal: data.goal,
+          })
+          .then((obj.Name = data.name), (obj.goal = data.goal));
       } catch (err) {
         console.log(err);
       }
     },
-    deleteHabit: (state, action) => {
+    deleteHabit: (state, action) => 
+    {
+      let obj;
+      if (action.payload.category === "Complete") {
+        obj = state.success
+      }
+      if (action.payload.category === "Skip") {
+        obj = state.skips;
+      }
+      if (action.payload.category === "Fail") {
+        obj = state.fails;
+      }
+      if (action.payload.category === "") {
+        obj = state.habit;
+      }
       habitDocRef(action.payload.id)
         .delete()
         .then(() => {})
         .catch((error) => {
           console.log("Error removing document:", error);
         });
+        obj.splice(action.payload.index, 1);
     },
     addHabit: (state, action) => {
       const data = action.payload;
@@ -189,10 +188,25 @@ const habitReducer = createSlice({
             category: data.category,
             completed: data.completed,
             date: data.date,
+            CompleteLength:0,
+            FailLength:0,
+            SkipLength:0,
           })
           .then(() => {});
         doc.update({
           id: doc.id,
+        });
+        state.habit.push({
+          Name: data.name,
+          goal: data.goal,
+          uid: data.uid,
+          category: data.category,
+          completed: data.completed,
+          date: data.date,
+          id: doc.id,
+          CompleteLength: 0,
+          FailLength: 0,
+          SkipLength: 0,
         });
       } catch (err) {
         console.log(err);
@@ -202,26 +216,22 @@ const habitReducer = createSlice({
   extraReducers: {
     [fetchHabits.pending]: (state) => {},
     [fetchHabits.fulfilled]: (state, action) => {
-      state.habit = action.payload;
-    },
-    [fetchHabits.rejected]: (state) => {},
-    [fetchSkips.fulfilled]: (state, action) => {
-      state.skips = action.payload;
-    },
-    [fetchSuccess.fulfilled]: (state, action) => {
-      state.success = action.payload;
-    },
-    [fetchFail.fulfilled]: (state, action) => {
-      state.fails = action.payload;
+      state.allHabits = action.payload;
+      state.habit = action.payload.filter(function (value, index, arr) {
+        return value.category === "";
+      });
+      state.skips = action.payload.filter(function (value, index, arr) {
+        return value.category === "Skip";
+      });
+      state.fails = action.payload.filter(function (value, index, arr) {
+        return value.category === "Fail";
+      });
+      state.success = action.payload.filter(function (value, index, arr) {
+        return value.category === "Complete";
+      });
     },
   },
 });
-export const {
-  addHabit,
-  updateCateg,
-  updateComp,
-  updateHabit,
-  deleteHabit,
-  updateStreak,
-} = habitReducer.actions;
+export const { addHabit, updateCompleted, updateCategory,updateHabit, deleteHabit,updateStreak } =
+  habitReducer.actions;
 export default habitReducer.reducer;
