@@ -126,28 +126,34 @@ function Sidebar() {
           <li className="MenuType">THEME</li>
           {Preferences.map((val) => {
             return (
-                <a key={val.id} className="sidebar-link">
-                  <div className="item" onClick={() => handleThemeDropdown()}>
-                    <div className="item-icon">{val.icon}</div>
-                    <p className="item-title">{val.title}</p>
-                  </div>
-                  <div className={theme}>
-                    <div className={signoutClassName}>
-                      <div
-                        className="label"
-                        onClick={() => {
-                          setLightTheme((s) => !s);
-                          changeTheme();
-                        }}
-                      >
-                        <p className="label-text">Light</p>
-                      </div>
-                      <div className="label bottom">
-                        <p className="label-text">Dark</p>
-                      </div>
+              <a key={val.id} className="sidebar-link">
+                <div className="item" onClick={() => handleThemeDropdown()}>
+                  <div className="item-icon">{val.icon}</div>
+                  <p className="item-title">{val.title}</p>
+                </div>
+                <div className={theme}>
+                  <div className={signoutClassName}>
+                    <div
+                      className="label"
+                      onClick={() => {
+                        setLightTheme((s) => !s);
+                        changeTheme();
+                      }}
+                    >
+                      <p className="label-text">Light</p>
+                    </div>
+                    <div
+                      className="label bottom"
+                      onClick={() => {
+                        setLightTheme((s) => !s);
+                        changeTheme();
+                      }}
+                    >
+                      <p className="label-text">Dark</p>
                     </div>
                   </div>
-                </a>
+                </div>
+              </a>
             );
           })}
         </div>
