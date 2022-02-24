@@ -1,15 +1,8 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
 import arrowIcon from "@assets/arrowGrey.svg";
 import "@components/HabitCategory/habitCategory.css";
 import HabitItem from "Components/HabitItem/HabitItem";
-import {
-  fetchFail,
-  fetchHabits,
-  fetchSkips,
-  fetchSuccess,
-} from "store/habitsReducer";
 function HabitCategory({
   input,
   arr,
@@ -20,14 +13,6 @@ function HabitCategory({
   visible,
   updateCat,
 }) {
-  const dispatch = useDispatch();
-  const uid = useSelector((state) => state.users.ID);
-  const fetch = () => {
-    dispatch(fetchHabits({ uid: uid }));
-    dispatch(fetchSkips({ uid: uid }));
-    dispatch(fetchSuccess({ uid: uid }));
-    dispatch(fetchFail({ uid: uid }));
-  };
   const search = (searchWord) => {
     searchWord = searchWord.toLowerCase();
     arr = arr.filter((e) => {
