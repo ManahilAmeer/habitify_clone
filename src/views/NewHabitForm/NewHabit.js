@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import Goal from "@components/Goal/Goal";
-import { updateHabit, deleteHabit } from "@store/habitsReducer";
 import Suggestion from "@components/Suggestion";
 import { addHabit } from "store/habitsReducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +10,6 @@ import QMark from "@assets/QMark.svg";
 import "views/NewHabitForm/newHabit.css";
 function NewHabit({ handleHabitButton }) {
   const dispatch = useDispatch();
-  useEffect(() => {}, [updateHabit, deleteHabit]);
   const [goal, setGoal] = useState(1);
   const validationSchema = Yup.object({
     name: Yup.string().required("Please select a habit"),

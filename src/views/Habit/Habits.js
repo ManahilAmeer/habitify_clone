@@ -4,20 +4,13 @@ import PropTypes from "prop-types";
 import Header from "Components/Header/Header";
 import HabitCategory from "Components/HabitCategory/HabitCategory";
 import {
-  fetchFail,
   fetchHabits,
-  fetchSkips,
-  fetchSuccess,
-  updateCateg,
-  updateComp,
+  updateCategory,
+  updateCompleted,
   updateStreak,
 } from "store/habitsReducer";
 import "views/Habit/habits.css";
 function Habits({ handleProgress }) {
-  const [habit,setHabit]=useState([])
-  const [skip, setSkip] = useState([]);
-  const [success, setSuccess] = useState([]);
-  const [fail, setFail] = useState([]);
   const habits = useSelector((state) => state.habit.habit);
   const skips = useSelector((state) => state.habit.skips);
   const successes = useSelector((state) => state.habit.success);
@@ -29,37 +22,39 @@ function Habits({ handleProgress }) {
   const handleMore = () => {
     setShowMore(!showMore);
   };
-  const fetch = () => {
-    dispatch(fetchHabits({ uid: uid }));
-    dispatch(fetchSkips({ uid: uid }));
-    dispatch(fetchSuccess({ uid: uid }));
-    dispatch(fetchFail({ uid: uid }));
-    setHabit(habits);
-    setSkip(skips)
-    setFail(fails)
-    setSuccess(successes)
+  const changeCompleted = (id, completedDate, completed, goal, index) => {
+    dispatch(updateCompleted({ id: id, index }));
+    if (completed + 1 === goal) {
+      dispatch(
+        updateStreak({
+          id: id,
+          completedDate: completedDate,
+          completed: completed + 1,
+          goal: goal,
+          index
+        })
+      );
+    }
   };
-  const changeCompleted = (id) => {
-    dispatch(updateComp({ id: id }));
-    dispatch(updateStreak({ id: id }));
-  };
-  const updateCat = (id, category) => {
+  const updateCat = (id, category,index) => {
     if (category === "Skip" || category === "Fail") {
-      dispatch(updateCateg({ id, category }));
+      dispatch(updateCategory({ id, category ,index}));
     }
   };
   useEffect(() => {
+    const fetch = () => {
+      dispatch(fetchHabits({ uid: uid }));
+    };
     fetch();
-  }, [fetch, habit, successes, fails, skips]);
+  }, [dispatch, uid]);
   return (
     <>
       <Header setInput={setInput}></Header>
-
       <div className="main">
         <div className="habits">
           <HabitCategory
             input={input}
-            arr={habit}
+            arr={habits}
             handleProgress={handleProgress}
             changeCompleted={changeCompleted}
             handleMore={handleMore}
@@ -68,7 +63,7 @@ function Habits({ handleProgress }) {
           />
           <HabitCategory
             input={input}
-            arr={success}
+            arr={successes}
             handleProgress={handleProgress}
             changeCompleted={changeCompleted}
             handleMore={handleMore}
@@ -76,7 +71,7 @@ function Habits({ handleProgress }) {
           />
           <HabitCategory
             input={input}
-            arr={skip}
+            arr={skips}
             handleProgress={handleProgress}
             changeCompleted={changeCompleted}
             handleMore={handleMore}
@@ -84,7 +79,7 @@ function Habits({ handleProgress }) {
           />
           <HabitCategory
             input={input}
-            arr={fail}
+            arr={fails}
             handleProgress={handleProgress}
             changeCompleted={changeCompleted}
             handleMore={handleMore}

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, {  } from "react";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import PropTypes from "prop-types";
 import Goal from "Components/Goal/Goal";
 import { updateHabit, deleteHabit } from "store/habitsReducer";
@@ -8,14 +7,18 @@ import { useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
 import "@views/EditHabitForm/EditHabit.css";
 function EditHabit(props) {
-  const name = props.name;
-  const usergoal = props.goal;
-  
+  const { name, goal, ID, index, category, handleButton,flag,setFlag } = props;
+  const usergoal = goal;
   const dispatch = useDispatch();
-  useEffect(() => {}, [updateHabit, deleteHabit]);
-  
   const handleDeleteButton = () => {
-    dispatch(deleteHabit({ id: props.ID }));
+    dispatch(
+      deleteHabit({
+        id: ID,
+        index: index,
+        category: category,
+      })
+    );
+    setFlag(!flag);
   };
   return (
     <>
@@ -33,9 +36,12 @@ function EditHabit(props) {
             const data = {
               name: values.name,
               goal: values.goal,
-              id: props.ID,
+              id: ID,
+              index:index,
+              category:category,
             };
             dispatch(updateHabit(data));
+            setFlag(!flag)
           }}
         >
           {({ setFieldValue, isSubmitting }) => (
@@ -85,7 +91,7 @@ function EditHabit(props) {
                   <div className="margin">
                     <button
                       className="cancel"
-                      onClick={() => props.handleButton()}
+                      onClick={() => handleButton()}
                     >
                       Cancel
                     </button>
@@ -107,11 +113,9 @@ function EditHabit(props) {
   );
 }
 EditHabit.prototype = {
-  
   goal:PropTypes.number,
 };
 EditHabit.defaultProps = {
-  
   goal:1
 };
 export default EditHabit;
