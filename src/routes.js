@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { auth } from "database/firebase";
+import path from "config/routes";
 import {
   Routes,
   BrowserRouter as Router,
@@ -9,6 +10,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { changeHabits } from "store/habitsReducer";
+import { addID, addPhoto, addDisplayName } from "store/usersReducer";
 import SignIn from "@views/Sign-in/SignIn";
 import Home from "Components/Home/Home";
 const Routers = () => {
@@ -18,17 +20,12 @@ const Routers = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(true);
+        dispatch(addID(user.uid));
+      dispatch(addDisplayName(user.displayName));
+      dispatch(addPhoto(user.photoURL));
         dispatch(changeHabits({uid:user.uid}));
-        // setLoading(false);
-        // dispatch(setUserId(user.uid));
-        // dispatch(fetchHabits({uid:user.uid}));
-        // dispatch(fetchSkips({ uid: user.uid}));
-        // dispatch(fetchSuccess({ uid: user.uid }));
-        // dispatch(fetchFail({ uid: user.uid }));
-        // dispatch(getLabels(user.uid));
       } else {
         setUser(false);
-        // setLoading(false);
       }
     });
   }, []);
@@ -38,12 +35,12 @@ const Routers = () => {
         <Route
           exact
           path="/"
-          element={!user ? <SignIn /> : <Navigate to="/app" />}
+          element={!user ? <SignIn /> : <Navigate to={path.app} />}
         />
         <Route
           exact
           path="/app"
-          element={user ? <Home /> : <Navigate to="/" />}
+          element={user ? <Home /> : <Navigate to={path.home} />}
         />
       </Routes>
     </Router>

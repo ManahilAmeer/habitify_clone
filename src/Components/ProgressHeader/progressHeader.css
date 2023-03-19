@@ -3,13 +3,13 @@
   background-color: var(--dark-back);
 }
 .progress_header {
-  height: 50px;
+  height: 3.66vw;
   display: flex;
-  padding: 0px 12px 0px 10px;
+  padding: 0vw 10.146vw 0vw 0.732vw;
   background-color: --dark-back;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 0.073vw solid var(--border);
   overflow-x: auto;
 }
 .title_div {
@@ -17,9 +17,8 @@
   display: flex;
   align-items: center;
 }
-
 .progress_button {
-  padding-right: 0px;
+  padding-right: 0vw;
   display: inline-flex;
   margin-right: 0.585vw;
   align-items: center;
@@ -35,34 +34,42 @@
   width: 2.342vw;
   height: 2.196vw;
 }
+img {
+  width: 1.171vw;
+  height: 1.171vw;
+}
+.streak-img{
+  width: 1.683vw;
+  height: 2.269vw;
+}
 .title {
   color: var(--text-color);
   font-family: Inter;
-  font-size: 17px;
+  font-size: 1.244vw;
   font-weight: 600;
-  line-height: 20.4px;
+  line-height: 1.493vw;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-top: 5.766px;
+  margin-top: 0.422vw;
 }
 .buttons-div {
   display: flex;
-  margin-left: 10px;
+  margin-left: 0.732vw;
 }
 .progress_button {
-  width: 32px;
-  height: 30px;
+  width: 2.342vw;
+  height: 2.196vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 8px;
-  border-radius: 3px;
+  margin-left: 0.585vw;
+  border-radius: 0.219vw;
   border: 0.0732vw solid var(--border);
   color: var(--text-color);
   background-color: var(--elements-color);
 }
 .calender {
-  width: 147px;
+  width: 10.76vw;
 }
 ::-webkit-scrollbar {
   width: 0.585vw;
@@ -81,18 +88,18 @@
   background: #555;
 }
 .progress-content {
-  padding: 12px;
-  max-height: calc(100vh - 50px);
+  padding: 0.878vw;
+  max-height: calc(100vh - 3.66vw);
   overflow-y: auto;
 }
 .currentStreak {
-  height: 78.78px;
+  height: 5.767vw;
   display: grid;
   grid-template-columns: 1fr auto;
-  column-gap: 20px;
-  padding: 18px 12px 18px 20px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
+  column-gap: 1.464vw;
+  padding: 1.317vw 0.878vw 1.317vw 1.464vw;
+  border: 0.073vw solid var(--border);
+  border-radius: 0.366vw;
   -webkit-box-align: center;
   align-items: center;
 }
@@ -101,42 +108,42 @@
   align-items: center;
 }
 .streak-logo {
-  padding-bottom: 33px;
-  min-width: 23px;
+  padding-bottom: 2.415vw;
+  min-width: 1.683vw;
 }
 .streak-info {
-  margin-left: 12px;
-  padding-bottom: 18px;
+  margin-left: 0.878vw;
+  padding-bottom: 1.317vw;
 }
 .streak {
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 0.439vw;
   color: rgb(123, 124, 124);
   font-family: Inter;
-  font-size: 11px;
+  font-size: 0.805vw;
   font-weight: 600;
-  line-height: 13.2px;
+  line-height: 0.966vw;
 }
 .days {
   font-family: Inter;
-  font-size: 18px;
+  font-size: 1.317vw;
   font-weight: 600;
-  line-height: 21.6px;
+  line-height: 1.581vw;
 }
 .progress-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  gap: 0.878vw;
+  margin-top: 0.878vw;
+  margin-bottom: 0.878vw;
 }
 .grid-data {
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 6px;
-  padding: 16.5px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  row-gap: 0.439vw;
+  padding: 1.207vw 1.171vw;
+  border: 0.073vw solid var(--border);
+  border-radius: 0.732vw;
   align-content: center;
 }
 .progress-category {
@@ -146,11 +153,11 @@
 }
 .category-logo {
   max-height: 100%;
-  margin-right: 6px;
-  margin-top: 1px;
-  width: 13px !important;
-  height: 26px !important;
-  padding-bottom: 14px;
+  margin-right: 0.439vw;
+  margin-top: 0.073vw;
+  width: 0.951vw !important;
+  height: 1.903vw !important;
+  padding-bottom: 1.024vw;
 }
 .category-text {
   text-transform: uppercase;
@@ -159,9 +166,9 @@
   overflow: hidden;
   color: rgb(123, 124, 124);
   font-family: Inter;
-  font-size: 11px;
+  font-size: 0.805vw;
   font-weight: 600;
-  line-height: 13.2px;
+  line-height: 0.966vw;
   margin: 0;
 }
 .category-days {
@@ -170,14 +177,14 @@
   overflow: hidden;
   color: var(--text-color);
   font-family: Inter;
-  font-size: 20px;
+  font-size: 1.464vw;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 1.756vw;
   margin: 0;
 }
 .category-change {
   display: flex;
   -webkit-box-align: center;
   align-items: center;
-  height: 15px;
+  height: 1.098vw;
 }

@@ -3,16 +3,15 @@ import "Components/Progress/progress.css";
 import ProgressHeader from 'Components/ProgressHeader/ProgressHeader'
 import PropTypes from "prop-types";
 import ProgressContent from "Components/ProgressContent/ProgressContent";
-function Progress(props) {
-  const {habitName,CompleteLength,SkipLength,FailLength,streak,total}=props;
+function Progress({habitName,completeLength,skipLength,failLength,streak,total}) {
   return (
     <div className="progress_bar">
       <div className="progress-section">
         <ProgressHeader habitName={habitName}></ProgressHeader>
         <ProgressContent
-          CompleteLength={CompleteLength}
-          FailLength={FailLength}
-          SkipLength={SkipLength}
+          completeLength={completeLength}
+          failLength={failLength}
+          skipLength={skipLength}
           streak={streak}
           total={total}
         ></ProgressContent>
@@ -22,17 +21,17 @@ function Progress(props) {
 }
 Progress.prototype = {
   habitName: PropTypes.string,
-  CompleteLength: PropTypes.number,
-  SkipLength: PropTypes.number,
-  FailLength: PropTypes.number,
+  completeLength: PropTypes.number,
+  skipLength: PropTypes.number,
+  failLength: PropTypes.number,
   streak: PropTypes.number,
   total: PropTypes.number,
 };
 Progress.defaultProps = {
   habitName: "",
-  CompleteLength: 0,
-  SkipLength: 0,
-  FailLength: 0,
+  completeLength: 0,
+  skipLength: 0,
+  failLength: 0,
   streak: 0,
   total: 0,
 };

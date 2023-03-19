@@ -3,37 +3,34 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SidebarData, SidebarAreas, Preferences } from "@config/SidebarData.js";
 import { logout } from "@database/firebase";
+import path from "config/routes";
 import "Components/Sidebar/sidebar.css";
 function Sidebar() {
   const [lightTheme, setLightTheme] = useState(false);
-  const [SignOutvisibility, setvisibility] = useState(false);
-  const [zIndex, setZIndex] = useState("popUp");
-  const [ThemezIndex, setThemezIndex] = useState("themeDrop");
-  var signoutClassName = "sign-out";
-  SignOutvisibility
+  const [sign_outvisibility, setSign_outvisibility] = useState(false);
+  const [z_index, setZ_index] = useState("popUp");
+  const [theme, setTheme] = useState("themeDrop");
+  let signoutClassName = "sign-out";
+  sign_outvisibility
     ? (signoutClassName = "sign-out-visible")
     : (signoutClassName = "sign-out");
   const navigate = useNavigate();
   const photoURL = useSelector((state) => state.users.photoURL);
   const displayName = useSelector((state) => state.users.displayName);
   const handleSignOut = () => {
-    navigate("/");
+    navigate(path.home);
     logout();
   };
   const handleThemeDropdown = () => {
-    SignOutvisibility
-      ? setThemezIndex("themeDrop")
-      : setThemezIndex("themeDrop-zindex");
-    setvisibility(!SignOutvisibility);
+    sign_outvisibility ? setTheme("themeDrop") : setTheme("themeDrop-zindex");
+    setSign_outvisibility(!sign_outvisibility);
   };
   const handleDropdown = () => {
-    SignOutvisibility ? setZIndex("popUp") : setZIndex("popUp-zIndex");
-    setvisibility(!SignOutvisibility);
+    sign_outvisibility ? setZ_index("popUp") : setZ_index("popUp-zIndex");
+    setSign_outvisibility(!sign_outvisibility);
   };
   const changeTheme = () => {
-    console.log(lightTheme);
     if (lightTheme) {
-      console.log("sjgdh");
       document.documentElement.style.setProperty("--dark-back", "#ffffff");
       document.documentElement.style.setProperty("--text-color", "#000000");
       document.documentElement.style.setProperty("--elements-color", "#ffffff");
@@ -47,6 +44,40 @@ function Sidebar() {
         "--border",
         "rgb(229, 228, 229)"
       );
+      document.documentElement.style.setProperty(
+        "--user-box-color",
+        "rgb(236, 236, 236)"
+      );
+    } else {
+      document.documentElement.style.setProperty(
+        "--dark-back",
+        "rgb(23, 23, 23)"
+      );
+      document.documentElement.style.setProperty(
+        "--text-color",
+        "rgb(255, 255, 255)"
+      );
+      document.documentElement.style.setProperty(
+        "--elements-color",
+        "rgb(66, 66, 66)"
+      );
+      document.documentElement.style.setProperty(
+        "--icon-color",
+        "rgb(255, 255, 255)"
+      );
+      document.documentElement.style.setProperty(
+        "--popUp-color",
+        "rgb(50, 50, 50)"
+      );
+      document.documentElement.style.setProperty(
+        "--popUp-text-color",
+        "#ffffffb3"
+      );
+      document.documentElement.style.setProperty("--border", "rgb(74, 74, 74)");
+      document.documentElement.style.setProperty(
+        "--user-box-color",
+        "rgb(50, 50, 50)"
+      );
     }
   };
   return (
@@ -57,7 +88,7 @@ function Sidebar() {
             <img src={photoURL} className="user-img" alt="user"></img>
             <p className="user-text">{displayName}</p>
           </div>
-          <div className={zIndex}>
+          <div className={z_index}>
             <div className={signoutClassName}>
               <div className="label">
                 <p className="label-text">Profile</p>
@@ -95,33 +126,34 @@ function Sidebar() {
           <li className="MenuType">THEME</li>
           {Preferences.map((val) => {
             return (
-              <>
-                <a key={val.id} className="sidebar-link">
-                  <div className="item" onClick={() => handleThemeDropdown()}>
-                    <div className="item-icon">{val.icon}</div>
-                    <p className="item-title">{val.title}</p>
-                  </div>
-                  <div className={ThemezIndex}>
-                    <div className={signoutClassName}>
-                      <div
-                        className="label"
-                        onClick={() => {
-                          setLightTheme((s) => !s);
-                          changeTheme();
-                        }}
-                      >
-                        <p className="label-text">Light</p>
-                      </div>
-                      <div
-                        className="label bottom"
-                        onClick={() => handleSignOut()}
-                      >
-                        <p className="label-text">Dark</p>
-                      </div>
+              <a key={val.id} className="sidebar-link">
+                <div className="item" onClick={() => handleThemeDropdown()}>
+                  <div className="item-icon">{val.icon}</div>
+                  <p className="item-title">{val.title}</p>
+                </div>
+                <div className={theme}>
+                  <div className={signoutClassName}>
+                    <div
+                      className="label"
+                      onClick={() => {
+                        setLightTheme((s) => !s);
+                        changeTheme();
+                      }}
+                    >
+                      <p className="label-text">Light</p>
+                    </div>
+                    <div
+                      className="label bottom"
+                      onClick={() => {
+                        setLightTheme((s) => !s);
+                        changeTheme();
+                      }}
+                    >
+                      <p className="label-text">Dark</p>
                     </div>
                   </div>
-                </a>
-              </>
+                </div>
+              </a>
             );
           })}
         </div>

@@ -1,17 +1,15 @@
-// import React from "react";
-// import "@App.css";
 import habitifyIcon from "@assets/habitify.png";
 import GoogleIcon from "@assets/google.svg";
 import "@views/Sign-in/signIn.css";
 import { useDispatch } from "react-redux";
-import { addID, addPhoto, addDisplayName } from "@store/usersReducer";
+import { addID, addPhoto, addDisplayName } from "store/usersReducer";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, signInWithGoogle } from "@database/firebase";
+import { auth, signInWithGoogle } from "database/firebase";
+import path from "config/routes";
 function SignIn() {
   const dispatch = useDispatch();
-
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   useEffect(() => {
@@ -20,7 +18,7 @@ function SignIn() {
       dispatch(addID(user.uid));
       dispatch(addDisplayName(user.displayName));
       dispatch(addPhoto(user.photoURL));
-      navigate("/app");
+      navigate(path.app);
     }
   }, [user, loading, navigate]);
   return (
@@ -41,8 +39,8 @@ function SignIn() {
             <div className="Apple">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14px"
-                height="18px"
+                width="1.024vw"
+                height="1.317vw"
                 viewBox="0 0 16 20"
               >
                 <path
@@ -58,5 +56,4 @@ function SignIn() {
     </>
   );
 }
-
 export default SignIn;
