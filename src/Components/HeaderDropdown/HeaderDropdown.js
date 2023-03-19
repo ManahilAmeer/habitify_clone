@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-
-import { DropdownData, newHabitData, logMoodData } from "config/HeaderData";
-import "Components/HeaderDropdown/Headerdropdown.css";
+import { dropdownData, newHabitData, logMoodData } from "config/HeaderData";
+import "Components/HeaderDropdown/headerdropdown.css";
 import NewHabit from "views/NewHabitForm/NewHabit";
-function HeaderDropdown(props) {
-  const {Sortvisibility,Habitvisibility,handleSortButton,handleHabitDropdown}=props;
-  var sortClassName = "Sortdropdown";
-  var habitClassName = "newDropdown Sortdropdown";
-  Sortvisibility
+function HeaderDropdown({
+  sortvisibility,
+  habitvisibility,
+  handleSortButton,
+  handleHabitDropdown,
+}) {
+  let sortClassName = "Sortdropdown";
+  let habitClassName = "newDropdown Sortdropdown";
+  sortvisibility
     ? (sortClassName = "Sortdropdown-visible")
     : (sortClassName = "Sortdropdown");
-  Habitvisibility
+  habitvisibility
     ? (habitClassName = "newDropdown Sortdropdown-visible")
     : (habitClassName = "newDropdown Sortdropdown");
   const [flag, setFlag] = useState(false);
@@ -23,13 +26,10 @@ function HeaderDropdown(props) {
   return (
     <div>
       <div>
-        <ul
-          className={sortClassName}
-        >
-          {DropdownData.map((val) => {
+        <ul className={sortClassName}>
+          {dropdownData.map((val) => {
             return (
               <div key={val.id} className="list-item">
-                {/* <div className="list-selected"></div> */}
                 <div className="list-title">
                   <p
                     className="list-text"
@@ -44,9 +44,7 @@ function HeaderDropdown(props) {
         </ul>
       </div>
       <div>
-        <ul
-          className={habitClassName}
-        >
+        <ul className={habitClassName}>
           <div className="habits">
             {newHabitData.map((val, key) => {
               return (
@@ -67,7 +65,7 @@ function HeaderDropdown(props) {
             })}
           </div>
           <div className="mood">
-            {logMoodData.map((val, key) => {
+            {logMoodData.map((val) => {
               return (
                 <div key={val.id} className="list-item">
                   <div className="list-selected">{val.icon}</div>
@@ -85,16 +83,13 @@ function HeaderDropdown(props) {
   );
 }
 HeaderDropdown.propTypes = {
-  Sortvisibility: PropTypes.bool.isRequired,
-  Habitvisibility: PropTypes.bool.isRequired,
+  sortvisibility: PropTypes.bool,
+  habitvisibility: PropTypes.bool,
   handleSortButton: PropTypes.func.isRequired,
   handleHabitDropdown: PropTypes.func.isRequired,
 };
-
 HeaderDropdown.defaultProps = {
-  Sortvisibility: false,
-  Habitvisibility: false,
-  handleSortButton: () => {},
-  handleHabitDropdown: () => {},
+  sortvisibility: false,
+  habitvisibility: false,
 };
 export default HeaderDropdown;

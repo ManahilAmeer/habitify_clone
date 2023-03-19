@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PropTypes from "prop-types";
 function ProgressContent(props) {
-  const { CompleteLength, FailLength, SkipLength, streak, total } = props;
+  const { completeLength, failLength,skipLength, streak, total } = props;
   return (
     <>
       <div className="progress-content">
@@ -32,7 +32,7 @@ function ProgressContent(props) {
               <DoneIcon className="category-logo"></DoneIcon>
               <p className="category-text">Complete</p>
             </div>
-            <p className="category-days">{CompleteLength} days</p>
+            <p className="category-days">{completeLength} days</p>
             <div className="category-change">---</div>
           </div>
           <div className="grid-data">
@@ -40,7 +40,7 @@ function ProgressContent(props) {
               <CloseIcon className="category-logo"></CloseIcon>
               <p className="category-text">Failed</p>
             </div>
-            <p className="category-days">{FailLength} days</p>
+            <p className="category-days">{failLength} days</p>
             <div className="category-change">---</div>
           </div>
           <div className="grid-data">
@@ -48,7 +48,7 @@ function ProgressContent(props) {
               <ArrowForwardIcon className="category-logo"></ArrowForwardIcon>
               <p className="category-text">Skipped</p>
             </div>
-            <p className="category-days">{SkipLength} days</p>
+            <p className="category-days">{skipLength} days</p>
             <div className="category-change">---</div>
           </div>
           <div className="grid-data">
@@ -65,16 +65,16 @@ function ProgressContent(props) {
   );
 }
 ProgressContent.prototype = {
-  CompleteLength: PropTypes.number,
-  SkipLength: PropTypes.number,
-  FailLength: PropTypes.number,
+  completeLength: PropTypes.number,
+  skipLength: PropTypes.number,
+  failLength: PropTypes.number,
   streak: PropTypes.number,
   total: PropTypes.number,
 };
 ProgressContent.defaultProps = {
-  CompleteLength: 0,
-  SkipLength: 0,
-  FailLength: 0,
+  completeLength: 0,
+  skipLength: 0,
+  failLength: 0,
   streak: 0,
   total: 0,
 };

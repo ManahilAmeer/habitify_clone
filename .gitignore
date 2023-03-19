@@ -22,3 +22,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.svg
+build/static/media/calenderIcon.baf09a2aade8c16fac32c15bc104fbb6.svg
+build/static/media/search.9edfb84ddad676ff1a15a73cd7bfc084.svg
+build/static/media/calenderIcon.baf09a2aade8c16fac32c15bc104fbb6.svg

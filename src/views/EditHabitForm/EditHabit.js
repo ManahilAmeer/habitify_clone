@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import Goal from "@components/Goal/Goal";
-import { updateHabit,deleteHabit } from "store/habitsReducer";
+import Goal from "Components/Goal/Goal";
+import { updateHabit, deleteHabit } from "store/habitsReducer";
 import { useDispatch } from "react-redux";
 import QMark from "@assets/QMark.svg";
 import "@views/EditHabitForm/EditHabit.css";
 function EditHabit(props) {
-  const name=props.name;
+  const name = props.name;
   const usergoal = props.goal;
+  
   const dispatch = useDispatch();
-  useEffect(() => {}, [updateHabit,deleteHabit]);
-  const [goal, setGoal] = useState(1);
-  const handleDeleteButton=()=>{
-    dispatch(deleteHabit({ID:props.ID}))
-  }
+  useEffect(() => {}, [updateHabit, deleteHabit]);
+  
+  const handleDeleteButton = () => {
+    dispatch(deleteHabit({ id: props.ID }));
+  };
   return (
     <>
       <div className="tab">
@@ -28,13 +29,13 @@ function EditHabit(props) {
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values) => {
             const data = {
               name: values.name,
               goal: values.goal,
               id: props.ID,
             };
-            
+            dispatch(updateHabit(data));
           }}
         >
           {({ setFieldValue, isSubmitting }) => (
@@ -63,7 +64,7 @@ function EditHabit(props) {
                   </div>
                   <Field
                     name="goal"
-                    value={goal}
+                    value={usergoal}
                     className="display-none"
                   ></Field>
                   <Goal setFieldValue={setFieldValue} goal={usergoal}></Goal>
@@ -72,9 +73,8 @@ function EditHabit(props) {
                   <div>
                     <button
                       className="cancel delete"
-                      type="button"
+                      type="submit"
                       onClick={() => handleDeleteButton()}
-                      // onClick={() => props.handleButton()}
                     >
                       Delete
                     </button>
@@ -107,9 +107,11 @@ function EditHabit(props) {
   );
 }
 EditHabit.prototype = {
-  handleButton: PropTypes.func.isRequired,
+  
+  goal:PropTypes.number,
 };
 EditHabit.defaultProps = {
-  handleButton: () => {},
+  
+  goal:1
 };
 export default EditHabit;

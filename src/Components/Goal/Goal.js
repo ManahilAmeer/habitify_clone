@@ -1,15 +1,13 @@
-// import React from "react";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import arrowUp from "@assets/arrow-up.svg";
-import arrowDown from "@assets/arrow.svg";
-import upDown from "@assets/upDown.svg";
-import cross from "@assets/cross.svg";
-import calender from "@assets/calenderGrey.svg";
-import "@components/Goal/goal.css";
-function Goal(props) {
-  const {setFieldValue, goal}=props
+import arrowUp from "assets/arrow-up.svg";
+import arrowDown from "assets/arrow.svg";
+import upDown from "assets/upDown.svg";
+import cross from "assets/cross.svg";
+import calender from "assets/calenderGrey.svg";
+import "Components/Goal/goal.css";
+function Goal({setFieldValue, goal}) {
   const [input, setInput] = useState(goal);
   const increment = () => {
     input <= 100 ? handleChange(input + 1) : handleChange(input);
@@ -134,12 +132,11 @@ function Goal(props) {
   );
 }
 Goal.propTypes = {
-  goal: PropTypes.number.isRequired,
+  goal: PropTypes.number,
   setFieldValue: PropTypes.func.isRequired,
 };
 
 Goal.defaultProps = {
   goal:1,
-  setFieldValue: () => {},
 };
 export default Goal;

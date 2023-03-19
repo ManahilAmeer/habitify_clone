@@ -1,11 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { progressDocRef, habitDocRef, habitsRef } from "database/firebase";
-import {
-  deleteDoc,
-  getDocs,
-  increment,
-  snapshotEqual,
-} from "firebase/firestore";
+import { habitDocRef, habitsRef } from "database/firebase";
+import { getDocs } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 export const initialState = {
   id: "",
@@ -21,7 +16,7 @@ const today =
   date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 export const fetchHabits = createAsyncThunk("getNotes", async (uid) => {
   try {
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("category", "==", "");
     const response = await getDocs(allHabits);
     const habits = response.docs.map((doc) => {
@@ -34,7 +29,7 @@ export const fetchHabits = createAsyncThunk("getNotes", async (uid) => {
 });
 export const fetchSkips = createAsyncThunk("getSkips", async (uid) => {
   try {
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("category", "==", "Skip");
     const response = await getDocs(allHabits);
     const habits = response.docs.map((doc) => {
@@ -47,7 +42,7 @@ export const fetchSkips = createAsyncThunk("getSkips", async (uid) => {
 });
 export const fetchSuccess = createAsyncThunk("getSuccess", async (uid) => {
   try {
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("category", "==", "Complete");
     const response = await getDocs(allHabits);
     const success = response.docs.map((doc) => {
@@ -60,7 +55,7 @@ export const fetchSuccess = createAsyncThunk("getSuccess", async (uid) => {
 });
 export const fetchFail = createAsyncThunk("getFail", async (uid) => {
   try {
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("category", "==", "Fail");
     const response = await getDocs(allHabits);
     const habits = response.docs.map((doc) => {
@@ -73,17 +68,7 @@ export const fetchFail = createAsyncThunk("getFail", async (uid) => {
 });
 export const changeHabits = createAsyncThunk("changeHabits", async (uid) => {
   try {
-    // const date = new Date();
-    // const increment = firebase.firestore.FieldValue.increment(1);
-    // const yesterday =
-    //   date.getFullYear() +
-    //   "-" +
-    //   (date.getMonth() + 1) +
-    //   "-" +
-    //   (date.getDate() - 1);
-    // const today =
-    //   date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-    var allHabits = habitsRef(uid.uid);
+    let allHabits = habitsRef(uid.uid);
     allHabits = allHabits.where("date", "==", yesterday);
     const response = await getDocs(allHabits);
     const habits = response.docs.map((docs) => {
@@ -107,9 +92,11 @@ const habitReducer = createSlice({
       try {
         const increment = firebase.firestore.FieldValue.increment(1);
         const data = habitDocRef(action.payload.id);
-        data.update({
-          category: action.payload.category,
-        });
+        if (action.payload.category) {
+          data.update({
+            category: action.payload.category,
+          });
+        }
         if (action.payload.category === "Skip") {
           data.update({
             SkipLength: increment,
@@ -118,11 +105,7 @@ const habitReducer = createSlice({
           data.update({
             FailLength: increment,
           });
-          } else if (action.payload.category === "Complete") {
-            data.update({
-              CompleteLength: increment,
-            });
-          }
+        }
       } catch (err) {
         console.log(err);
       }
@@ -131,17 +114,30 @@ const habitReducer = createSlice({
       const data = habitDocRef(action.payload.id);
       const increment = firebase.firestore.FieldValue.increment(1);
       data.get().then((snapshot) => {
-        if (snapshot.data().completedDate === yesterday) {
-          data.update({
-            completedDate: today,
-            streak: increment,
-          });
-        }
-        else{
-          data.update({
-            completedDate: today,
-            streak: 0,
-          });
+        const compDate = snapshot.data().completedDate;
+        if (snapshot.data().completed === snapshot.data().goal) {
+          if (compDate === yesterday) {
+            data.update({
+              completedDate: today,
+              streak: increment,
+              CompleteLength: increment,
+              category: "Complete",
+            });
+          } else if (
+            (compDate == undefined || compDate === today) 
+          ) {
+            data.update({
+              CompleteLength: increment,
+              category: "Complete",
+              completedDate: today,
+              streak: 1,
+            });
+          } else {
+            data.update({
+              completedDate: today,
+              streak: 0,
+            });
+          }
         }
       });
     },
@@ -149,12 +145,9 @@ const habitReducer = createSlice({
       try {
         const data = habitDocRef(action.payload.id);
         const increment = firebase.firestore.FieldValue.increment(1);
-        
-        console.log(action.payload.completed);
         data.update({
-          total:increment,
-          completed: action.payload.completed,
-          // CompleteLength: increment,
+          total: increment,
+          completed: increment,
         });
       } catch (err) {
         console.log(err);
@@ -167,18 +160,18 @@ const habitReducer = createSlice({
         ref.update({
           Name: data.name,
           goal: data.goal,
-        });
+        }).then(console.log("updated"));
       } catch (err) {
         console.log(err);
       }
     },
     deleteHabit: (state, action) => {
-      try {
-        const data = habitDocRef(action.payload.id);
-        deleteDoc(data);
-      } catch (err) {
-        console.log(err);
-      }
+      habitDocRef(action.payload.id)
+        .delete()
+        .then(() => {})
+        .catch((error) => {
+          console.log("Error removing document:", error);
+        });
     },
     addHabit: (state, action) => {
       const data = action.payload;

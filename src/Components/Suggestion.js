@@ -1,21 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { MostPopularData, StayFitData } from "config/SuggestionData";
+import { mostPopularData, stayFitData } from "config/SuggestionData";
 
-function Suggestion(props) {
-  const {setFieldValue,handleMenu,Visibility}=props;
-  var className="";
-  Visibility
-    ? (className = "menu-visible")
-    : (className = "menu");
+function Suggestion({ setFieldValue, handleMenu, visibility }) {
+  let className = "";
+  visibility ? (className = "menu-visible") : (className = "menu");
   return (
     <>
       <div className={className}>
         <div className="popular">
           <p className="popular-heading">Most Popular Habits</p>
 
-          {MostPopularData.map((val, key) => {
+          {mostPopularData.map((val, key) => {
             return (
               <div key={val.id} className="habit-sug">
                 <div className="sug-icon">
@@ -37,7 +34,7 @@ function Suggestion(props) {
         <div className="popular">
           <p className="popular-heading">Stay Fit with exercise</p>
 
-          {StayFitData.map((val, key) => {
+          {stayFitData.map((val, key) => {
             return (
               <div key={val.id} className="habit-sug">
                 <div className="sug-icon">
@@ -61,14 +58,12 @@ function Suggestion(props) {
   );
 }
 Suggestion.propTypes = {
-  Visibility: PropTypes.bool.isRequired,
+  visibility: PropTypes.bool,
   handleMenu: PropTypes.func.isRequired,
   setFieldValue: PropTypes.func.isRequired,
 };
 
 Suggestion.defaultProps = {
-  Visibility: false,
-  handleMenu: () => {},
-  setFieldValue: () => {},
+  visibility: false,
 };
 export default Suggestion;
